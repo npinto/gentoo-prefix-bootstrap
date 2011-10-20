@@ -148,8 +148,8 @@ USE=-fortran emerge -uDN gcc
 #source $EPREFIX/etc/profile
 
 # -- Final system installation
-emerge -ve -j system world
-#emerge -e -j world
+mkdir -p $EPREFIX/etc/portage/env/dev-libs/ && echo "export LDFLAGS=-L$EPREFIX/usr/lib" >> $EPREFIX/etc/portage/env/dev-libs/mpc
+emerge -vej system world
 
 echo "DONE!"
 
