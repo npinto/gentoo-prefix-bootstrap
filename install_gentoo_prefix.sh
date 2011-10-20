@@ -148,8 +148,8 @@ USE=-fortran emerge -uDN gcc
 #source $EPREFIX/etc/profile
 
 # -- Final system installation
-emerge -e -j system
-emerge -e -j world
+emerge -ve -j system world
+#emerge -e -j world
 
 echo "DONE!"
 
