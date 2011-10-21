@@ -7,6 +7,10 @@ source ./init.sh
 # keychain
 emerge -uDN keychain
 
+# ruby
+echo 'dev-lang/ruby -ssl' >> $EPREFIX/etc/portage/package.use/ruby
+emerge -juN ruby
+
 # vim
 echo "app-editors/vim bash-completion vim-pager python ruby" >> $EPREFIX/etc/portage/package.use/vim
 emerge -juN vim{,-core}
