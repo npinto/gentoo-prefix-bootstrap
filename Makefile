@@ -83,15 +83,15 @@ stage1: bootstrap-prefix-patched.sh
 	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp python
 	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp bison
 	./bootstrap-prefix-patched.sh ${EPREFIX} portage
-	touch $@
+	touch $@.done
 
 # ----------------------------------------------------------------------------
 # -- STAGE 2
 # ----------------------------------------------------------------------------
-stage2: stage1 stage2-up-to-bison stage2-binutils stage2-gcc stage2-up-to-pax-utils stage2-portage
-	touch $@
+stage2: stage1.done stage2-up-to-bison.done stage2-binutils.done stage2-gcc.done stage2-up-to-pax-utils.done stage2-portage.done
+	touch $@.done
 
-stage2-up-to-bison: stage1
+stage2-up-to-bison: stage1.done
 	emerge --oneshot sed
 	emerge --oneshot --nodeps bash
 	emerge --oneshot --nodeps xz-utils
@@ -100,23 +100,23 @@ stage2-up-to-bison: stage1
 	emerge --oneshot --nodeps m4
 	emerge --oneshot --nodeps flex
 	emerge --oneshot --nodeps bison
-	touch $@
+	touch $@.done
 
-stage2-binutils: stage2-up-to-bison
+stage2-binutils: stage2-up-to-bison.done
 	emerge --oneshot --nodeps binutils-config
 	# XXX: MAKEOPTS in env/... ?
 	#MAKEOPTS=-j1 emerge --oneshot --nodeps binutils
 	#MAKEOPTS=-j1 emerge --oneshot --nodeps "~binutils-2.20.1-r1"
 	# work around binutils:
 	ebuild --skip-manifest ${EPREFIX}/usr/portage/sys-devel/binutils/binutils-2.20.1-r1.ebuild clean merge
-	touch $@
+	touch $@.done
 
-stage2-gcc: stage2-binutils
+stage2-gcc: stage2-binutils.done
 	emerge --oneshot --nodeps gcc-config
 	emerge --oneshot --nodeps "=gcc-4.2*"
-	touch $@
+	touch $@.done
 
-#stage2-gcc-workarounds: stage2-binutils
+#stage2-gcc-workarounds: stage2-binutils.done
 	## errno.h missing
 	#emerge --oneshot linux-headers
 	# XXX: to test 'tar' (FIX dicarlo2 problem on tar overflow?)
@@ -124,10 +124,10 @@ stage2-gcc: stage2-binutils
 	## lib{c,m}.so missing
 	#ln -sf $(ldd /usr/bin/awk | grep libc.so | awk '{print $3}') ${EPREFIX}/usr/lib/libc.so
 	#ln -sf $(ldd /usr/bin/awk | grep libm.so | awk '{print $3}') ${EPREFIX}/usr/lib/libm.so
-	#touch $@
+	#touch $@.done
 
-#stage2-up-to-pax-utils: stage2-gcc-workarounds stage2-gcc
-stage2-up-to-pax-utils: stage2-gcc
+#stage2-up-to-pax-utils: stage2-gcc-workarounds.done stage2-gcc.done
+stage2-up-to-pax-utils: stage2-gcc.done
 	emerge --oneshot coreutils
 	emerge --oneshot findutils
 	emerge --oneshot tar
@@ -138,9 +138,9 @@ stage2-up-to-pax-utils: stage2-gcc
 	emerge --oneshot --nodeps file
 	emerge --oneshot --nodeps eselect
 	emerge --oneshot pax-utils
-	touch $@
+	touch $@.done
 
-stage2-portage-workarounds: stage2-up-to-pax-utils
+stage2-portage-workarounds: stage2-up-to-pax-utils.done
 	# python workaround
 	mkdir -p ${EPREFIX}/etc/portage/env/dev-lang/
 	echo "export LDFLAGS='-L/usr/lib64'" >> ${EPREFIX}/etc/portage/env/dev-lang/python
@@ -148,8 +148,9 @@ stage2-portage-workarounds: stage2-up-to-pax-utils
 	mkdir -p ${EPREFIX}/etc/portage/env/dev-libs
 	#echo "export LDFLAGS=-l:$$(ls ${EPREFIX}/usr/lib/libz.so* | head -n 1)" >> ${EPREFIX}/etc/portage/env/dev-libs/libxml2
 	echo "export LDFLAGS=-l:\$$(ls ${EPREFIX}/usr/lib/libz.so* | head -n 1)" >> ${EPREFIX}/etc/portage/env/dev-libs/libxml2
+	touch $@.done
 
-stage2-portage: stage2-up-to-pax-utils stage2-portage-workarounds
+stage2-portage: stage2-up-to-pax-utils.done stage2-portage-workarounds.done
 	# Update portage
 	env FEATURES="-collision-protect" emerge --oneshot portage
 	mkdir -p ${EPREFIX}/etc/portage/package.{keywords,use}
@@ -157,17 +158,17 @@ stage2-portage: stage2-up-to-pax-utils stage2-portage-workarounds
 	rm -Rf ${EPREFIX}/tmp/*
 	# Synchronize repo
 	emerge --sync
-	touch $@
+	touch $@.done
 
 # ----------------------------------------------------------------------------
 # -- STAGE 3
 # ----------------------------------------------------------------------------
-stage3: stage2 stage3-workarounds
+stage3: stage2.done stage3-workarounds.done
 	# Update system
 	emerge -u system
-	touch $@
+	touch $@.done
 
-stage3-workarounds: stage2
+stage3-workarounds: stage2.done
 	# git workaround
 	USE="-git" emerge --oneshot --nodeps gettext
 	emerge --oneshot git
@@ -182,25 +183,25 @@ stage3-workarounds: stage2
 	mkdir -p ${EPREFIX}/etc/portage/env/sys-apps
 	echo "export MAKEOPTS=-j1" >> ${EPREFIX}/etc/portage/env/sys-apps/groff
 	#MAKEOPTS=-j1 emerge -u groff
-	touch $@
+	touch $@.done
 
 # ----------------------------------------------------------------------------
 # -- STAGE 4
 # ----------------------------------------------------------------------------
-stage4: stage3 stage4-config stage4-workarounds
+stage4: stage3.done stage4-config.done stage4-workarounds.done
 	# -- recompile entire system
 	emerge -vej system world
-	touch $@
+	touch $@.done
 
-stage4-config: stage3 make.conf
+stage4-config: stage3.done make.conf
 	# -- Update make.conf
 	cp -vf make.conf ${EPREFIX}/etc/
 	echo "MAKEOPTS=${MAKEOPTS}" >> ${EPREFIX}/etc/make.conf
 	# -- python USE
 	echo 'dev-lang/python sqlite wide-unicode berkdb' >> ${EPREFIX}/etc/portage/package.use/python
-	touch $@
+	touch $@.done
 
-stage4-workarounds: stage3 stage4-config
+stage4-workarounds: stage3.done stage4-config.done
 	# -- gcc workaround
 	#USE=-fortran emerge -uDN gcc
 	USE=-fortran emerge --nodeps gcc
@@ -214,7 +215,7 @@ stage4-workarounds: stage3 stage4-config
 	mkdir -p ${EPREFIX}/etc/portage/env/net-misc
 	echo "export LDFLAGS=\"-l:${EPREFIX}/usr/lib/libssl.so -l:${EPREFIX}/usr/lib/libcrypto.so\"" >> ${EPREFIX}/etc/portage/env/net-misc/openssh
 	emerge openssh
-	touch $@
+	touch $@.done
 
 # ============================================================================
 # -- Helpers
@@ -223,7 +224,7 @@ clean:
 	rm -rf ${EPREFIX}
 	rm -f bootstrap-prefix-patched.sh
 	rm -f bootstrap-prefix-*.patch
-	rm -f stage*
+	rm -f *.done
 
 backup: ${EPREFIX}
 	mv -vf ${EPREFIX} ${EPREFIX}-backup-$(date +"%Y-%m-%d_%Hh%Mm%Ss")
