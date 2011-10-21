@@ -127,7 +127,7 @@ stage2-gcc: stage2-binutils
 	#touch $@
 
 #stage2-up-to-pax-utils: stage2-gcc-workarounds stage2-gcc
-stage2-up-to-pax-utils: stage2-gcc stage2-gcc
+stage2-up-to-pax-utils: stage2-gcc
 	emerge --oneshot coreutils
 	emerge --oneshot findutils
 	emerge --oneshot tar
@@ -146,8 +146,8 @@ stage2-portage-workarounds: stage2-up-to-pax-utils
 	echo "export LDFLAGS='-L/usr/lib64'" >> ${EPREFIX}/etc/portage/env/dev-lang/python
 	# libxml2 workaround
 	mkdir -p ${EPREFIX}/etc/portage/env/dev-libs
-	echo "export LDFLAGS=\"-l:${EPREFIX}/usr/lib/libz.so.1\"" >> ${EPREFIX}/etc/portage/env/dev-libs/libxml2
-	touch $@
+	#echo "export LDFLAGS=-l:$$(ls ${EPREFIX}/usr/lib/libz.so* | head -n 1)" >> ${EPREFIX}/etc/portage/env/dev-libs/libxml2
+	echo "export LDFLAGS=-l:\$$(ls ${EPREFIX}/usr/lib/libz.so* | head -n 1)" >> ${EPREFIX}/etc/portage/env/dev-libs/libxml2
 
 stage2-portage: stage2-up-to-pax-utils stage2-portage-workarounds
 	# Update portage
@@ -169,7 +169,7 @@ stage3: stage2 stage3-workarounds
 
 stage3-workarounds: stage2
 	# git workaround
-	USE="-git" emerge --oneshot gettext
+	USE="-git" emerge --oneshot --nodeps gettext
 	emerge --oneshot git
 	# gcc workaround
 	echo 'sys-devel/gcc vanilla' >> ${EPREFIX}/etc/portage/package.use/gcc
