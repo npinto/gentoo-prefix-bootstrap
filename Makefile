@@ -11,7 +11,7 @@
 # $ make
 # (XXX: right now this just install the system)
 #
-# To just install the system: 
+# To just install the system:
 # $ make install_gentoo_prefix
 #
 # To just install the system tools (eix, layman, etc.):
@@ -146,7 +146,7 @@ stage2-portage-workarounds: stage2-up-to-pax-utils
 	echo "export LDFLAGS='-L/usr/lib64'" >> ${EPREFIX}/etc/portage/env/dev-lang/python
 	# libxml2 workaround
 	mkdir -p ${EPREFIX}/etc/portage/env/dev-libs
-	echo "export LDFLAGS=\"-l:${EPREFIX}/usr/libz.so.1\"" >> ${EPREFIX}/etc/portage/env/dev-libs/libxml2
+	echo "export LDFLAGS=\"-l:${EPREFIX}/usr/lib/libz.so.1\"" >> ${EPREFIX}/etc/portage/env/dev-libs/libxml2
 	touch $@
 
 stage2-portage: stage2-up-to-pax-utils stage2-portage-workarounds
