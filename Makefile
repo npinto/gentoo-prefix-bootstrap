@@ -93,8 +93,6 @@ stage2: stage1 stage2-up-to-bison stage2-binutils stage2-gcc stage2-up-to-pax-ut
 
 stage2-up-to-bison: stage1
 	emerge --oneshot sed
-	# XXX: to test 'tar' (FIX dicarlo2 problem on tar overflow?)
-	emerge --oneshot tar
 	emerge --oneshot --nodeps bash
 	emerge --oneshot --nodeps xz-utils
 	emerge --oneshot wget
@@ -118,12 +116,18 @@ stage2-gcc: stage2-binutils
 	emerge --oneshot --nodeps "=gcc-4.2*"
 	touch $@
 
-stage2-gcc-workarounds: stage2-binutils
-	ln -sf $(ldd /usr/bin/awk | grep libc.so | awk '{print $3}') ${EPREFIX}/usr/lib/libc.so
-	ln -sf $(ldd /usr/bin/awk | grep libm.so | awk '{print $3}') ${EPREFIX}/usr/lib/libm.so
-	touch $@
+#stage2-gcc-workarounds: stage2-binutils
+	## errno.h missing
+	#emerge --oneshot linux-headers
+	# XXX: to test 'tar' (FIX dicarlo2 problem on tar overflow?)
+	#emerge --oneshot tar
+	## lib{c,m}.so missing
+	#ln -sf $(ldd /usr/bin/awk | grep libc.so | awk '{print $3}') ${EPREFIX}/usr/lib/libc.so
+	#ln -sf $(ldd /usr/bin/awk | grep libm.so | awk '{print $3}') ${EPREFIX}/usr/lib/libm.so
+	#touch $@
 
-stage2-up-to-pax-utils: stage2-gcc-workarounds stage2-gcc
+#stage2-up-to-pax-utils: stage2-gcc-workarounds stage2-gcc
+stage2-up-to-pax-utils: stage2-gcc stage2-gcc
 	emerge --oneshot coreutils
 	emerge --oneshot findutils
 	emerge --oneshot tar
