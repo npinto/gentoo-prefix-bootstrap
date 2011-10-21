@@ -57,7 +57,12 @@ emerge --oneshot --nodeps m4
 emerge --oneshot --nodeps flex
 emerge --oneshot --nodeps bison
 emerge --oneshot --nodeps binutils-config
-MAKEOPTS=-j1 emerge --oneshot --nodeps binutils
+
+#MAKEOPTS=-j1 emerge --oneshot --nodeps binutils
+#MAKEOPTS=-j1 emerge --oneshot --nodeps "~binutils-2.20.1-r1"
+# work around binutils:
+ebuild --skip-manifest $EPREFIX/usr/portage/sys-devel/binutils/binutils-2.20.1-r1.ebuild clean merge
+
 emerge --oneshot --nodeps gcc-config
 emerge --oneshot --nodeps "=gcc-4.2*"
 
