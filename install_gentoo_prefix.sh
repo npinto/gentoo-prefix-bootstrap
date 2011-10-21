@@ -148,7 +148,8 @@ echo "MAKEOPTS=\"-j$((${N_PROCESSORS}+1))\"" >> $EPREFIX/etc/make.conf
 echo 'dev-lang/python sqlite wide-unicode berkdb' >> $EPREFIX/etc/portage/package.use/python
 
 # -- Update gcc
-USE=-fortran emerge -uDN gcc
+#USE=-fortran emerge -uDN gcc
+USE=-fortran emerge --nodeps gcc
 #gcc-config 2
 #source $EPREFIX/etc/profile
 
