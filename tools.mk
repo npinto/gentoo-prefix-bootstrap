@@ -1,11 +1,10 @@
 include init.mk
 
 # ============================================================================
-# == install_system_tools
+# == install_tools
 # ============================================================================
 
-default: install_system_tools
-#.PHONY: stage0 stage1 stage2 stage3 stage4
+default: install_tools
 
 # ----------------------------------------------------------------------------
 install_tools: eix local-overlay layman \
@@ -58,5 +57,11 @@ vim: eix
 	# tinfo/ncurses workaround
 	mkdir -p ${EPREFIX}/etc/portage/env/app-editors
 	echo "export LDFLAGS=-lncurses" >> ${EPREFIX}/etc/portage/env/app-editors/vim
-	emerge -juN vim vim-core
+	emerge -uDN -j vim vim-core
 	eselect bashcomp enable --global vim || exit 0
+
+tmux: eix
+	# tinfo/ncurses workaround
+	mkdir -p ${EPREFIX}/etc/portage/env/app-misc
+	echo "export LDFLAGS=-L${EPREFIX}/usr/lib" >> ${EPREFIX}/etc/portage/env/app-misc/tmux
+	emerge -uDN tmux
