@@ -29,10 +29,12 @@ numpy: atlas
 scipy: numpy
 	#emerge -uDN umfpack
 	#echo "sci-libs/scipy doc umfpack" >> ${EPREFIX}/etc/portage/package.use/scipy
-	# work around the temporary kernel.org outtage
-	mkdir -p ${EPREFIX}/usr/local/portage/sys-apps/util-linux/
-	cp -vf util-linux-2.17.ebuild ${EPREFIX}/usr/local/portage/sys-apps/util-linux/
-	ebuild ${EPREFIX}/usr/portage/sys-apps/util-linux/util-linux-2.17.ebuild manifest
+	# util-linux work around
+	# the temporary kernel.org outtage
+	echo "=sys-apps/util-linux-2.18-r1 **" >> ${EPREFIX}/etc/portage/package.keywords/util-linux
+	#mkdir -p ${EPREFIX}/usr/local/portage/sys-apps/util-linux/
+	#cp -vf util-linux-2.17.ebuild ${EPREFIX}/usr/local/portage/sys-apps/util-linux/
+	#ebuild ${EPREFIX}/usr/portage/sys-apps/util-linux/util-linux-2.17.ebuild manifest
 	emerge --oneshot --nodeps util-linux
 	emerge -uDN scipy
 
