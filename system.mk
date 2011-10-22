@@ -210,7 +210,7 @@ uninstall-ask:
 	@read null
 
 uninstall-force:
-	-mv -vf ${EPREFIX} ${EPREFIX}.deleteme
+	mv -f ${EPREFIX} ${EPREFIX}.deleteme 2> /dev/null || exit 0
 	rm -rf ${EPREFIX}.deleteme
 
 backup: ${EPREFIX}
