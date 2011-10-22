@@ -1,12 +1,12 @@
 include init.mk
 
 # ============================================================================
-# == install_tools
+# == tools
 # ============================================================================
 
-default: install_tools
+default: tools
 
-install_tools: eix local-overlay layman portage-tools \
+tools: eix local-overlay layman portage-tools \
 	ruby vim tmux console-tools
 
 # ----------------------------------------------------------------------------
@@ -23,7 +23,7 @@ local-overlay: eix
 	# XXX: One could use a ifeq here
 	#echo "PORTDIR_OVERLAY=\"\$${PORTDIR_OVERLAY} ${EPREFIX}/usr/local/portage/\"" >> ${EPREFIX}/etc/make.conf
 	echo "PORTDIR_OVERLAY=\"${EPREFIX}/usr/local/portage/\"" >> ${EPREFIX}/etc/make.conf
-	echo "local_overlay" > ${EPREFIX}/usr/local/portage/profiles/repo_name
+	echo "local-overlay" > ${EPREFIX}/usr/local/portage/profiles/repo_name
 	eix-sync
 
 layman: eix
@@ -46,7 +46,7 @@ vim: eix ruby
 	mkdir -p ${EPREFIX}/etc/portage/env/app-editors
 	echo "export LDFLAGS=-lncurses" >> ${EPREFIX}/etc/portage/env/app-editors/vim
 	emerge -uDN vim vim-core
-	-eselect bashcomp enable --global vim
+	eselect bashcomp enable --global vim &> /dev/null | exit 0
 
 ruby: eix
 	echo 'dev-lang/ruby -ssl' >> ${EPREFIX}/etc/portage/package.use/ruby
@@ -55,13 +55,12 @@ ruby: eix
 tmux: eix
 	# tinfo/ncurses workaround
 	mkdir -p ${EPREFIX}/etc/portage/env/app-misc
-	echo "export LDFLAGS=-L${EPREFIX}/usr/lib" >> ${EPREFIX}/etc/portage/env/app-misc/tmux
+	echo "export LDFLAGS=\"-l:/home/ac/npinto/gentoo/usr/lib/libevent.so \$$LDFLAGS\"" >> ${EPREFIX}/etc/portage/env/app-misc/tmux
 	emerge -uDN tmux
 
 console-tools: eix
 	emerge -uDN keychain
 	emerge -uDN zsh
-	emerge -uDN tmux
 	emerge -uDN htop
 	emerge -uDN ncdu
 

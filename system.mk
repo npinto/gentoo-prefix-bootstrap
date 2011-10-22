@@ -1,13 +1,13 @@
 include init.mk
 
 # ============================================================================
-# == install_system
+# == system
 # ============================================================================
 
-default: install_system
+default: system
 .PHONY: install/stage0 install/stage1 install/stage2 install/stage3 install/stage4
 
-install_system: install/stage0 install/stage1 install/stage2 install/stage3 install/stage4
+system: install/stage0 install/stage1 install/stage2 install/stage3 install/stage4
 
 # ----------------------------------------------------------------------------
 # -- STAGE 0

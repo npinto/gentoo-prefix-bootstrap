@@ -6,4 +6,4 @@
 include system.mk
 include tools.mk
 
-default: install_system install_tools
+default: system tools
