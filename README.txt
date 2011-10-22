@@ -36,6 +36,7 @@ Successfully tested on:
  * CentOS release 5.6 (Final)
  * Ubuntu 10.10 (Maverick Meerkat)
  * Ubuntu 11.04 (Natty Narwhal)
+ * Gentoo ;-)
 
 More information about Gentoo Prefix:
 -------------------------------------
