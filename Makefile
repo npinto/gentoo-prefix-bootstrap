@@ -130,15 +130,15 @@ stage2-gcc.done: stage2-binutils.done
 	emerge --oneshot --nodeps "=gcc-4.2*"
 	touch $@
 
-#stage2-gcc-workarounds.done: stage2-binutils.done
-	## errno.h missing
-	#emerge --oneshot linux-headers
+stage2-gcc-workarounds.done: stage2-binutils.done
+	# errno.h missing
+	emerge --oneshot linux-headers
 	# XXX: to test 'tar' (FIX dicarlo2 problem on tar overflow?)
-	#emerge --oneshot tar
-	## lib{c,m}.so missing
-	#ln -sf $(ldd /usr/bin/awk | grep libc.so | awk '{print $3}') ${EPREFIX}/usr/lib/libc.so
-	#ln -sf $(ldd /usr/bin/awk | grep libm.so | awk '{print $3}') ${EPREFIX}/usr/lib/libm.so
-	#touch $@
+	emerge --oneshot tar
+	# lib{c,m}.so missing
+	ln -sf $(ldd /usr/bin/awk | grep libc.so | awk '{print $3}') ${EPREFIX}/usr/lib/libc.so
+	ln -sf $(ldd /usr/bin/awk | grep libm.so | awk '{print $3}') ${EPREFIX}/usr/lib/libm.so
+	touch $@
 
 #stage2-up-to-pax-utils.done: stage2-gcc-workarounds.done stage2-gcc.done
 stage2-up-to-pax-utils.done: stage2-gcc.done
@@ -240,7 +240,25 @@ stage4-workarounds.done: stage3.done stage4-config.done
 # ============================================================================
 # -- Helpers
 # ============================================================================
-clean:
+uninstall: uninstall-ask uninstall-force
+
+uninstall-ask:
+	# ask if continue or CTRL-C
+	@echo "*************************************************************"
+	@echo "** WARNING WARNING WARNING WARNING WARNING WARNING WARNING **"
+	@echo "*************************************************************"
+	@echo "Are you sure you want to uninstall ${EPREFIX} ??"
+	@echo "Press any key to continue or CTRL-C to cancel."
+	@echo
+	@read null
+	@echo "*************************************************************"
+	@echo "Are you really really sure?"
+	@echo
+	@echo "Press any key to continue or CTRL-C to cancel."
+	@echo
+	@read null
+
+uninstall-force:
 	rm -rf ${EPREFIX}
 	rm -f bootstrap-prefix-patched.sh
 	rm -f bootstrap-prefix-*.patch
