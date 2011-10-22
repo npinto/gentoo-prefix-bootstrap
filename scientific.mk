@@ -4,9 +4,12 @@ SCIENTIFIC_MK=scientific.mk
 include init.mk
 include tools.mk
 
-scientific: eix gparallel atlas
+scientific: eix bc gparallel atlas numpy scientific rest
 
 # ----------------------------------------------------------------------------
+bc:
+	emerge -uDN bc
+
 gparallel:
 	cd ${EPREFIX}/usr/local/portage && ${EPREFIX}/usr/portage/scripts/ecopy sys-process/parallel
 	emerge -uDN sys-process/parallel
@@ -21,7 +24,9 @@ atlas:
 numpy: atlas
 	echo "=dev-python/numpy-1.6.1-r1" >> ${EPREFIX}/etc/portage/package.mask/numpy-1.6.1-r1
 	echo "dev-python/numpy doc lapack test" >> ${EPREFIX}/etc/portage/package.use/numpy
-	FEATURES=test emerge -uDN numpy
+	#emerge -u sqlite
+	emerge -uDN --onlydeps numpy
+	FEATURES=test emerge -uN numpy
 
 scipy: numpy
 	#emerge -uDN umfpack
