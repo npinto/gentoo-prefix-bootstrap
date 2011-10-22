@@ -1,3 +1,6 @@
+ifndef HELPERS_MK
+HELPERS_MK=helpers.mk
+
 include helpers.mk
 
 EPREFIX?=${HOME}/gentoo
@@ -7,4 +10,4 @@ MAKEOPTS:=-j$(shell echo ${N_PROCESSORS}+1 | bc) -l${N_PROCESSORS}
 
 PATH:=${EPREFIX}/usr/bin:${EPREFIX}/bin:${EPREFIX}/tmp/usr/bin:${EPREFIX}/tmp/bin:${PATH}
 
-
+endif
