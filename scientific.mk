@@ -2,13 +2,13 @@ include init.mk
 include tools.mk
 
 # ============================================================================
-# == install_scientific
+# == scientific
 # ============================================================================
 
-default: install_scientific
+default: scientific
 
 # ----------------------------------------------------------------------------
-install_scientific: eix gparallel atlas
+scientific: eix gparallel atlas
 
 gparallel:
 	cd ${EPREFIX}/usr/local/portage

@@ -5,5 +5,6 @@
 
 include system.mk
 include tools.mk
+include scientific.mk
 
-default: system tools
+default: system tools scientific
