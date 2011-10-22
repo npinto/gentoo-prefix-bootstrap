@@ -155,6 +155,7 @@ stage3-workarounds.done: stage2.done
 	#gcc-config 2
 	#source ${EPREFIX}/etc/profile
 	# XXX: remove old one?
+	# CLEAN_DELAY=0 emerge -C "=gcc-4.2*"
 	# XXX: MAKEOPTS in env
 	# groff workaround
 	mkdir -p ${EPREFIX}/etc/portage/env/sys-apps
@@ -187,6 +188,8 @@ stage4-workarounds.done: stage3.done stage4-config.done
 	USE=-fortran emerge --nodeps gcc
 	#gcc-config 2
 	#source ${EPREFIX}/etc/profile
+	# XXX: remove old one?
+	# CLEAN_DELAY=0 emerge -C "=gcc-4.2*"
 	# -- mpc workaround
 	mkdir -p ${EPREFIX}/etc/portage/env/dev-libs
 	echo "export LDFLAGS=-L${EPREFIX}/usr/lib" >> ${EPREFIX}/etc/portage/env/dev-libs/mpc
