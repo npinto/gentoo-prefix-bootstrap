@@ -30,8 +30,11 @@
 # * http://www.gentoo.org/proj/en/gentoo-alt/prefix/bootstrap-solaris.xml
 # ============================================================================
 
-N_PROCESSORS:=$(shell cat /proc/cpuinfo  | grep processor | wc -l)
-MAKEOPTS:=-j$(shell echo ${N_PROCESSORS}+1 | bc)
+N_PROCESSORS:=$(shell grep '^processor' /proc/cpuinfo | wc -l)
+MAKEOPTS:=-j$(shell echo ${N_PROCESSORS}+1 | bc) -l${N_PROCESSORS}
+
+test:
+	echo ${MAKEOPTS}
 
 EPREFIX:=${HOME}/gentoo
 PATH:=${EPREFIX}/usr/bin:${EPREFIX}/bin:${EPREFIX}/tmp/usr/bin:${EPREFIX}/tmp/bin:${PATH}
@@ -207,7 +210,7 @@ stage4: stage4.done
 
 stage4.done: stage3.done stage4-config.done stage4-workarounds.done
 	# -- recompile entire system
-	emerge -vej system world
+	emerge -ve --jobs ${N_PROCESSORS} --load-average=${N_PROCESSORS} --with-bdeps y system world
 	touch $@
 
 stage4-config.done: stage3.done make.conf
