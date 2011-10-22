@@ -1,16 +1,12 @@
+# ============================================================================
+# == tools
+# ============================================================================
 ifndef TOOLS_MK
 TOOLS_MK=tools.mk
 
 include init.mk
 
-# =================================================i===========================
-# == tools
-# ============================================================================
-
-default: tools
-
-tools: eix local-overlay layman portage-tools \
-	ruby vim tmux console-tools
+tools: eix local-overlay layman portage-tools ruby vim tmux console-tools
 
 # ----------------------------------------------------------------------------
 eix:

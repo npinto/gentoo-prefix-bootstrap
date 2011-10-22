@@ -1,14 +1,10 @@
+# ============================================================================
+# == system
+# ============================================================================
 ifndef SYSTEM_MK
 SYSTEM_MK=system.mk
 
 include init.mk
-
-# ============================================================================
-# == system
-# ============================================================================
-
-default: system
-.PHONY: install/stage0 install/stage1 install/stage2 install/stage3 install/stage4
 
 system: install/stage0 install/stage1 install/stage2 install/stage3 install/stage4
 

@@ -1,15 +1,15 @@
-include init.mk
-include tools.mk
-
 # ============================================================================
 # == scientific
 # ============================================================================
+ifndef SCIENTIFIC_MK
+SCIENTIFIC_MK=scientific.mk
 
-default: scientific
+include init.mk
+include tools.mk
 
-# ----------------------------------------------------------------------------
 scientific: eix gparallel atlas
 
+# ----------------------------------------------------------------------------
 gparallel:
 	cd ${EPREFIX}/usr/local/portage && ${EPREFIX}/usr/portage/scripts/ecopy sys-process/parallel
 	emerge -uDN sys-process/parallel
@@ -48,4 +48,4 @@ rest:
 
 	pip install -vUI scikits.learn
 
-
+endif
