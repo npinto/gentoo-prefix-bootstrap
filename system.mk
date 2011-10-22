@@ -83,8 +83,8 @@ install/stage2-gcc-workarounds: install/stage2-binutils
 	# XXX: to test 'tar' (FIX dicarlo2 problem on tar overflow?)
 	emerge --oneshot tar
 	# lib{c,m}.so missing
-	ln -sf $(ldd /usr/bin/awk | grep libc.so | awk '{print $3}') ${EPREFIX}/usr/lib/libc.so
-	ln -sf $(ldd /usr/bin/awk | grep libm.so | awk '{print $3}') ${EPREFIX}/usr/lib/libm.so
+	ln -sf $(shell ldd /usr/bin/awk | grep libc.so | awk '{print $$3}') ${EPREFIX}/usr/lib/libc.so
+	ln -sf $(shell ldd /usr/bin/awk | grep libm.so | awk '{print $$3}') ${EPREFIX}/usr/lib/libm.so
 	touch $@
 
 install/stage2-up-to-patch: install/stage2-gcc
