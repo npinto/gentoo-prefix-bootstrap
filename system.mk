@@ -47,7 +47,9 @@ install/stage1: bootstrap-prefix-patched.sh
 # ----------------------------------------------------------------------------
 # -- STAGE 2
 # ----------------------------------------------------------------------------
-install/stage2: install/stage1 install/stage2-up-to-bison install/stage2-binutils install/stage2-gcc install/stage2-up-to-pax-utils install/stage2-portage
+install/stage2: install/stage1 install/stage2-up-to-bison \
+	install/stage2-binutils install/stage2-gcc install/stage2-up-to-patch \
+	install/stage2-gawk install/stage2-up-to-pax-utils install/stage2-portage
 	touch $@
 
 install/stage2-up-to-bison: install/stage1
@@ -85,14 +87,22 @@ install/stage2-gcc-workarounds: install/stage2-binutils
 	ln -sf $(ldd /usr/bin/awk | grep libm.so | awk '{print $3}') ${EPREFIX}/usr/lib/libm.so
 	touch $@
 
-#install/stage2-up-to-pax-utils: install/stage2-gcc-workarounds install/stage2-gcc
-install/stage2-up-to-pax-utils: install/stage2-gcc
+install/stage2-up-to-patch: install/stage2-gcc
 	emerge --oneshot coreutils
 	emerge --oneshot findutils
 	emerge --oneshot tar
 	emerge --oneshot grep
 	emerge --oneshot patch
+	touch $@
+
+install/stage2-gawk: install/stage2-up-to-patch
+	# gawk-4.0.0 is buggy (2011-10-22)
+	# XXX: has it been fixed?
+	echo "=sys-apps/gawk-4.0.0" >> ${EPREFIX}/etc/portage/package.mask/gawk-4.0.0
 	emerge --oneshot gawk
+	touch $@
+
+install/stage2-up-to-pax-utils: install/stage2-gawk
 	emerge --oneshot make
 	emerge --oneshot --nodeps file
 	emerge --oneshot --nodeps eselect

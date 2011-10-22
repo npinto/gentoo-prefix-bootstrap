@@ -30,18 +30,18 @@ layman: eix
 	echo "source ${EPREFIX}/var/lib/layman/make.conf" >> ${EPREFIX}/etc/make.conf
 	eix-sync
 
-portage-tools: eix
+portage-tools:
 	emerge -uDN app-portage/portage-utils
 	emerge -uDN app-portage/gentoolkit
 	emerge -uDN app-portage/gentoolkit-dev
 	emerge -uDN autounmask
 
-cmake: eix
+cmake:
 	mkdir -p ${EPREFIX}/etc/portage/env/dev-utils
 	echo "export LDFLAGS=-l:\$$(ls ${EPREFIX}/usr/lib/libz.so* | head -n 1)" >> ${EPREFIX}/etc/portage/env/dev-utils/cmake
 	emerge -uDN cmake
 
-vim: eix ruby
+vim:
 	echo "app-editors/vim bash-completion vim-pager python ruby perl" >> ${EPREFIX}/etc/portage/package.use/vim
 	# tinfo/ncurses workaround
 	mkdir -p ${EPREFIX}/etc/portage/env/app-editors
@@ -49,17 +49,17 @@ vim: eix ruby
 	emerge -uDN vim vim-core
 	eselect bashcomp enable --global vim &> /dev/null | exit 0
 
-ruby: eix
+ruby:
 	echo 'dev-lang/ruby -ssl' >> ${EPREFIX}/etc/portage/package.use/ruby
 	emerge -uDN ruby
 
-tmux: eix
+tmux:
 	# tinfo/ncurses workaround
 	mkdir -p ${EPREFIX}/etc/portage/env/app-misc
 	echo "export LDFLAGS=\"-l:/home/ac/npinto/gentoo/usr/lib/libevent.so \$$LDFLAGS\"" >> ${EPREFIX}/etc/portage/env/app-misc/tmux
 	emerge -uDN tmux
 
-console-tools: eix
+console-tools:
 	emerge -uDN keychain
 	emerge -uDN zsh
 	emerge -uDN htop
