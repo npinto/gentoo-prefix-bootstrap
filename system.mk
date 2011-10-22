@@ -82,6 +82,9 @@ install/stage2-gcc-workarounds: install/stage2-binutils
 	emerge --oneshot linux-headers
 	# XXX: to test 'tar' (FIX dicarlo2 problem on tar overflow?)
 	emerge --oneshot tar
+	# XXX: trying to fix the issues on dicarlo2
+	emerge --oneshot gmp
+	emerge --oneshot mpfr
 	# lib{c,m}.so missing
 	ln -sf $(shell ldd /usr/bin/awk | grep libc.so | awk '{print $$3}') ${EPREFIX}/usr/lib/libc.so
 	ln -sf $(shell ldd /usr/bin/awk | grep libm.so | awk '{print $$3}') ${EPREFIX}/usr/lib/libm.so
