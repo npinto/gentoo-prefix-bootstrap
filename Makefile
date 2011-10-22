@@ -214,6 +214,12 @@ stage4-workarounds.done: stage3.done stage4-config.done
 # ============================================================================
 # -- Helpers
 # ============================================================================
+clean:
+	rm -f bootstrap-prefix-patched.sh
+	rm -f bootstrap-prefix-*.patch
+	rm -f *.done
+	rm -f stage?
+
 uninstall: uninstall-ask uninstall-force
 
 uninstall-ask:
@@ -234,9 +240,6 @@ uninstall-ask:
 
 uninstall-force:
 	rm -rf ${EPREFIX}
-	rm -f bootstrap-prefix-patched.sh
-	rm -f bootstrap-prefix-*.patch
-	rm -f *.done
 
 backup: ${EPREFIX}
 	mv -vf ${EPREFIX} ${EPREFIX}-backup-$(date +"%Y-%m-%d_%Hh%Mm%Ss")
