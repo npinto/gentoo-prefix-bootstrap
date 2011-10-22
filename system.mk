@@ -209,7 +209,7 @@ uninstall-ask:
 	@echo
 	@read null
 
-uninstall-force:
+uninstall-force: clean
 	mv -f ${EPREFIX} ${EPREFIX}.deleteme 2> /dev/null || exit 0
 	rm -rf ${EPREFIX}.deleteme
 
