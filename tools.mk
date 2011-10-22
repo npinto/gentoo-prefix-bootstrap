@@ -6,25 +6,10 @@ include init.mk
 
 default: install_tools
 
-# ----------------------------------------------------------------------------
-install_tools: eix local-overlay layman \
-	ruby vim tmux
-	# -- keychain:
-	emerge -uDN keychain
-	# -- portage-utils: eix
-	emerge -uDN app-portage/portage-utils
-	emerge -uDN app-portage/gentoolkit
-	emerge -uDN app-portage/gentoolkit-dev
-	emerge -uDN autounmask
-	# -- zsh
-	emerge -uDN zsh
-	# -- tmux
-	emerge -uDN tmux
-	# -- htop
-	emerge -uDN zsh
-	# -- htop
-	emerge -uDN ncdu
+install_tools: eix local-overlay layman portage-tools \
+	ruby vim tmux console-tools
 
+# ----------------------------------------------------------------------------
 eix:
 	emerge -uDN eix
 	eix-update
@@ -49,6 +34,12 @@ layman: eix
 	echo "source ${EPREFIX}/var/lib/layman/make.conf" >> ${EPREFIX}/etc/make.conf
 	eix-sync
 
+portage-tools: eix
+	emerge -uDN app-portage/portage-utils
+	emerge -uDN app-portage/gentoolkit
+	emerge -uDN app-portage/gentoolkit-dev
+	emerge -uDN autounmask
+
 vim: eix ruby
 	echo "app-editors/vim bash-completion vim-pager python ruby perl" >> ${EPREFIX}/etc/portage/package.use/vim
 	# tinfo/ncurses workaround
@@ -66,3 +57,11 @@ tmux: eix
 	mkdir -p ${EPREFIX}/etc/portage/env/app-misc
 	echo "export LDFLAGS=-L${EPREFIX}/usr/lib" >> ${EPREFIX}/etc/portage/env/app-misc/tmux
 	emerge -uDN tmux
+
+console-tools: eix
+	emerge -uDN keychain
+	emerge -uDN zsh
+	emerge -uDN tmux
+	emerge -uDN htop
+	emerge -uDN ncdu
+
