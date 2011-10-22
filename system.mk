@@ -175,7 +175,11 @@ install/stage4-config: install/stage3 make.conf
 install/stage4-workarounds: install/stage3 install/stage4-config
 	# -- gcc workaround
 	#USE=-fortran emerge -uDN gcc
-	USE=-fortran emerge --nodeps gcc
+	# Trying this:
+	# $ rm -vf ${EPREFIX}/etc/portage/package.use/gcc
+	# $ emerge --nodeps -uN gcc
+	# Next: gcc-config 2 && emerge -C "=gcc-4.2*"
+	USE=-fortran emerge --nodeps -uN gcc
 	#gcc-config 2
 	#source ${EPREFIX}/etc/profile
 	# XXX: remove old one?
