@@ -194,7 +194,6 @@ clean:
 uninstall: uninstall-ask uninstall-force
 
 uninstall-ask:
-	# ask if continue or CTRL-C
 	@echo "*************************************************************"
 	@echo "** WARNING WARNING WARNING WARNING WARNING WARNING WARNING **"
 	@echo "*************************************************************"
@@ -223,7 +222,7 @@ help:
 	@./utils/list_make_targets.sh
 	@echo
 	@echo "To see which commands will be executed by each action, use:"
-	@echo "$ make -n action"
+	@echo "\$$ make -n action"
 	@echo
 
 endif
