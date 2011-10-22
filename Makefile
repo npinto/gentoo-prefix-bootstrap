@@ -1,9 +1,8 @@
 #!/bin/bash
 
 # ============================================================================
-# Bootstrap a Scientific Gentoo Prefix in $HOME/gentoo.
+# Bootstrap a Scientific Gentoo Prefix
 # ============================================================================
-#
 #
 # Usage:
 # ------
@@ -21,6 +20,9 @@
 # (atlas, python, numpy, scipy, mongo, etc.):
 # $ make install_scientific_environment (TODO)
 #
+# By default the Gentoo Prefix will be installed in $HOME/gentoo but this can
+# be overriden by specifying the EPREFIX environment variable, for example:
+# $ EPREFIX=/path/to/eprefix make
 #
 # More information about Gentoo Prefix:
 # -------------------------------------
@@ -30,13 +32,11 @@
 # * http://www.gentoo.org/proj/en/gentoo-alt/prefix/bootstrap-solaris.xml
 # ============================================================================
 
+EPREFIX?=${HOME}/gentoo
+
 N_PROCESSORS:=$(shell grep '^processor' /proc/cpuinfo | wc -l)
 MAKEOPTS:=-j$(shell echo ${N_PROCESSORS}+1 | bc) -l${N_PROCESSORS}
 
-test:
-	echo ${MAKEOPTS}
-
-EPREFIX:=${HOME}/gentoo
 PATH:=${EPREFIX}/usr/bin:${EPREFIX}/bin:${EPREFIX}/tmp/usr/bin:${EPREFIX}/tmp/bin:${PATH}
 
 # ----------------------------------------------------------------------------
