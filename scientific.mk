@@ -18,22 +18,22 @@ gparallel:
 atlas:
 	emerge -uDN cblas lapack blas
 	emerge -uDN blas-atlas lapack-atlas
-	eselect blas set atlas-threads || exit 0
-	eselect cblas set atlas-threads || exit 0
-	eselect lapack set atlas || exit 0
+	-eselect blas set atlas-threads
+	-eselect cblas set atlas-threads
+	-eselect lapack set atlas
 
 rest:
 	# -- numpy
-	echo "dev-python/numpy doc lapack test" >> $EPREFIX/etc/portage/package.use/numpy
+	echo "dev-python/numpy doc lapack test" >> ${EPREFIX}/etc/portage/package.use/numpy
 	emerge -uDN numpy
 
 	# -- scipy
 	#emerge -uDN umfpack
-	#echo "sci-libs/scipy doc umfpack" >> $EPREFIX/etc/portage/package.use/scipy
+	#echo "sci-libs/scipy doc umfpack" >> ${EPREFIX}/etc/portage/package.use/scipy
 
 	# work around the temporary kernel.org outtage
-	cp -vf $(dirname $0)/util-linux-2.17.ebuild $EPREFIX/usr/portage/sys-apps/util-linux/
-	ebuild $EPREFIX/usr/portage/sys-apps/util-linux/util-linux-2.17.ebuild manifest
+	cp -vf util-linux-2.17.ebuild ${EPREFIX}/usr/portage/sys-apps/util-linux/
+	ebuild ${EPREFIX}/usr/portage/sys-apps/util-linux/util-linux-2.17.ebuild manifest
 	emerge --oneshot --nodeps util-linux
 
 	emerge -uDN scipy
