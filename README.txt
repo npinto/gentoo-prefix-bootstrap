@@ -14,10 +14,10 @@ $ make
 (XXX: right now this just install the system)
 
 To just install the system:
-$ make install_gentoo_prefix
+$ make install_system
 
-To just install the system tools (eix, layman, etc.):
-$ make install_system_tools (TODO)
+To just install general tools (eix, layman, vim, zsh, etc.):
+$ make install_tools
 
 To just install the scientfic/development environment
 (atlas, python, numpy, scipy, mongo, etc.):
@@ -25,7 +25,7 @@ $ make install_scientific_environment (TODO)
 
 By default the Gentoo Prefix will be installed in $HOME/gentoo but this can
 be overriden by specifying the EPREFIX environment variable, for example:
-$ EPREFIX=/path/to/eprefix make
+$ EPREFIX=/path/to/my/eprefix make
 
 Successfully tested on:
 -----------------------

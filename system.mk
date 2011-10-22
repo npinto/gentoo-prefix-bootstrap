@@ -21,7 +21,6 @@ stage0.done: bootstrap-prefix-patched.sh
 bootstrap-prefix-patched.sh:
 	# Grab latest bootstrap-prefix-patched.sh
 	wget -O bootstrap-prefix.sh http://overlays.gentoo.org/proj/alt/browser/trunk/prefix-overlay/scripts/bootstrap-prefix.sh?format=txt
-
 	# Patch to disable python crypt and nis modules
 	# For more info:
 	# * https://bugs.gentoo.org/show_bug.cgi?id=381163
@@ -221,8 +220,7 @@ uninstall-ask:
 	@echo
 	@read null
 	@echo "*************************************************************"
-	@echo "Are you really really sure?"
-	@echo
+	@echo "Are you really really sure ???"
 	@echo "Press any key to continue or CTRL-C to cancel."
 	@echo
 	@read null
