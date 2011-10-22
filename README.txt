@@ -17,14 +17,14 @@ To uninstall everything:
 $ make uninstall
 
 To just install the system:
-$ make install_system
+$ make system
 
 To just install general tools (eix, layman, vim, zsh, etc.):
-$ make install_tools
+$ make tools
 
 To just install the scientfic/development environment
 (atlas, python, numpy, scipy, mongo, etc.):
-$ make install_scientific_environment (TODO)
+$ make scientific_environment (TODO)
 
 By default the Gentoo Prefix will be installed in $HOME/gentoo but this can
 be overriden by specifying the EPREFIX environment variable, for example:
