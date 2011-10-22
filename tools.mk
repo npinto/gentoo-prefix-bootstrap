@@ -56,7 +56,7 @@ ruby:
 tmux:
 	# tinfo/ncurses workaround
 	mkdir -p ${EPREFIX}/etc/portage/env/app-misc
-	echo "export LDFLAGS=\"-l:/home/ac/npinto/gentoo/usr/lib/libevent.so \$$LDFLAGS\"" >> ${EPREFIX}/etc/portage/env/app-misc/tmux
+	echo "export LDFLAGS=\"-l:${EPREFIX}/gentoo/usr/lib/libevent.so \$$LDFLAGS\"" >> ${EPREFIX}/etc/portage/env/app-misc/tmux
 	emerge -uDN tmux
 
 console-tools:
