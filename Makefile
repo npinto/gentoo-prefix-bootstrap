@@ -216,7 +216,7 @@ stage4.done: stage3.done stage4-config.done stage4-workarounds.done
 stage4-config.done: stage3.done make.conf
 	# -- Update make.conf
 	cp -vf make.conf ${EPREFIX}/etc/
-	echo "MAKEOPTS=${MAKEOPTS}" >> ${EPREFIX}/etc/make.conf
+	echo "MAKEOPTS=\"${MAKEOPTS}\"" >> ${EPREFIX}/etc/make.conf
 	# -- python USE
 	echo 'dev-lang/python sqlite wide-unicode berkdb' >> ${EPREFIX}/etc/portage/package.use/python
 	touch $@
