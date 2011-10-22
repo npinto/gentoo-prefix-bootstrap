@@ -17,9 +17,9 @@ gparallel:
 atlas:
 	emerge -uDN cblas lapack blas
 	emerge -uDN blas-atlas lapack-atlas
-	-eselect blas set atlas-threads
-	-eselect cblas set atlas-threads
-	-eselect lapack set atlas
+	eselect blas set atlas-threads || exit 0
+	eselect cblas set atlas-threads || exit 0
+	eselect lapack set atlas || exit 0
 
 rest:
 	# -- numpy
