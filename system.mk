@@ -216,10 +216,14 @@ backup: ${EPREFIX}
 	mv -vf ${EPREFIX} ${EPREFIX}-backup-$(shell date +"%Y-%m-%d_%Hh%Mm%Ss")
 
 help:
-	@# XXX: better help here?
-	@echo "============================"
-	@echo "Available targets / actions:"
-	@echo "============================"
+	@cat README.txt
+	@echo
+	@echo "Available actions (targets):"
+	@echo "----------------------------"
 	@./utils/list_make_targets.sh
+	@echo
+	@echo "To see which commands will be executed by each action, use:"
+	@echo "$ make -n action"
+	@echo
 
 endif

@@ -9,9 +9,11 @@ see LICENSE file
 
 Usage:
 ------
+To get some help:
+$ make help
+
 To install everything:
 $ make
-(XXX: right now this just install the system)
 
 To uninstall everything:
 $ make uninstall
@@ -24,7 +26,7 @@ $ make tools
 
 To just install the scientfic/development environment
 (atlas, python, numpy, scipy, mongo, etc.):
-$ make scientific_environment (TODO)
+$ make scientific(TODO: complete this)
 
 By default the Gentoo Prefix will be installed in $HOME/gentoo but this can
 be overriden by specifying the EPREFIX environment variable, for example:
