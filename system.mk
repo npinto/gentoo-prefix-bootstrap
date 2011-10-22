@@ -113,6 +113,7 @@ install/stage2-portage: install/stage2-up-to-pax-utils install/stage2-portage-wo
 	env FEATURES="-collision-protect" emerge --oneshot portage
 	mkdir -p ${EPREFIX}/etc/portage/package.keywords
 	mkdir -p ${EPREFIX}/etc/portage/package.use
+	mkdir -p ${EPREFIX}/etc/portage/package.mask
 	# Clean up tmp dir
 	rm -Rf ${EPREFIX}/tmp/*
 	# Synchronize repo
