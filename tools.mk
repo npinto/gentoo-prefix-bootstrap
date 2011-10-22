@@ -44,7 +44,7 @@ local-overlay: eix
 layman: eix
 	emerge -uDN layman
 	layman -S
-	layman -a sekyfsr || exit 0
+	-layman -a sekyfsr
 	# XXX: One could use a ifeq here
 	echo "source ${EPREFIX}/var/lib/layman/make.conf" >> ${EPREFIX}/etc/make.conf
 	eix-sync
@@ -55,7 +55,7 @@ vim: eix ruby
 	mkdir -p ${EPREFIX}/etc/portage/env/app-editors
 	echo "export LDFLAGS=-lncurses" >> ${EPREFIX}/etc/portage/env/app-editors/vim
 	emerge -uDN vim vim-core
-	eselect bashcomp enable --global vim || exit 0
+	-eselect bashcomp enable --global vim
 
 ruby: eix
 	echo 'dev-lang/ruby -ssl' >> ${EPREFIX}/etc/portage/package.use/ruby
