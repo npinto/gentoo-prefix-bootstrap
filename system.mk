@@ -214,4 +214,4 @@ uninstall-force: clean
 	rm -rf ${EPREFIX}.deleteme
 
 backup: ${EPREFIX}
-	mv -vf ${EPREFIX} ${EPREFIX}-backup-$(date +"%Y-%m-%d_%Hh%Mm%Ss")
+	mv -vf ${EPREFIX} ${EPREFIX}-backup-$(shell date +"%Y-%m-%d_%Hh%Mm%Ss")
