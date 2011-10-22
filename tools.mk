@@ -3,7 +3,8 @@ TOOLS_MK=tools.mk
 
 include init.mk
 
-tools: eix local-overlay layman portage-tools cmake ruby vim tmux console-tools
+tools: eix local-overlay layman portage-tools console-tools cmake \
+	ruby vim tmux tig
 
 # ----------------------------------------------------------------------------
 eix:
@@ -36,6 +37,12 @@ portage-tools:
 	emerge -uDN app-portage/gentoolkit-dev
 	emerge -uDN autounmask
 
+console-tools:
+	emerge -uDN keychain
+	emerge -uDN zsh
+	emerge -uDN htop
+	emerge -uDN ncdu
+
 cmake:
 	mkdir -p ${EPREFIX}/etc/portage/env/dev-utils
 	echo "export LDFLAGS=-l:\$$(ls ${EPREFIX}/usr/lib/libz.so* | head -n 1)" >> ${EPREFIX}/etc/portage/env/dev-utils/cmake
@@ -59,10 +66,7 @@ tmux:
 	echo "export LDFLAGS=\"-l:/home/ac/npinto/gentoo/usr/lib/libevent.so \$$LDFLAGS\"" >> ${EPREFIX}/etc/portage/env/app-misc/tmux
 	emerge -uDN tmux
 
-console-tools:
-	emerge -uDN keychain
-	emerge -uDN zsh
-	emerge -uDN htop
-	emerge -uDN ncdu
+tig:
+	emerge -uDN tig
 
 endif
