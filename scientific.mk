@@ -24,7 +24,9 @@ atlas:
 numpy: atlas
 	echo "=dev-python/numpy-1.6.1-r1" >> ${EPREFIX}/etc/portage/package.mask/numpy-1.6.1-r1
 	echo "dev-python/numpy doc lapack test" >> ${EPREFIX}/etc/portage/package.use/numpy
-	FEATURES=test emerge -uDN numpy
+	#emerge -u sqlite
+	emerge -uDN --onlydeps numpy
+	FEATURES=test emerge -uN numpy
 
 scipy: numpy
 	#emerge -uDN umfpack
@@ -36,7 +38,13 @@ scipy: numpy
 	#cp -vf util-linux-2.17.ebuild ${EPREFIX}/usr/local/portage/sys-apps/util-linux/
 	#ebuild ${EPREFIX}/usr/portage/sys-apps/util-linux/util-linux-2.17.ebuild manifest
 	emerge --oneshot --nodeps util-linux
-	emerge -uDN scipy
+	# XXX: scipy.test() still segfaults, due to superlu or atlas.
+	# It might be related to gfortran/g77, see:
+	# http://comments.gmane.org/gmane.comp.python.scientific.devel/15541
+	# http://comments.gmane.org/gmane.comp.python.scientific.devel/4399
+	emerge -uDN --onlydeps scipy
+	#FEATURES=test emerge -uN scipy
+	emerge -uN scipy
 
 rest:
 	easy_install -U pip

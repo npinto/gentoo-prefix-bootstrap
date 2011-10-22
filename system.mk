@@ -42,6 +42,9 @@ install/stage1: bootstrap-prefix-patched.sh
 	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp python
 	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp bison
 	./bootstrap-prefix-patched.sh ${EPREFIX} portage
+	mkdir -p ${EPREFIX}/etc/portage/package.keywords
+	mkdir -p ${EPREFIX}/etc/portage/package.use
+	mkdir -p ${EPREFIX}/etc/portage/package.mask
 	touch $@
 
 # ----------------------------------------------------------------------------
@@ -82,6 +85,9 @@ install/stage2-gcc-workarounds: install/stage2-binutils
 	emerge --oneshot linux-headers
 	# XXX: to test 'tar' (FIX dicarlo2 problem on tar overflow?)
 	emerge --oneshot tar
+	# XXX: trying to fix the issues on dicarlo2
+	emerge --oneshot gmp
+	emerge --oneshot mpfr
 	# lib{c,m}.so missing
 	ln -sf $(shell ldd /usr/bin/awk | grep libc.so | awk '{print $$3}') ${EPREFIX}/usr/lib/libc.so
 	ln -sf $(shell ldd /usr/bin/awk | grep libm.so | awk '{print $$3}') ${EPREFIX}/usr/lib/libm.so
@@ -121,11 +127,8 @@ install/stage2-portage-workarounds: install/stage2-up-to-pax-utils
 install/stage2-portage: install/stage2-up-to-pax-utils install/stage2-portage-workarounds
 	# Update portage
 	env FEATURES="-collision-protect" emerge --oneshot portage
-	mkdir -p ${EPREFIX}/etc/portage/package.keywords
-	mkdir -p ${EPREFIX}/etc/portage/package.use
-	mkdir -p ${EPREFIX}/etc/portage/package.mask
 	# Clean up tmp dir
-	rm -Rf ${EPREFIX}/tmp/*
+	-rm -Rf ${EPREFIX}/tmp/*
 	# Synchronize repo
 	emerge --sync
 	touch $@
