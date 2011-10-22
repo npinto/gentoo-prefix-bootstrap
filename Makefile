@@ -51,7 +51,10 @@ install_gentoo_prefix: stage0.done stage1.done stage2.done stage3.done stage4.do
 # -- STAGE 0
 # ----------------------------------------------------------------------------
 stage0: stage0.done
+	touch $@.done
+
 stage0.done: bootstrap-prefix-patched.sh
+	touch $@.done
 
 bootstrap-prefix-patched.sh:
 	# Grab latest bootstrap-prefix-patched.sh
@@ -70,6 +73,8 @@ bootstrap-prefix-patched.sh:
 # -- STAGE 1
 # ----------------------------------------------------------------------------
 stage1: stage1.done
+	touch $@.done
+
 stage1.done: bootstrap-prefix-patched.sh
 	./bootstrap-prefix-patched.sh ${EPREFIX} tree
 	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp make
@@ -92,6 +97,8 @@ stage1.done: bootstrap-prefix-patched.sh
 # -- STAGE 2
 # ----------------------------------------------------------------------------
 stage2: stage2.done
+	touch $@.done
+
 stage2.done: stage1.done stage2-up-to-bison.done stage2-binutils.done stage2-gcc.done stage2-up-to-pax-utils.done stage2-portage.done
 	touch $@.done
 
@@ -168,6 +175,8 @@ stage2-portage.done: stage2-up-to-pax-utils.done stage2-portage-workarounds.done
 # -- STAGE 3
 # ----------------------------------------------------------------------------
 stage3: stage3.done
+	touch $@.done
+
 stage3.done: stage2.done stage3-workarounds.done
 	# Update system
 	emerge -u system
@@ -194,6 +203,8 @@ stage3-workarounds.done: stage2.done
 # -- STAGE 4
 # ----------------------------------------------------------------------------
 stage4: stage4.done
+	touch $@.done
+
 stage4.done: stage3.done stage4-config.done stage4-workarounds.done
 	# -- recompile entire system
 	emerge -vej system world
