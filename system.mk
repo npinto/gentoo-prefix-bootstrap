@@ -1,3 +1,6 @@
+ifndef SYSTEM_MK
+SYSTEM_MK=system.mk
+
 include init.mk
 
 # ============================================================================
@@ -215,3 +218,12 @@ uninstall-force: clean
 
 backup: ${EPREFIX}
 	mv -vf ${EPREFIX} ${EPREFIX}-backup-$(shell date +"%Y-%m-%d_%Hh%Mm%Ss")
+
+help:
+	@# XXX: better help here?
+	@echo "============================"
+	@echo "Available targets / actions:"
+	@echo "============================"
+	@./utils/list_make_targets.sh
+
+endif
