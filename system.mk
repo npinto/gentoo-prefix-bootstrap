@@ -1,24 +1,11 @@
-#!/bin/bash
-
-# ============================================================================
-# Bootstrap a Scientific Gentoo Prefix
-# ============================================================================
-# see README.txt
-
-EPREFIX?=${HOME}/gentoo
-
-N_PROCESSORS:=$(shell grep '^processor' /proc/cpuinfo | wc -l)
-MAKEOPTS:=-j$(shell echo ${N_PROCESSORS}+1 | bc) -l${N_PROCESSORS}
-
-PATH:=${EPREFIX}/usr/bin:${EPREFIX}/bin:${EPREFIX}/tmp/usr/bin:${EPREFIX}/tmp/bin:${PATH}
-
-# ----------------------------------------------------------------------------
-default: install_gentoo_prefix
-.PHONY: stage0 stage1 stage2 stage3 stage4
+include init.mk
 
 # ============================================================================
 # == install_gentoo_prefix
 # ============================================================================
+
+default: install_gentoo_prefix
+.PHONY: stage0 stage1 stage2 stage3 stage4
 
 install_gentoo_prefix: stage0.done stage1.done stage2.done stage3.done stage4.done
 
