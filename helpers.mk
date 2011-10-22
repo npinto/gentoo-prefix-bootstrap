@@ -46,5 +46,8 @@ help:
 	@echo "To see which commands will be executed by each action, use:"
 	@echo "\$$ make -n action"
 	@echo
+	@echo "To debug an action in a ${EPREFIX}-debug, use:"
+	@echo "\$$ make debug action"
+	@echo
 
 endif
