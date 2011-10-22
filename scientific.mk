@@ -21,7 +21,7 @@ atlas:
 rest:
 	# -- numpy
 	echo "dev-python/numpy doc lapack test" >> ${EPREFIX}/etc/portage/package.use/numpy
-	emerge -uDN numpy
+	FEATURES=test emerge -uDN numpy
 
 	# -- scipy
 	#emerge -uDN umfpack

@@ -3,6 +3,8 @@
 # ============================================================================
 # see README.txt
 
+include helpers.mk
+
 include system.mk
 include tools.mk
 include scientific.mk
