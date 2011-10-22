@@ -36,7 +36,13 @@ scipy: numpy
 	cp -vf util-linux-2.17.ebuild ${EPREFIX}/usr/local/portage/sys-apps/util-linux/
 	ebuild ${EPREFIX}/usr/portage/sys-apps/util-linux/util-linux-2.17.ebuild manifest
 	emerge --oneshot --nodeps util-linux
-	emerge -uDN scipy
+	# XXX: scipy.test() still segfaults, due to superlu or atlas.
+	# It might be related to gfortran/g77, see:
+	# http://comments.gmane.org/gmane.comp.python.scientific.devel/15541
+	# http://comments.gmane.org/gmane.comp.python.scientific.devel/4399
+	emerge -uDN --onlydeps scipy
+	#FEATURES=test emerge -uN scipy
+	emerge -uN scipy
 
 rest:
 	easy_install -U pip
