@@ -42,6 +42,9 @@ install/stage1: bootstrap-prefix-patched.sh
 	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp python
 	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp bison
 	./bootstrap-prefix-patched.sh ${EPREFIX} portage
+	mkdir -p ${EPREFIX}/etc/portage/package.keywords
+	mkdir -p ${EPREFIX}/etc/portage/package.use
+	mkdir -p ${EPREFIX}/etc/portage/package.mask
 	touch $@
 
 # ----------------------------------------------------------------------------
@@ -121,11 +124,8 @@ install/stage2-portage-workarounds: install/stage2-up-to-pax-utils
 install/stage2-portage: install/stage2-up-to-pax-utils install/stage2-portage-workarounds
 	# Update portage
 	env FEATURES="-collision-protect" emerge --oneshot portage
-	mkdir -p ${EPREFIX}/etc/portage/package.keywords
-	mkdir -p ${EPREFIX}/etc/portage/package.use
-	mkdir -p ${EPREFIX}/etc/portage/package.mask
 	# Clean up tmp dir
-	rm -Rf ${EPREFIX}/tmp/*
+	-rm -Rf ${EPREFIX}/tmp/*
 	# Synchronize repo
 	emerge --sync
 	touch $@
