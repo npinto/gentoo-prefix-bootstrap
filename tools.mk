@@ -8,12 +8,9 @@ default: install_tools
 
 # ----------------------------------------------------------------------------
 install_tools: eix local-overlay layman \
-	vim tmux
+	ruby vim tmux
 	# -- keychain:
 	emerge -uDN keychain
-	# --ruby: portage-utils
-	echo 'dev-lang/ruby -ssl' >> ${EPREFIX}/etc/portage/package.use/ruby
-	emerge -juN ruby
 	# -- portage-utils: eix
 	emerge -uDN app-portage/portage-utils
 	emerge -uDN app-portage/gentoolkit
@@ -52,13 +49,17 @@ layman: eix
 	echo "source ${EPREFIX}/var/lib/layman/make.conf" >> ${EPREFIX}/etc/make.conf
 	eix-sync
 
-vim: eix
+vim: eix ruby
 	echo "app-editors/vim bash-completion vim-pager python ruby perl" >> ${EPREFIX}/etc/portage/package.use/vim
 	# tinfo/ncurses workaround
 	mkdir -p ${EPREFIX}/etc/portage/env/app-editors
 	echo "export LDFLAGS=-lncurses" >> ${EPREFIX}/etc/portage/env/app-editors/vim
-	emerge -uDN -j vim vim-core
+	emerge -uDN vim vim-core
 	eselect bashcomp enable --global vim || exit 0
+
+ruby: eix
+	echo 'dev-lang/ruby -ssl' >> ${EPREFIX}/etc/portage/package.use/ruby
+	emerge -uDN ruby
 
 tmux: eix
 	# tinfo/ncurses workaround
