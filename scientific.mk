@@ -4,9 +4,12 @@ SCIENTIFIC_MK=scientific.mk
 include init.mk
 include tools.mk
 
-scientific: eix gparallel atlas
+scientific: eix bc gparallel atlas numpy scientific rest
 
 # ----------------------------------------------------------------------------
+bc:
+	emerge -uDN bc
+
 gparallel:
 	cd ${EPREFIX}/usr/local/portage && ${EPREFIX}/usr/portage/scripts/ecopy sys-process/parallel
 	emerge -uDN sys-process/parallel
