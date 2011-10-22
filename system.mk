@@ -183,7 +183,7 @@ install/stage4-workarounds: install/stage3 install/stage4-config
 	# -- mpc workaround
 	mkdir -p ${EPREFIX}/etc/portage/env/dev-libs
 	echo "export LDFLAGS=-L${EPREFIX}/usr/lib" >> ${EPREFIX}/etc/portage/env/dev-libs/mpc
-	#emerge mpc
+	emerge mpc
 	# -- openssh workaround
 	mkdir -p ${EPREFIX}/etc/portage/env/net-misc
 	echo "export LDFLAGS=\"-l:${EPREFIX}/usr/lib/libssl.so -l:${EPREFIX}/usr/lib/libcrypto.so\"" >> ${EPREFIX}/etc/portage/env/net-misc/openssh
