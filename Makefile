@@ -167,7 +167,8 @@ stage2-portage-workarounds.done: stage2-up-to-pax-utils.done
 stage2-portage.done: stage2-up-to-pax-utils.done stage2-portage-workarounds.done
 	# Update portage
 	env FEATURES="-collision-protect" emerge --oneshot portage
-	mkdir -p ${EPREFIX}/etc/portage/package.{keywords,use}
+	mkdir -p ${EPREFIX}/etc/portage/package.keywords
+	mkdir -p ${EPREFIX}/etc/portage/package.use
 	# Clean up tmp dir
 	rm -Rf ${EPREFIX}/tmp/*
 	# Synchronize repo
