@@ -11,8 +11,7 @@ default: scientific
 scientific: eix gparallel atlas
 
 gparallel:
-	cd ${EPREFIX}/usr/local/portage
-	${EPREFIX}/usr/portage/scripts/ecopy sys-process/parallel
+	cd ${EPREFIX}/usr/local/portage && ${EPREFIX}/usr/portage/scripts/ecopy sys-process/parallel
 	emerge -uDN sys-process/parallel
 
 atlas:
