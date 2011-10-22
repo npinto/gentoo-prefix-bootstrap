@@ -18,32 +18,25 @@ atlas:
 	eselect cblas set atlas-threads || exit 0
 	eselect lapack set atlas || exit 0
 
-rest:
-	# -- numpy
+numpy: atlas
 	echo "dev-python/numpy doc lapack test" >> ${EPREFIX}/etc/portage/package.use/numpy
 	FEATURES=test emerge -uDN numpy
 
-	# -- scipy
+scipy: numpy
 	#emerge -uDN umfpack
 	#echo "sci-libs/scipy doc umfpack" >> ${EPREFIX}/etc/portage/package.use/scipy
-
 	# work around the temporary kernel.org outtage
 	mkdir -p ${EPREFIX}/usr/local/portage/sys-apps/util-linux/
 	cp -vf util-linux-2.17.ebuild ${EPREFIX}/usr/local/portage/sys-apps/util-linux/
 	ebuild ${EPREFIX}/usr/portage/sys-apps/util-linux/util-linux-2.17.ebuild manifest
 	emerge --oneshot --nodeps util-linux
-
 	emerge -uDN scipy
 
-	# -- XXX
+rest:
 	easy_install -U pip
-
 	pip install -vUI ipython
-
 	pip install -vUI pycuda
-
 	pip install -vUI joblib
-
 	pip install -vUI scikits.learn
 
 endif
