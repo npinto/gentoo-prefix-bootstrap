@@ -19,6 +19,7 @@ atlas:
 	eselect lapack set atlas || exit 0
 
 numpy: atlas
+	echo "=dev-python/numpy-1.6.1-r1" >> ${EPREFIX}/etc/portage/package.mask/numpy-1.6.1-r1
 	echo "dev-python/numpy doc lapack test" >> ${EPREFIX}/etc/portage/package.use/numpy
 	FEATURES=test emerge -uDN numpy
 
