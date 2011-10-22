@@ -1,13 +1,13 @@
 include init.mk
 
 # ============================================================================
-# == install_gentoo_prefix
+# == install_system
 # ============================================================================
 
-default: install_gentoo_prefix
+default: install_system
 .PHONY: stage0 stage1 stage2 stage3 stage4
 
-install_gentoo_prefix: stage0.done stage1.done stage2.done stage3.done stage4.done
+install_system: stage0.done stage1.done stage2.done stage3.done stage4.done
 
 # ----------------------------------------------------------------------------
 # -- STAGE 0

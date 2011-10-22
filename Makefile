@@ -6,4 +6,4 @@
 include system.mk
 include tools.mk
 
-default: install_gentoo_prefix install_system_tools
+default: install_system install_tools
