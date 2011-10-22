@@ -13,6 +13,9 @@ To install everything:
 $ make
 (XXX: right now this just install the system)
 
+To uninstall everything:
+$ make uninstall
+
 To just install the system:
 $ make install_system
 

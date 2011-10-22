@@ -225,7 +225,7 @@ uninstall-ask:
 	@echo
 	@read null
 
-uninstall-force:
+uninstall-force: clean
 	rm -rf ${EPREFIX}
 
 backup: ${EPREFIX}
