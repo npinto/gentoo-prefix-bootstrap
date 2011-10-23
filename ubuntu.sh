@@ -33,6 +33,7 @@ chmod +x bootstrap-prefix.sh
 ./bootstrap-prefix.sh $EPREFIX/tmp patch
 ./bootstrap-prefix.sh $EPREFIX/tmp grep
 ./bootstrap-prefix.sh $EPREFIX/tmp gawk
+./bootstrap-prefix.sh $EPREFIX/tmp m4  # require to get bison to build
 ./bootstrap-prefix.sh $EPREFIX/tmp bison  # no yacc on Ubuntu by default
 ./bootstrap-prefix.sh $EPREFIX/tmp bash
 hash -r

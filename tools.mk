@@ -54,15 +54,17 @@ console-tools:
 	# *      compinit
 	# *      promptinit; prompt gentoo
 	# * to your ~/.zshrc
-	# * 
+	# *
 	# * Also, if you want to enable cache for the completions, add
 	# *      zstyle ':completion::complete:*' use-cache 1
 	# * to your ~/.zshrc
 
 cmake:
-	mkdir -p ${EPREFIX}/etc/portage/env/dev-utils
-	echo "export LDFLAGS=-l:\$$(ls ${EPREFIX}/usr/lib/libz.so* | head -n 1)" >> ${EPREFIX}/etc/portage/env/dev-utils/cmake
-	emerge -uDN cmake
+	mkdir -p ${EPREFIX}/etc/portage/env/dev-util
+	-rm -vf ${EPREFIX}/etc/portage/env/dev-util/cmake
+	echo "export LDFLAGS=-l:\$$(ls \$${EPREFIX}/usr/lib/libz.so* | head -n 1)" >> ${EPREFIX}/etc/portage/env/dev-util/cmake
+	#emerge -uDN cmake
+	emerge -v cmake
 
 vim:
 	echo "app-editors/vim bash-completion vim-pager python ruby perl" >> ${EPREFIX}/etc/portage/package.use/vim
