@@ -77,12 +77,13 @@ install/stage2-binutils: install/stage2-up-to-bison
 
 install/stage2-gcc: install/stage2-binutils
 	emerge --oneshot --nodeps gcc-config
+	# errno.h missing
+	emerge --oneshot --nodeps linux-headers
 	emerge --oneshot --nodeps "=gcc-4.2*"
 	touch $@
 
 install/stage2-gcc-workarounds: install/stage2-binutils
-	# errno.h missing
-	emerge --oneshot linux-headers
+	#emerge --oneshot linux-headers
 	# XXX: to test 'tar' (FIX dicarlo2 problem on tar overflow?)
 	emerge --oneshot tar
 	# XXX: trying to fix the issues on dicarlo2
