@@ -3,6 +3,7 @@
 # ============================================================================
 # see README.txt
 
+include init.mk
 include helpers.mk
 
 include system.mk

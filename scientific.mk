@@ -7,6 +7,9 @@ include tools.mk
 scientific: eix bc gparallel atlas numpy scientific rest
 
 # ----------------------------------------------------------------------------
+tmppp:
+	echo ${EPREFIX}
+
 bc:
 	emerge -uDN bc
 
@@ -43,6 +46,25 @@ scipy: numpy
 	emerge -uDN --onlydeps scipy
 	#FEATURES=test emerge -uN scipy
 	emerge -uN scipy
+
+mongodb:
+	echo ${EPREFIX}
+	cd ${EPREFIX}/usr/local/portage && ${EPREFIX}/usr/portage/scripts/ecopy dev-db/mongodb
+	echo "dev-db/mongodb v8" >> ${EPREFIX}/etc/portage/package.use/mongodb
+	echo "dev-lang/v8 **" >> ${EPREFIX}/etc/portage/package.keywords/mongodb
+	echo "dev-db/mongodb **" >> ${EPREFIX}/etc/portage/package.keywords/mongodb
+	# mongodb workarounds
+	-rm -vf ${EPREFIX}/etc/portage/env/dev-db/mongodb
+	mkdir -p ${EPREFIX}/etc/portage/env/dev-db
+	echo "export LDFLAGS=\"-L/usr/lib -L${EPREFIX}/usr/lib\"" >> ${EPREFIX}/etc/portage/env/dev-db/mongodb
+	echo "export CXXFLAGS=\"-I/usr/include -I${EPREFIX}/usr/include \"" >> ${EPREFIX}/etc/portage/env/dev-db/mongodb
+	echo "export CXX=g++" >> ${EPREFIX}/etc/portage/env/dev-db/mongodb
+	emerge -v mongodb
+	# Useful aliases from:
+	# http://www.bitcetera.com/en/techblog/2011/02/15/nosql-on-mac-os-x
+	# alias mongo-start="mongod --fork --dbpath \${EPREFIX}/var/lib/mongodb --logpath \${EPREFIX}/var/log/mongodb.log"
+	# alias mongo-stop="killall -SIGTERM mongod 2>/dev/null"
+	# alias mongo-status="killall -0 mongod 2>/dev/null; if [ \$? -eq 0 ]; then echo 'started'; else echo 'stopped'; fi"
 
 rest:
 	easy_install -U pip
