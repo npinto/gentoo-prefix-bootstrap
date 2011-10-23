@@ -34,11 +34,13 @@ $ EPREFIX=/path/to/my/eprefix make
 
 Successfully tested on:
 -----------------------
+ * Gentoo ;-)
  * Fedora release 12 (Constantine)
  * CentOS release 5.6 (Final)
- * Ubuntu 10.10 (Maverick Meerkat)
  * Ubuntu 11.04 (Natty Narwhal)
- * Gentoo ;-)
+ * Ubuntu 10.10 (Maverick Meerkat)
+ * Ubuntu 9.10 (Karmic Koala)
+ * Mandriva Linux release 2011.0 (Official) for x86_64
 
 More information about Gentoo Prefix:
 -------------------------------------
