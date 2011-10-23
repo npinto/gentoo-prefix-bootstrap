@@ -31,16 +31,9 @@ numpy: atlas
 	emerge -uDN --onlydeps numpy
 	FEATURES=test emerge -uN numpy
 
-scipy: numpy
+scipy: numpy util-linux
 	#emerge -uDN umfpack
 	#echo "sci-libs/scipy doc umfpack" >> ${EPREFIX}/etc/portage/package.use/scipy
-	# util-linux work around
-	# the temporary kernel.org outtage
-	echo "=sys-apps/util-linux-2.18-r1 **" >> ${EPREFIX}/etc/portage/package.keywords/util-linux
-	#mkdir -p ${EPREFIX}/usr/local/portage/sys-apps/util-linux/
-	#cp -vf util-linux-2.17.ebuild ${EPREFIX}/usr/local/portage/sys-apps/util-linux/
-	#ebuild ${EPREFIX}/usr/portage/sys-apps/util-linux/util-linux-2.17.ebuild manifest
-	emerge --oneshot --nodeps util-linux
 	# XXX: scipy.test() still segfaults, due to superlu or atlas.
 	# It might be related to gfortran/g77, see:
 	# http://comments.gmane.org/gmane.comp.python.scientific.devel/15541
