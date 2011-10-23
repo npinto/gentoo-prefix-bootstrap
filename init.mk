@@ -1,5 +1,5 @@
-ifndef HELPERS_MK
-HELPERS_MK=helpers.mk
+ifndef INIT_MK
+INIT_MK=init.mk
 
 include helpers.mk
 
