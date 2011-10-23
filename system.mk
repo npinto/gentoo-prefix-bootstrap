@@ -43,6 +43,7 @@ install/stage1: bootstrap-prefix-patched.sh
 	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp bash
 	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp zlib
 	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp python
+	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp m4
 	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp bison
 	./bootstrap-prefix-patched.sh ${EPREFIX} portage
 	mkdir -p ${EPREFIX}/etc/portage/package.keywords
