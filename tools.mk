@@ -39,9 +39,19 @@ portage-tools:
 
 console-tools:
 	emerge -uDN keychain
-	emerge -uDN zsh
 	emerge -uDN htop
 	emerge -uDN ncdu
+	emerge -uDN zsh
+	# * If you want to enable Portage completions and Gentoo prompt,
+	# * emerge app-shells/zsh-completion and add
+	# *      autoload -U compinit promptinit
+	# *      compinit
+	# *      promptinit; prompt gentoo
+	# * to your ~/.zshrc
+	# * 
+	# * Also, if you want to enable cache for the completions, add
+	# *      zstyle ':completion::complete:*' use-cache 1
+	# * to your ~/.zshrc
 
 cmake:
 	mkdir -p ${EPREFIX}/etc/portage/env/dev-utils
