@@ -28,6 +28,9 @@ bootstrap-prefix-patched.sh:
 # ----------------------------------------------------------------------------
 install/stage1: bootstrap-prefix-patched.sh
 	./bootstrap-prefix-patched.sh ${EPREFIX} tree
+	# ./bootstrap-prefix.sh $EPREFIX/tmp gcc  # no g++ on Ubuntu by default 
+	# XXX: More on ubuntu:
+	# http://old.nabble.com/Re:-emerge--u-system-not-working-td24258970.html
 	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp make
 	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp wget
 	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp sed
