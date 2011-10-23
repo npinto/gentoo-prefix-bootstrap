@@ -28,9 +28,6 @@ bootstrap-prefix-patched.sh:
 # ----------------------------------------------------------------------------
 install/stage1: bootstrap-prefix-patched.sh
 	./bootstrap-prefix-patched.sh ${EPREFIX} tree
-	# ./bootstrap-prefix.sh $EPREFIX/tmp gcc  # no g++ on Ubuntu by default 
-	# XXX: More on ubuntu:
-	# http://old.nabble.com/Re:-emerge--u-system-not-working-td24258970.html
 	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp make
 	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp wget
 	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp sed
@@ -80,13 +77,12 @@ install/stage2-binutils: install/stage2-up-to-bison
 
 install/stage2-gcc: install/stage2-binutils
 	emerge --oneshot --nodeps gcc-config
-	# errno.h missing
-	emerge --oneshot --nodeps linux-headers
 	emerge --oneshot --nodeps "=gcc-4.2*"
 	touch $@
 
 install/stage2-gcc-workarounds: install/stage2-binutils
-	#emerge --oneshot linux-headers
+	# errno.h missing
+	emerge --oneshot linux-headers
 	# XXX: to test 'tar' (FIX dicarlo2 problem on tar overflow?)
 	emerge --oneshot tar
 	# XXX: trying to fix the issues on dicarlo2
@@ -151,7 +147,7 @@ install/stage3-workarounds: install/stage2
 	emerge --oneshot git
 	# gcc workaround
 	echo 'sys-devel/gcc vanilla' >> ${EPREFIX}/etc/portage/package.use/gcc
-	emerge --oneshot -u "=gcc-4.2*"
+	emerge -u "=gcc-4.2*"
 	#gcc-config 2
 	#source ${EPREFIX}/etc/profile
 	# XXX: remove old one?

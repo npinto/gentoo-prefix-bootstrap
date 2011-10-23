@@ -3,7 +3,7 @@ TOOLS_MK=tools.mk
 
 include init.mk
 
-tools: eix util-linux local-overlay layman portage-tools console-tools cmake \
+tools: eix local-overlay layman portage-tools console-tools cmake \
 	ruby vim tmux tig
 
 # ----------------------------------------------------------------------------
@@ -14,38 +14,6 @@ ifeq ($(shell test -f ${EPREFIX}/etc/eix-sync.conf && grep "^-e" ${EPREFIX}/etc/
 	echo -e '\055e' >> ${EPREFIX}/etc/eix-sync.conf
 endif
 	eix-sync
-
-util-linux:
-	# util-linux workaround
-	echo "=sys-apps/util-linux-2.18-r1 **" >> ${EPREFIX}/etc/portage/package.keywords/util-linux
-	#emerge --oneshot --nodeps util-linux
-	emerge -v util-linux
-
-mongodb:
-	echo ${EPREFIX}
-	cd ${EPREFIX}/usr/local/portage && ${EPREFIX}/usr/portage/scripts/ecopy dev-db/mongodb
-	echo "dev-db/mongodb v8" >> ${EPREFIX}/etc/portage/package.use/mongodb
-	echo "dev-lang/v8 **" >> ${EPREFIX}/etc/portage/package.keywords/mongodb
-	echo "dev-db/mongodb **" >> ${EPREFIX}/etc/portage/package.keywords/mongodb
-	# mongodb workarounds
-	-rm -vf ${EPREFIX}/etc/portage/env/dev-db/mongodb
-	mkdir -p ${EPREFIX}/etc/portage/env/dev-db
-	echo "export LDFLAGS=\"-L/usr/lib -L${EPREFIX}/usr/lib\"" >> ${EPREFIX}/etc/portage/env/dev-db/mongodb
-	echo "export CXXFLAGS=\"-I/usr/include -I${EPREFIX}/usr/include \"" >> ${EPREFIX}/etc/portage/env/dev-db/mongodb
-	echo "export CXX=g++" >> ${EPREFIX}/etc/portage/env/dev-db/mongodb
-	emerge -v mongodb
-	# Useful aliases from:
-	# http://www.bitcetera.com/en/techblog/2011/02/15/nosql-on-mac-os-x
-	# alias mongo-start="mongod --fork --dbpath \${EPREFIX}/var/lib/mongodb --logpath \${EPREFIX}/var/log/mongodb.log"
-	# alias mongo-stop="killall -SIGTERM mongod 2>/dev/null"
-	# alias mongo-status="killall -0 mongod 2>/dev/null; if [ \$? -eq 0 ]; then echo 'started'; else echo 'stopped'; fi"
-
-rest:
-	easy_install -U pip
-	pip install -vUI ipython
-	pip install -vUI pycuda
-	pip install -vUI joblib
-	pip install -vUI scikits.learn
 
 local-overlay: eix
 	mkdir -p ${EPREFIX}/usr/local/portage/profiles
@@ -71,19 +39,9 @@ portage-tools:
 
 console-tools:
 	emerge -uDN keychain
+	emerge -uDN zsh
 	emerge -uDN htop
 	emerge -uDN ncdu
-	emerge -uDN zsh
-	# * If you want to enable Portage completions and Gentoo prompt,
-	# * emerge app-shells/zsh-completion and add
-	# *      autoload -U compinit promptinit
-	# *      compinit
-	# *      promptinit; prompt gentoo
-	# * to your ~/.zshrc
-	# * 
-	# * Also, if you want to enable cache for the completions, add
-	# *      zstyle ':completion::complete:*' use-cache 1
-	# * to your ~/.zshrc
 
 cmake:
 	mkdir -p ${EPREFIX}/etc/portage/env/dev-utils
