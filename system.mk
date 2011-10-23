@@ -28,6 +28,9 @@ bootstrap-prefix-patched.sh:
 # ----------------------------------------------------------------------------
 install/stage1: bootstrap-prefix-patched.sh
 	./bootstrap-prefix-patched.sh ${EPREFIX} tree
+	# ./bootstrap-prefix.sh $EPREFIX/tmp gcc  # no g++ on Ubuntu by default 
+	# XXX: More on ubuntu:
+	# http://old.nabble.com/Re:-emerge--u-system-not-working-td24258970.html
 	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp make
 	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp wget
 	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp sed
@@ -148,7 +151,7 @@ install/stage3-workarounds: install/stage2
 	emerge --oneshot git
 	# gcc workaround
 	echo 'sys-devel/gcc vanilla' >> ${EPREFIX}/etc/portage/package.use/gcc
-	emerge -u "=gcc-4.2*"
+	emerge --oneshot -u "=gcc-4.2*"
 	#gcc-config 2
 	#source ${EPREFIX}/etc/profile
 	# XXX: remove old one?
