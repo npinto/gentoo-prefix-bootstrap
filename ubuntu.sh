@@ -20,7 +20,7 @@ export EPREFIX="$HOME/gentoo"
 export PATH="$EPREFIX/usr/bin:$EPREFIX/bin:$EPREFIX/tmp/usr/bin:$EPREFIX/tmp/bin:/usr/bin:/bin:$PATH"
 chmod +x bootstrap-prefix.sh
 ./bootstrap-prefix.sh $EPREFIX tree
-./bootstrap-prefix.sh $EPREFIX/tmp gcc  # no g++ on Ubuntu by default
+#./bootstrap-prefix.sh $EPREFIX/tmp gcc  # no g++ on Ubuntu by default but needs linux-headers !!!!
 ./bootstrap-prefix.sh $EPREFIX/tmp make
 ./bootstrap-prefix.sh $EPREFIX/tmp wget
 ./bootstrap-prefix.sh $EPREFIX/tmp sed
