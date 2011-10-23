@@ -85,6 +85,9 @@ tmux:
 	emerge -uDN tmux
 
 tig:
-	emerge -uDN tig
+	mkdir -p ${EPREFIX}/etc/portage/env/dev-vcs
+	-rm -vf ${EPREFIX}/etc/portage/env/dev-vcs/tig
+	echo "export LDFLAGS=-l:\$$(ls \$${EPREFIX}/usr/lib/libncursesw.so* | head -n 1)" >> ${EPREFIX}/etc/portage/env/dev-vcs/tig
+	emerge -v tig
 
 endif
