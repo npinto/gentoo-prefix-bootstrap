@@ -86,7 +86,8 @@ install/stage2-gcc: install/stage2-binutils
 	emerge --oneshot --nodeps gcc-config
 	# errno.h missing
 	emerge --oneshot --nodeps linux-headers
-	emerge --oneshot --nodeps "=gcc-4.2*"
+	emerge --oneshot --nodeps "=gcc-4.2.4-r01.4"
+	echo ">sys-devel/gcc-4.2.4-r01.4" > ${EPREFIX}/etc/portage/package.mask/gcc-4.2.4-r01.4+
 	touch $@
 
 install/stage2-up-to-patch: install/stage2-gcc
@@ -104,7 +105,7 @@ install/stage2-gawk: install/stage2-up-to-patch
 	# XXX: has it been fixed?
 	# echo "=sys-apps/gawk-4.0.0" >> ${EPREFIX}/etc/portage/package.mask/gawk-4.0.0
 	# NOT NEEDED SINCE BOOTSTRAP HAS 3.1.8
-	# THIS SHOULD MOVE AFTER -u system ? or right before stage4 -e 
+	# THIS SHOULD MOVE AFTER -u system ? or right before stage4 -e
 	emerge --oneshot gawk
 	touch $@
 
