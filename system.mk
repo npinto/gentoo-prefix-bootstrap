@@ -170,7 +170,8 @@ install/stage3-workarounds: install/stage2
 install/stage4: install/stage3 install/stage4-config install/stage4-workarounds
 	# -- recompile entire system
 	#emerge -ve --jobs ${N_PROCESSORS} --load-average=${N_PROCESSORS} --with-bdeps y system world
-	emerge -ve --jobs ${N_PROCESSORS} system
+	#emerge -ve --jobs ${N_PROCESSORS} system
+	emerge -ve -j system
 	# XXX: unset USE, etc?
 	touch $@
 
