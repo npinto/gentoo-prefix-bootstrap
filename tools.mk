@@ -60,6 +60,12 @@ console-tools:
 	# * to your ~/.zshrc
 
 cmake:
+	# libarchive workaround
+	mkdir -p ${EPREFIX}/etc/portage/env/app-arch
+	-rm -vf ${EPREFIX}/etc/portage/env/app-arch/libarchive
+	echo "export LDFLAGS=-l:\$$(ls \$${EPREFIX}/usr/lib/libz.so* | head -n 1)" >> ${EPREFIX}/etc/portage/env/app-arch/libarchive
+	emerge -v libarchive
+	# cmake workaround
 	mkdir -p ${EPREFIX}/etc/portage/env/dev-util
 	-rm -vf ${EPREFIX}/etc/portage/env/dev-util/cmake
 	echo "export LDFLAGS=-l:\$$(ls \$${EPREFIX}/usr/lib/libz.so* | head -n 1)" >> ${EPREFIX}/etc/portage/env/dev-util/cmake
