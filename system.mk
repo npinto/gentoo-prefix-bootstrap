@@ -81,7 +81,7 @@ install/stage2-binutils: install/stage2-up-to-bison
 	emerge --oneshot --nodeps binutils-config
 	# emerge --oneshot --nodeps binutils
 	#FEATURES=-strict emerge --oneshot --nodeps "~binutils-2.20.1-r1"
-	emerge --oneshot --nodeps binutils || ebuild --skip-manifest ${EPREFIX}/usr/portage/sys-devel/binutils/binutils-2.20.1-r1.ebuild clean merge
+	MAKEOPTS=-j1 emerge --oneshot --nodeps binutils || MAKEOPTS=-j1 ebuild --skip-manifest ${EPREFIX}/usr/portage/sys-devel/binutils/binutils-2.20.1-r1.ebuild clean merge
 	touch $@
 
 install/stage2-gcc: install/stage2-binutils
