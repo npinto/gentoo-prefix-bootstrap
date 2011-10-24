@@ -177,7 +177,7 @@ install/stage4: install/stage3 install/stage4-config install/stage4-workarounds
 	emerge -ve --jobs ${N_PROCESSORS} --load-average=${N_PROCESSORS} system
 	cd ${EPREFIX}/usr/portage/scripts && ./bootstrap-prefix.sh ${EPREFIX} startscript
 	@echo "You are now ready to use your Gentoo Prefix, to start run:"
-	@echo "\$ ${EPREFIX}/startscript"
+	@echo "$ ${EPREFIX}/startprefix"
 	touch $@
 
 install/stage4-config: install/stage3 make.conf
