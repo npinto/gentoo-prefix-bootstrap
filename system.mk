@@ -80,7 +80,8 @@ install/stage2-up-to-bison: install/stage1
 install/stage2-binutils: install/stage2-up-to-bison
 	emerge --oneshot --nodeps binutils-config
 	# emerge --oneshot --nodeps binutils
-	FEATURES=-strict emerge --oneshot --nodeps "~binutils-2.20.1-r1"
+	#FEATURES=-strict emerge --oneshot --nodeps "~binutils-2.20.1-r1"
+	MAKEOPTS=-j1 emerge --oneshot --nodeps binutils || MAKEOPTS=-j1 ebuild --skip-manifest ${EPREFIX}/usr/portage/sys-devel/binutils/binutils-2.20.1-r1.ebuild clean merge
 	touch $@
 
 install/stage2-gcc: install/stage2-binutils
@@ -153,7 +154,7 @@ install/stage3-workarounds: install/stage2
 	emerge --oneshot git
 	# gcc workaround
 	#echo 'sys-devel/gcc vanilla' >> ${EPREFIX}/etc/portage/package.use/gcc
-	emerge --oneshot -u "=gcc-4.2*"
+	#emerge --oneshot -u "=gcc-4.2*"
 	#gcc-config 2
 	#source ${EPREFIX}/etc/profile
 	# XXX: remove old one?
