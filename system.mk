@@ -79,7 +79,9 @@ install/stage2-up-to-bison: install/stage1
 
 install/stage2-binutils: install/stage2-up-to-bison
 	emerge --oneshot --nodeps binutils-config
-	emerge --oneshot --nodeps binutils
+	# emerge --oneshot --nodeps binutils
+	#FEATURES=-strict emerge --oneshot --nodeps "~binutils-2.20.1-r1"
+	MAKEOPTS=-j1 emerge --oneshot --nodeps binutils || MAKEOPTS=-j1 ebuild --skip-manifest ${EPREFIX}/usr/portage/sys-devel/binutils/binutils-2.20.1-r1.ebuild clean merge
 	touch $@
 
 install/stage2-gcc: install/stage2-binutils
@@ -120,11 +122,12 @@ install/stage2-up-to-pax-utils: install/stage2-up-to-patch
 install/stage2-portage-workarounds: install/stage2-up-to-pax-utils
 	# XXX: THIS IS NEEDED !!??
 	# python workaround
-	mkdir -p ${EPREFIX}/etc/portage/env/dev-lang/
-	echo "export LDFLAGS='-L/usr/lib64'" >> ${EPREFIX}/etc/portage/env/dev-lang/python
+	#mkdir -p ${EPREFIX}/etc/portage/env/dev-lang/
+	#echo "export LDFLAGS='-L/usr/lib64'" >> ${EPREFIX}/etc/portage/env/dev-lang/python
+	LDFLAGS="-L/usr/lib64" emerge --oneshot python
 	# libxml2 workaround
-	mkdir -p ${EPREFIX}/etc/portage/env/dev-libs
-	echo "export LDFLAGS=-l:\$$(ls ${EPREFIX}/usr/lib/libz.so* | head -n 1)" >> ${EPREFIX}/etc/portage/env/dev-libs/libxml2
+	#mkdir -p ${EPREFIX}/etc/portage/env/dev-libs
+	#echo "export LDFLAGS=-l:\$$(ls ${EPREFIX}/usr/lib/libz.so* | head -n 1)" >> ${EPREFIX}/etc/portage/env/dev-libs/libxml2
 	touch $@
 
 #install/stage2-portage: install/stage2-up-to-pax-utils install/stage2-portage-workarounds
@@ -132,7 +135,8 @@ install/stage2-portage: install/stage2-up-to-pax-utils
 	# Update portage
 	env FEATURES="-collision-protect" emerge --oneshot portage
 	# Clean up tmp dir
-	-rm -Rf ${EPREFIX}/tmp/*
+	#-rm -Rf ${EPREFIX}/tmp/*
+	-mv -f ${EPREFIX}/tmp ${EPREFIX}/tmp.old
 	# Synchronize repo
 	emerge --sync
 	touch $@
@@ -150,8 +154,8 @@ install/stage3-workarounds: install/stage2
 	USE="-git" emerge --oneshot --nodeps gettext
 	emerge --oneshot git
 	# gcc workaround
-	echo 'sys-devel/gcc vanilla' >> ${EPREFIX}/etc/portage/package.use/gcc
-	emerge --oneshot -u "=gcc-4.2*"
+	#echo 'sys-devel/gcc vanilla' >> ${EPREFIX}/etc/portage/package.use/gcc
+	#emerge --oneshot -u "=gcc-4.2*"
 	#gcc-config 2
 	#source ${EPREFIX}/etc/profile
 	# XXX: remove old one?
@@ -169,7 +173,8 @@ install/stage3-workarounds: install/stage2
 install/stage4: install/stage3 install/stage4-config install/stage4-workarounds
 	# -- recompile entire system
 	#emerge -ve --jobs ${N_PROCESSORS} --load-average=${N_PROCESSORS} --with-bdeps y system world
-	emerge -ve --jobs ${N_PROCESSORS} system
+	#emerge -ve --jobs ${N_PROCESSORS} system
+	emerge -ve -j system
 	# XXX: unset USE, etc?
 	touch $@
 
@@ -190,19 +195,19 @@ install/stage4-workarounds: install/stage3 install/stage4-config
 	# $ rm -vf ${EPREFIX}/etc/portage/package.use/gcc
 	# $ emerge --nodeps -uN gcc
 	# Next: gcc-config 2 && emerge -C "=gcc-4.2*"
-	USE=-fortran emerge --nodeps -uN gcc
+	#USE=-fortran emerge --nodeps -uN gcc
 	#gcc-config 2
 	#source ${EPREFIX}/etc/profile
 	# XXX: remove old one?
 	# CLEAN_DELAY=0 emerge -C "=gcc-4.2*"
 	# -- mpc workaround
-	mkdir -p ${EPREFIX}/etc/portage/env/dev-libs
-	echo "export LDFLAGS=-L${EPREFIX}/usr/lib" >> ${EPREFIX}/etc/portage/env/dev-libs/mpc
-	emerge mpc
+	#mkdir -p ${EPREFIX}/etc/portage/env/dev-libs
+	#echo "export LDFLAGS=-L${EPREFIX}/usr/lib" >> ${EPREFIX}/etc/portage/env/dev-libs/mpc
+	#emerge mpc
 	# -- openssh workaround
-	mkdir -p ${EPREFIX}/etc/portage/env/net-misc
-	echo "export LDFLAGS=\"-l:${EPREFIX}/usr/lib/libssl.so -l:${EPREFIX}/usr/lib/libcrypto.so\"" >> ${EPREFIX}/etc/portage/env/net-misc/openssh
-	emerge openssh
+	#mkdir -p ${EPREFIX}/etc/portage/env/net-misc
+	#echo "export LDFLAGS=\"-l:${EPREFIX}/usr/lib/libssl.so -l:${EPREFIX}/usr/lib/libcrypto.so\"" >> ${EPREFIX}/etc/portage/env/net-misc/openssh
+	#emerge openssh
 	touch $@
 
 endif
