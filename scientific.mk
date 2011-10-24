@@ -4,7 +4,7 @@ SCIENTIFIC_MK=scientific.mk
 include init.mk
 include tools.mk
 
-scientific: eix bc gparallel atlas numpy scientific mongodb
+scientific: eix bc gparallel atlas numpy scipy mongodb
 
 # ----------------------------------------------------------------------------
 tmppp:
