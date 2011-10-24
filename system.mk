@@ -163,7 +163,7 @@ install/stage3-workarounds: install/stage2
 	# KEEP THIS !!!
 	# groff workaround
 	mkdir -p ${EPREFIX}/etc/portage/env/sys-apps
-	echo "export MAKEOPTS=-j1" >> ${EPREFIX}/etc/portage/env/sys-apps/groff
+	echo "export MAKEOPTS=-j1" > ${EPREFIX}/etc/portage/env/sys-apps/groff
 	#MAKEOPTS=-j1 emerge -u groff
 	touch $@
 
@@ -184,7 +184,7 @@ install/stage4-config: install/stage3 make.conf
 	cp -vf make.conf ${EPREFIX}/etc/
 	echo "MAKEOPTS=\"${MAKEOPTS}\"" >> ${EPREFIX}/etc/make.conf
 	# -- python USE
-	echo 'dev-lang/python sqlite wide-unicode berkdb' >> ${EPREFIX}/etc/portage/package.use/python
+	echo 'dev-lang/python sqlite wide-unicode berkdb' > ${EPREFIX}/etc/portage/package.use/python
 	touch $@
 
 install/stage4-workarounds: install/stage3 install/stage4-config
