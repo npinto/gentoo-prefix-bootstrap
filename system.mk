@@ -46,6 +46,8 @@ install/stage1: bootstrap-prefix-patched.sh
 	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp m4
 	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp bison
 	./bootstrap-prefix-patched.sh ${EPREFIX} portage
+	# WARNING: if we were at the command line, we would run:
+	# hash -r
 	mkdir -p ${EPREFIX}/etc/portage/package.keywords
 	mkdir -p ${EPREFIX}/etc/portage/package.use
 	mkdir -p ${EPREFIX}/etc/portage/package.mask
@@ -136,6 +138,8 @@ install/stage2-portage: install/stage2-up-to-pax-utils install/stage2-portage-wo
 	-rm -Rf ${EPREFIX}/tmp/*
 	# Synchronize repo
 	emerge --sync
+	# WARNING: if we were at the command line, we would run:
+	# hash -r
 	touch $@
 
 # ----------------------------------------------------------------------------
