@@ -132,7 +132,8 @@ install/stage2-portage: install/stage2-up-to-pax-utils
 	# Update portage
 	env FEATURES="-collision-protect" emerge --oneshot portage
 	# Clean up tmp dir
-	-rm -Rf ${EPREFIX}/tmp/*
+	#-rm -Rf ${EPREFIX}/tmp/*
+	-mv -f ${EPREFIX}/tmp ${EPREFIX}/tmp.old
 	# Synchronize repo
 	emerge --sync
 	touch $@
