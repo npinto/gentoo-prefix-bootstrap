@@ -18,10 +18,12 @@ gparallel:
 	emerge -uDN sys-process/parallel
 
 atlas:
-	emerge -uDN cblas lapack blas
-	emerge -uDN blas-atlas lapack-atlas
+	emerge -uDN cblas blas
+	emerge -uDN blas-atlas
 	eselect blas set atlas-threads || exit 0
 	eselect cblas set atlas-threads || exit 0
+	emerge -uDN lapack
+	emerge -uDN lapack-atlas
 	eselect lapack set atlas || exit 0
 
 numpy: atlas
