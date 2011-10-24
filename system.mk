@@ -153,8 +153,8 @@ install/stage3-workarounds: install/stage2
 	USE="-git" emerge --oneshot --nodeps gettext
 	emerge --oneshot git
 	# gcc workaround
-	echo 'sys-devel/gcc vanilla' >> ${EPREFIX}/etc/portage/package.use/gcc
-	emerge --oneshot -u "=gcc-4.2*"
+	#echo 'sys-devel/gcc vanilla' >> ${EPREFIX}/etc/portage/package.use/gcc
+	#emerge --oneshot -u "=gcc-4.2*"
 	#gcc-config 2
 	#source ${EPREFIX}/etc/profile
 	# XXX: remove old one?
