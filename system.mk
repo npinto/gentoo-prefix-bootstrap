@@ -9,6 +9,7 @@ system: install/stage0 install/stage1 install/stage2 install/stage3 install/stag
 # -- STAGE 0
 # ----------------------------------------------------------------------------
 install/stage0: bootstrap-prefix-patched.sh
+	mkdir -p install
 	touch $@
 
 bootstrap-prefix-patched.sh:
@@ -27,10 +28,11 @@ bootstrap-prefix-patched.sh:
 # -- install/stage 1
 # ----------------------------------------------------------------------------
 install/stage1: bootstrap-prefix-patched.sh
+	# XXX: do we need this ?: /bin/bash --norc --noprofile
+	# export HOME
+	# export EPREFIX
+	# export PATH
 	./bootstrap-prefix-patched.sh ${EPREFIX} tree
-	# ./bootstrap-prefix.sh $EPREFIX/tmp gcc  # no g++ on Ubuntu by default 
-	# XXX: More on ubuntu:
-	# http://old.nabble.com/Re:-emerge--u-system-not-working-td24258970.html
 	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp make
 	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp wget
 	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp sed
@@ -40,14 +42,13 @@ install/stage1: bootstrap-prefix-patched.sh
 	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp patch
 	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp grep
 	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp gawk
-	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp bash
 	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp zlib
 	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp python
 	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp m4
 	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp bison
+	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp bash
+	# XXX: hash -r (for cmd line)
 	./bootstrap-prefix-patched.sh ${EPREFIX} portage
-	# WARNING: if we were at the command line, we would run:
-	# hash -r
 	mkdir -p ${EPREFIX}/etc/portage/package.keywords
 	mkdir -p ${EPREFIX}/etc/portage/package.use
 	mkdir -p ${EPREFIX}/etc/portage/package.mask
@@ -62,6 +63,10 @@ install/stage2: install/stage1 install/stage2-up-to-bison \
 	touch $@
 
 install/stage2-up-to-bison: install/stage1
+	# export LDFLAGS="-L${EPREFIX}/usr/lib -R${EPREFIX}/usr/lib -L${EPREFIX}/lib -R${EPREFIX}/lib"
+	# export CPPFLAGS="-I${EPREFIX}/usr/include"
+	# hash -r
+	# export USE="-berkdb -fortran -gdbm -nls -pcre -ssl -pam"
 	emerge --oneshot sed
 	emerge --oneshot --nodeps bash
 	emerge --oneshot --nodeps xz-utils
@@ -74,11 +79,7 @@ install/stage2-up-to-bison: install/stage1
 
 install/stage2-binutils: install/stage2-up-to-bison
 	emerge --oneshot --nodeps binutils-config
-	# XXX: MAKEOPTS in env/... ?
-	#MAKEOPTS=-j1 emerge --oneshot --nodeps binutils
-	#MAKEOPTS=-j1 emerge --oneshot --nodeps "~binutils-2.20.1-r1"
-	# work around binutils:
-	ebuild --skip-manifest ${EPREFIX}/usr/portage/sys-devel/binutils/binutils-2.20.1-r1.ebuild clean merge
+	emerge --oneshot --nodeps binutils
 	touch $@
 
 install/stage2-gcc: install/stage2-binutils
@@ -88,19 +89,9 @@ install/stage2-gcc: install/stage2-binutils
 	emerge --oneshot --nodeps "=gcc-4.2*"
 	touch $@
 
-install/stage2-gcc-workarounds: install/stage2-binutils
-	#emerge --oneshot linux-headers
-	# XXX: to test 'tar' (FIX dicarlo2 problem on tar overflow?)
-	emerge --oneshot tar
-	# XXX: trying to fix the issues on dicarlo2
-	emerge --oneshot gmp
-	emerge --oneshot mpfr
-	# lib{c,m}.so missing
-	ln -sf $(shell ldd /usr/bin/awk | grep libc.so | awk '{print $$3}') ${EPREFIX}/usr/lib/libc.so
-	ln -sf $(shell ldd /usr/bin/awk | grep libm.so | awk '{print $$3}') ${EPREFIX}/usr/lib/libm.so
-	touch $@
-
 install/stage2-up-to-patch: install/stage2-gcc
+	# unset LDFLAGS CPPFLAGS CHOST CC CXX HOSTCC
+	# export CFLAGS=""  # coreutils throws some sort of error if CFLAGS not set
 	emerge --oneshot coreutils
 	emerge --oneshot findutils
 	emerge --oneshot tar
@@ -111,11 +102,14 @@ install/stage2-up-to-patch: install/stage2-gcc
 install/stage2-gawk: install/stage2-up-to-patch
 	# gawk-4.0.0 is buggy (2011-10-22)
 	# XXX: has it been fixed?
-	echo "=sys-apps/gawk-4.0.0" >> ${EPREFIX}/etc/portage/package.mask/gawk-4.0.0
+	# echo "=sys-apps/gawk-4.0.0" >> ${EPREFIX}/etc/portage/package.mask/gawk-4.0.0
+	# NOT NEEDED SINCE BOOTSTRAP HAS 3.1.8
+	# THIS SHOULD MOVE AFTER -u system ? or right before stage4 -e 
 	emerge --oneshot gawk
 	touch $@
 
-install/stage2-up-to-pax-utils: install/stage2-gawk
+#install/stage2-up-to-pax-utils: install/stage2-gawk
+install/stage2-up-to-pax-utils: install/stage2-up-to-patch
 	emerge --oneshot make
 	emerge --oneshot --nodeps file
 	emerge --oneshot --nodeps eselect
@@ -123,6 +117,7 @@ install/stage2-up-to-pax-utils: install/stage2-gawk
 	touch $@
 
 install/stage2-portage-workarounds: install/stage2-up-to-pax-utils
+	# XXX: THIS IS NEEDED !!??
 	# python workaround
 	mkdir -p ${EPREFIX}/etc/portage/env/dev-lang/
 	echo "export LDFLAGS='-L/usr/lib64'" >> ${EPREFIX}/etc/portage/env/dev-lang/python
@@ -131,15 +126,14 @@ install/stage2-portage-workarounds: install/stage2-up-to-pax-utils
 	echo "export LDFLAGS=-l:\$$(ls ${EPREFIX}/usr/lib/libz.so* | head -n 1)" >> ${EPREFIX}/etc/portage/env/dev-libs/libxml2
 	touch $@
 
-install/stage2-portage: install/stage2-up-to-pax-utils install/stage2-portage-workarounds
+#install/stage2-portage: install/stage2-up-to-pax-utils install/stage2-portage-workarounds
+install/stage2-portage: install/stage2-up-to-pax-utils
 	# Update portage
 	env FEATURES="-collision-protect" emerge --oneshot portage
 	# Clean up tmp dir
 	-rm -Rf ${EPREFIX}/tmp/*
 	# Synchronize repo
 	emerge --sync
-	# WARNING: if we were at the command line, we would run:
-	# hash -r
 	touch $@
 
 # ----------------------------------------------------------------------------
@@ -161,7 +155,7 @@ install/stage3-workarounds: install/stage2
 	#source ${EPREFIX}/etc/profile
 	# XXX: remove old one?
 	# CLEAN_DELAY=0 emerge -C "=gcc-4.2*"
-	# XXX: MAKEOPTS in env
+	# KEEP THIS !!!
 	# groff workaround
 	mkdir -p ${EPREFIX}/etc/portage/env/sys-apps
 	echo "export MAKEOPTS=-j1" >> ${EPREFIX}/etc/portage/env/sys-apps/groff
@@ -174,13 +168,12 @@ install/stage3-workarounds: install/stage2
 install/stage4: install/stage3 install/stage4-config install/stage4-workarounds
 	# -- recompile entire system
 	#emerge -ve --jobs ${N_PROCESSORS} --load-average=${N_PROCESSORS} --with-bdeps y system world
-	emerge -ve --jobs ${N_PROCESSORS} --load-average=${N_PROCESSORS} system
-	cd ${EPREFIX}/usr/portage/scripts && ./bootstrap-prefix.sh ${EPREFIX} startscript
-	@echo "You are now ready to use your Gentoo Prefix, to start run:"
-	@echo "$ ${EPREFIX}/startprefix"
+	emerge -ve --jobs ${N_PROCESSORS} system
+	# XXX: unset USE, etc?
 	touch $@
 
 install/stage4-config: install/stage3 make.conf
+	# THIS IS NEEDED BUT REMOVE LOAD BALANCING
 	# -- Update make.conf
 	cp -vf make.conf ${EPREFIX}/etc/
 	echo "MAKEOPTS=\"${MAKEOPTS}\"" >> ${EPREFIX}/etc/make.conf
@@ -189,6 +182,7 @@ install/stage4-config: install/stage3 make.conf
 	touch $@
 
 install/stage4-workarounds: install/stage3 install/stage4-config
+	# XXX: DON'T USE THIS
 	# -- gcc workaround
 	#USE=-fortran emerge -uDN gcc
 	# Trying this:
