@@ -43,6 +43,9 @@ scipy: numpy util-linux
 	#FEATURES=test emerge -uN scipy
 	emerge -uDN scipy
 
+matplotlib: numpy
+	emerge -uDN matplotlib
+
 pip:
 	emerge -uDN setuptools
 	easy_install -U pip
