@@ -32,7 +32,7 @@ install/stage1: bootstrap-prefix-patched.sh
 	# export HOME
 	# export EPREFIX
 	# export PATH
-	./bootstrap-prefix-patched.sh ${EPREFIX} tree
+	#./bootstrap-prefix-patched.sh ${EPREFIX} tree
 	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp make
 	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp wget
 	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp sed
