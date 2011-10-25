@@ -44,7 +44,7 @@ scipy: numpy util-linux
 	emerge -uDN scipy
 
 mongodb: local-overlay
-	echo ${EPREFIX}
+	emerge -uDN portage-utils
 	cd ${EPREFIX}/usr/local/portage && ${EPREFIX}/usr/portage/scripts/ecopy dev-db/mongodb
 	echo "dev-db/mongodb v8" >> ${EPREFIX}/etc/portage/package.use/mongodb
 	echo "dev-lang/v8 **" >> ${EPREFIX}/etc/portage/package.keywords/mongodb
@@ -55,7 +55,6 @@ mongodb: local-overlay
 	#echo "export LDFLAGS=\"-L/usr/lib -L${EPREFIX}/usr/lib\"" >> ${EPREFIX}/etc/portage/env/dev-db/mongodb
 	#echo "export CXXFLAGS=\"-I/usr/include -I${EPREFIX}/usr/include \"" >> ${EPREFIX}/etc/portage/env/dev-db/mongodb
 	#echo "export CXX=g++" >> ${EPREFIX}/etc/portage/env/dev-db/mongodb
-	emerge -uDN portage-utils
 	emerge -uDN mongodb
 	# Useful aliases from:
 	# http://www.bitcetera.com/en/techblog/2011/02/15/nosql-on-mac-os-x
