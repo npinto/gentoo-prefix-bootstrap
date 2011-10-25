@@ -19,7 +19,7 @@ util-linux:
 	# util-linux workaround
 	echo "=sys-apps/util-linux-2.18-r1 **" >> ${EPREFIX}/etc/portage/package.keywords/util-linux
 	#emerge --oneshot --nodeps util-linux
-	emerge -v util-linux
+	emerge -uDN util-linux
 
 local-overlay: eix
 	mkdir -p ${EPREFIX}/usr/local/portage/profiles
