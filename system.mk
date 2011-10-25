@@ -87,7 +87,7 @@ install/stage2-binutils: install/stage2-up-to-bison
 install/stage2-gcc: install/stage2-binutils
 	emerge --oneshot --nodeps gcc-config
 	# errno.h missing
-	emerge --oneshot --nodeps linux-headers
+	#emerge --oneshot --nodeps linux-headers
 	emerge --oneshot --nodeps "=gcc-4.2.4-r01.4"
 	echo ">sys-devel/gcc-4.2.4-r01.4" > ${EPREFIX}/etc/portage/package.mask/gcc-4.2.4-r01.4+
 	touch $@
@@ -96,6 +96,8 @@ install/stage2-up-to-patch: install/stage2-gcc
 	# unset LDFLAGS CPPFLAGS CHOST CC CXX HOSTCC
 	# export CFLAGS=""  # coreutils throws some sort of error if CFLAGS not set
 	emerge --oneshot coreutils
+	# perl workaround (to avoid user confirmation)
+	emerge --oneshot --nodeps perl < /dev/null
 	emerge --oneshot findutils
 	emerge --oneshot tar
 	emerge --oneshot grep
@@ -122,16 +124,16 @@ install/stage2-up-to-pax-utils: install/stage2-up-to-patch
 install/stage2-portage-workarounds: install/stage2-up-to-pax-utils
 	# XXX: THIS IS NEEDED !!??
 	# python workaround
-	#mkdir -p ${EPREFIX}/etc/portage/env/dev-lang/
-	#echo "export LDFLAGS='-L/usr/lib64'" >> ${EPREFIX}/etc/portage/env/dev-lang/python
-	LDFLAGS="-L/usr/lib64" emerge --oneshot python
+	mkdir -p ${EPREFIX}/etc/portage/env/dev-lang/
+	echo "export LDFLAGS='-L/usr/lib64'" >> ${EPREFIX}/etc/portage/env/dev-lang/python
+	#LDFLAGS="-L/usr/lib64" emerge --oneshot python
 	# libxml2 workaround
 	#mkdir -p ${EPREFIX}/etc/portage/env/dev-libs
 	#echo "export LDFLAGS=-l:\$$(ls ${EPREFIX}/usr/lib/libz.so* | head -n 1)" >> ${EPREFIX}/etc/portage/env/dev-libs/libxml2
 	touch $@
 
-#install/stage2-portage: install/stage2-up-to-pax-utils install/stage2-portage-workarounds
-install/stage2-portage: install/stage2-up-to-pax-utils
+install/stage2-portage: install/stage2-up-to-pax-utils install/stage2-portage-workarounds
+#install/stage2-portage: install/stage2-up-to-pax-utils
 	# Update portage
 	env FEATURES="-collision-protect" emerge --oneshot portage
 	# Clean up tmp dir
