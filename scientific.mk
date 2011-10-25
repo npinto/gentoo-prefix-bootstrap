@@ -50,11 +50,11 @@ mongodb: local-overlay
 	echo "dev-lang/v8 **" >> ${EPREFIX}/etc/portage/package.keywords/mongodb
 	echo "dev-db/mongodb **" >> ${EPREFIX}/etc/portage/package.keywords/mongodb
 	# mongodb workarounds
-	#-rm -vf ${EPREFIX}/etc/portage/env/dev-db/mongodb
-	#mkdir -p ${EPREFIX}/etc/portage/env/dev-db
-	#echo "export LDFLAGS=\"-L/usr/lib -L${EPREFIX}/usr/lib\"" >> ${EPREFIX}/etc/portage/env/dev-db/mongodb
-	#echo "export CXXFLAGS=\"-I/usr/include -I${EPREFIX}/usr/include \"" >> ${EPREFIX}/etc/portage/env/dev-db/mongodb
-	#echo "export CXX=g++" >> ${EPREFIX}/etc/portage/env/dev-db/mongodb
+	-rm -vf ${EPREFIX}/etc/portage/env/dev-db/mongodb
+	mkdir -p ${EPREFIX}/etc/portage/env/dev-db
+	echo "export LDFLAGS=\"-L/usr/lib -L${EPREFIX}/usr/lib\"" >> ${EPREFIX}/etc/portage/env/dev-db/mongodb
+	echo "export CXXFLAGS=\"-I/usr/include -I${EPREFIX}/usr/include \"" >> ${EPREFIX}/etc/portage/env/dev-db/mongodb
+	echo "export CXX=${EPREFIX}/usr/bin/g++" >> ${EPREFIX}/etc/portage/env/dev-db/mongodb
 	emerge -uDN portage-utils
 	emerge -uDN mongodb
 	# Useful aliases from:
