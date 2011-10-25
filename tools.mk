@@ -61,22 +61,22 @@ console-tools:
 
 cmake:
 	# libarchive workaround
-	mkdir -p ${EPREFIX}/etc/portage/env/app-arch
-	-rm -vf ${EPREFIX}/etc/portage/env/app-arch/libarchive
-	echo "export LDFLAGS=-l:\$$(ls \$${EPREFIX}/usr/lib/libz.so* | head -n 1)" >> ${EPREFIX}/etc/portage/env/app-arch/libarchive
-	emerge -v libarchive
+	#mkdir -p ${EPREFIX}/etc/portage/env/app-arch
+	#-rm -vf ${EPREFIX}/etc/portage/env/app-arch/libarchive
+	#echo "export LDFLAGS=-l:\$$(ls \$${EPREFIX}/usr/lib/libz.so* | head -n 1)" >> ${EPREFIX}/etc/portage/env/app-arch/libarchive
+	emerge -uDN libarchive
 	# cmake workaround
-	mkdir -p ${EPREFIX}/etc/portage/env/dev-util
-	-rm -vf ${EPREFIX}/etc/portage/env/dev-util/cmake
-	echo "export LDFLAGS=-l:\$$(ls \$${EPREFIX}/usr/lib/libz.so* | head -n 1)" >> ${EPREFIX}/etc/portage/env/dev-util/cmake
+	#mkdir -p ${EPREFIX}/etc/portage/env/dev-util
+	#-rm -vf ${EPREFIX}/etc/portage/env/dev-util/cmake
+	#echo "export LDFLAGS=-l:\$$(ls \$${EPREFIX}/usr/lib/libz.so* | head -n 1)" >> ${EPREFIX}/etc/portage/env/dev-util/cmake
 	#emerge -uDN cmake
-	emerge -v cmake
+	emerge -uDN cmake
 
 vim:
 	echo "app-editors/vim bash-completion vim-pager python ruby perl" >> ${EPREFIX}/etc/portage/package.use/vim
 	# tinfo/ncurses workaround
-	mkdir -p ${EPREFIX}/etc/portage/env/app-editors
-	echo "export LDFLAGS=-lncurses" >> ${EPREFIX}/etc/portage/env/app-editors/vim
+	#mkdir -p ${EPREFIX}/etc/portage/env/app-editors
+	#echo "export LDFLAGS=-lncurses" >> ${EPREFIX}/etc/portage/env/app-editors/vim
 	emerge -uDN vim vim-core
 	eselect bashcomp enable --global vim &> /dev/null | exit 0
 
