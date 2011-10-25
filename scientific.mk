@@ -4,7 +4,7 @@ SCIENTIFIC_MK=scientific.mk
 include init.mk
 include tools.mk
 
-scientific: eix bc gparallel ipython atlas numpy scipy matplotlib joblib \
+scientific: tools bc gparallel ipython atlas numpy scipy matplotlib joblib \
 	scikits.learn
 
 # ----------------------------------------------------------------------------

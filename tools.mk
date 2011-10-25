@@ -37,7 +37,7 @@ layman: eix
 	echo "source ${EPREFIX}/var/lib/layman/make.conf" >> ${EPREFIX}/etc/make.conf
 	eix-sync
 
-portage-tools:
+portage-tools: local-overlay
 	emerge -uDN app-portage/portage-utils
 	emerge -uDN app-portage/gentoolkit
 	emerge -uDN app-portage/gentoolkit-dev
