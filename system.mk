@@ -122,16 +122,16 @@ install/stage2-up-to-pax-utils: install/stage2-up-to-patch
 install/stage2-portage-workarounds: install/stage2-up-to-pax-utils
 	# XXX: THIS IS NEEDED !!??
 	# python workaround
-	#mkdir -p ${EPREFIX}/etc/portage/env/dev-lang/
-	#echo "export LDFLAGS='-L/usr/lib64'" >> ${EPREFIX}/etc/portage/env/dev-lang/python
-	LDFLAGS="-L/usr/lib64" emerge --oneshot python
+	mkdir -p ${EPREFIX}/etc/portage/env/dev-lang/
+	echo "export LDFLAGS='-L/usr/lib64'" >> ${EPREFIX}/etc/portage/env/dev-lang/python
+	#LDFLAGS="-L/usr/lib64" emerge --oneshot python
 	# libxml2 workaround
 	#mkdir -p ${EPREFIX}/etc/portage/env/dev-libs
 	#echo "export LDFLAGS=-l:\$$(ls ${EPREFIX}/usr/lib/libz.so* | head -n 1)" >> ${EPREFIX}/etc/portage/env/dev-libs/libxml2
 	touch $@
 
-#install/stage2-portage: install/stage2-up-to-pax-utils install/stage2-portage-workarounds
-install/stage2-portage: install/stage2-up-to-pax-utils
+install/stage2-portage: install/stage2-up-to-pax-utils install/stage2-portage-workarounds
+#install/stage2-portage: install/stage2-up-to-pax-utils
 	# Update portage
 	env FEATURES="-collision-protect" emerge --oneshot portage
 	# Clean up tmp dir
