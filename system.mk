@@ -87,7 +87,7 @@ install/stage2-binutils: install/stage2-up-to-bison
 install/stage2-gcc: install/stage2-binutils
 	emerge --oneshot --nodeps gcc-config
 	# errno.h missing
-	emerge --oneshot --nodeps linux-headers
+	#emerge --oneshot --nodeps linux-headers
 	emerge --oneshot --nodeps "=gcc-4.2.4-r01.4"
 	echo ">sys-devel/gcc-4.2.4-r01.4" > ${EPREFIX}/etc/portage/package.mask/gcc-4.2.4-r01.4+
 	touch $@
