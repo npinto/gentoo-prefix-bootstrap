@@ -4,13 +4,13 @@ SCIENTIFIC_MK=scientific.mk
 include init.mk
 include tools.mk
 
-scientific: eix bc gparallel atlas numpy scipy ipython mongodb
+scientific: tools bc gparallel atlas numpy scipy ipython mongodb
 
 # ----------------------------------------------------------------------------
 bc:
 	emerge -uDN bc
 
-gparallel: local-overlay
+gparallel:
 	cd ${EPREFIX}/usr/local/portage && ${EPREFIX}/usr/portage/scripts/ecopy sys-process/parallel
 	emerge -uDN sys-process/parallel
 
