@@ -10,7 +10,7 @@ scientific: eix bc gparallel atlas numpy scipy ipython mongodb
 bc:
 	emerge -uDN bc
 
-gparallel:
+gparallel: local-overlay
 	cd ${EPREFIX}/usr/local/portage && ${EPREFIX}/usr/portage/scripts/ecopy sys-process/parallel
 	emerge -uDN sys-process/parallel
 
