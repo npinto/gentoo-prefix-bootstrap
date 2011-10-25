@@ -4,7 +4,8 @@ SCIENTIFIC_MK=scientific.mk
 include init.mk
 include tools.mk
 
-scientific: eix bc gparallel atlas numpy scipy ipython mongodb
+scientific: eix bc gparallel ipython atlas numpy scipy matplotlib joblib \
+	scikits.learn
 
 # ----------------------------------------------------------------------------
 bc:
@@ -13,6 +14,13 @@ bc:
 gparallel:
 	cd ${EPREFIX}/usr/local/portage && ${EPREFIX}/usr/portage/scripts/ecopy sys-process/parallel
 	emerge -uDN sys-process/parallel
+
+pip:
+	emerge -uDN setuptools
+	easy_install -U pip
+
+ipython: pip
+	pip install -vUI ipython
 
 atlas:
 	#emerge -uDN cblas blas
@@ -45,13 +53,6 @@ scipy: numpy util-linux
 
 matplotlib: numpy
 	emerge -uDN matplotlib
-
-pip:
-	emerge -uDN setuptools
-	easy_install -U pip
-
-ipython: pip
-	pip install -vUI ipython
 
 pycuda: pip
 	pip install -vUI pycuda
