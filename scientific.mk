@@ -62,7 +62,7 @@ joblib: pip
 scikits.learn: pip
 	pip install -vUI scikits.learn
 
-mongodb: local-overlay
+mongodb: local-overlay pip
 	emerge -uDN portage-utils
 	cd ${EPREFIX}/usr/local/portage && ${EPREFIX}/usr/portage/scripts/ecopy dev-db/mongodb
 	echo "dev-db/mongodb v8" >> ${EPREFIX}/etc/portage/package.use/mongodb
@@ -75,6 +75,7 @@ mongodb: local-overlay
 	echo "export CXXFLAGS=\"-I/usr/include -I${EPREFIX}/usr/include \"" >> ${EPREFIX}/etc/portage/env/dev-db/mongodb
 	echo "export CXX=${EPREFIX}/usr/bin/g++" >> ${EPREFIX}/etc/portage/env/dev-db/mongodb
 	emerge -uDN mongodb
+	pip install -vUI pymongo
 	# Useful aliases from:
 	# http://www.bitcetera.com/en/techblog/2011/02/15/nosql-on-mac-os-x
 	# alias mongo-start="mongod --fork --dbpath \${EPREFIX}/var/lib/mongodb --logpath \${EPREFIX}/var/log/mongodb.log"
