@@ -23,11 +23,11 @@ ipython: pip
 	pip install -vUI ipython
 
 atlas:
-	#emerge -uDN cblas blas
+	emerge -uDN cblas blas
 	emerge -uDN blas-atlas
 	eselect blas set atlas-threads || exit 0
 	eselect cblas set atlas-threads || exit 0
-	#emerge -uDN lapack
+	emerge -uDN lapack
 	emerge -uDN lapack-atlas
 	eselect lapack set atlas || exit 0
 
@@ -35,10 +35,10 @@ numpy: atlas
 	#echo "=dev-python/numpy-1.6.1-r1" >> ${EPREFIX}/etc/portage/package.mask/numpy-1.6.1-r1
 	echo "dev-python/numpy doc lapack test" >> ${EPREFIX}/etc/portage/package.use/numpy
 	#emerge -u sqlite
-	#emerge -uDN --onlydeps numpy
-	#FEATURES=test emerge -uN numpy
-	emerge -uDN numpy
-	python -c 'import numpy as np; np.test(verbose=2)'
+	emerge -uDN --onlydeps numpy
+	FEATURES=test emerge -uN numpy
+	#emerge -uDN numpy
+	#python -c 'import numpy as np; np.test(verbose=2)'
 
 scipy: numpy util-linux
 	#emerge -uDN umfpack
