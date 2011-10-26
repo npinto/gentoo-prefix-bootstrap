@@ -67,41 +67,41 @@ install/stage2-up-to-bison: install/stage1
 	# export CPPFLAGS="-I${EPREFIX}/usr/include"
 	# hash -r
 	# export USE="-berkdb -fortran -gdbm -nls -pcre -ssl -pam"
-	emerge --oneshot sed
-	emerge --oneshot --nodeps bash
-	emerge --oneshot --nodeps xz-utils
-	emerge --oneshot wget
-	emerge --oneshot --nodeps baselayout-prefix
-	emerge --oneshot --nodeps m4
-	emerge --oneshot --nodeps flex
-	emerge --oneshot --nodeps bison
+	${EMERGE} --oneshot sed
+	${EMERGE} --oneshot --nodeps bash
+	${EMERGE} --oneshot --nodeps xz-utils
+	${EMERGE} --oneshot wget
+	${EMERGE} --oneshot --nodeps baselayout-prefix
+	${EMERGE} --oneshot --nodeps m4
+	${EMERGE} --oneshot --nodeps flex
+	${EMERGE} --oneshot --nodeps bison
 	touch $@
 
 install/stage2-binutils: install/stage2-up-to-bison
-	emerge --oneshot --nodeps binutils-config
-	# emerge --oneshot --nodeps binutils
-	#FEATURES=-strict emerge --oneshot --nodeps "~binutils-2.20.1-r1"
-	MAKEOPTS=-j1 emerge --oneshot --nodeps binutils || MAKEOPTS=-j1 ebuild --skip-manifest ${EPREFIX}/usr/portage/sys-devel/binutils/binutils-2.20.1-r1.ebuild clean merge
+	${EMERGE} --oneshot --nodeps binutils-config
+	# ${EMERGE} --oneshot --nodeps binutils
+	#FEATURES=-strict ${EMERGE} --oneshot --nodeps "~binutils-2.20.1-r1"
+	MAKEOPTS=-j1 ${EMERGE} --oneshot --nodeps binutils || MAKEOPTS=-j1 ebuild --skip-manifest ${EPREFIX}/usr/portage/sys-devel/binutils/binutils-2.20.1-r1.ebuild clean merge
 	touch $@
 
 install/stage2-gcc: install/stage2-binutils
-	emerge --oneshot --nodeps gcc-config
+	${EMERGE} --oneshot --nodeps gcc-config
 	# errno.h missing
-	#emerge --oneshot --nodeps linux-headers
-	emerge --oneshot --nodeps "=gcc-4.2.4-r01.4"
+	#${EMERGE} --oneshot --nodeps linux-headers
+	${EMERGE} --oneshot --nodeps "=gcc-4.2.4-r01.4"
 	echo ">sys-devel/gcc-4.2.4-r01.4" > ${EPREFIX}/etc/portage/package.mask/gcc-4.2.4-r01.4+
 	touch $@
 
 install/stage2-up-to-patch: install/stage2-gcc
 	# unset LDFLAGS CPPFLAGS CHOST CC CXX HOSTCC
 	# export CFLAGS=""  # coreutils throws some sort of error if CFLAGS not set
-	emerge --oneshot coreutils
+	${EMERGE} --oneshot coreutils
 	# perl workaround (to avoid user confirmation)
-	emerge --oneshot perl < /dev/null
-	emerge --oneshot findutils
-	emerge --oneshot tar
-	emerge --oneshot grep
-	emerge --oneshot patch
+	${EMERGE} --oneshot perl < /dev/null
+	${EMERGE} --oneshot findutils
+	${EMERGE} --oneshot tar
+	${EMERGE} --oneshot grep
+	${EMERGE} --oneshot patch
 	touch $@
 
 install/stage2-gawk: install/stage2-up-to-patch
@@ -110,15 +110,15 @@ install/stage2-gawk: install/stage2-up-to-patch
 	# echo "=sys-apps/gawk-4.0.0" >> ${EPREFIX}/etc/portage/package.mask/gawk-4.0.0
 	# NOT NEEDED SINCE BOOTSTRAP HAS 3.1.8
 	# THIS SHOULD MOVE AFTER -u system ? or right before stage4 -e
-	emerge --oneshot gawk
+	${EMERGE} --oneshot gawk
 	touch $@
 
 #install/stage2-up-to-pax-utils: install/stage2-gawk
 install/stage2-up-to-pax-utils: install/stage2-up-to-patch
-	emerge --oneshot make
-	emerge --oneshot --nodeps file
-	emerge --oneshot --nodeps eselect
-	emerge --oneshot pax-utils
+	${EMERGE} --oneshot make
+	${EMERGE} --oneshot --nodeps file
+	${EMERGE} --oneshot --nodeps eselect
+	${EMERGE} --oneshot pax-utils
 	touch $@
 
 install/stage2-portage-workarounds: install/stage2-up-to-pax-utils
@@ -127,7 +127,7 @@ install/stage2-portage-workarounds: install/stage2-up-to-pax-utils
 	# XXX: instead USE="-ssl -pam -berkdb" ?
 	mkdir -p ${EPREFIX}/etc/portage/env/dev-lang/
 	echo "export LDFLAGS='-L/usr/lib64'" >> ${EPREFIX}/etc/portage/env/dev-lang/python
-	#LDFLAGS="-L/usr/lib64" emerge --oneshot python
+	#LDFLAGS="-L/usr/lib64" ${EMERGE} --oneshot python
 	# libxml2 workaround
 	#mkdir -p ${EPREFIX}/etc/portage/env/dev-libs
 	#echo "export LDFLAGS=-l:\$$(ls ${EPREFIX}/usr/lib/libz.so* | head -n 1)" >> ${EPREFIX}/etc/portage/env/dev-libs/libxml2
@@ -136,12 +136,12 @@ install/stage2-portage-workarounds: install/stage2-up-to-pax-utils
 install/stage2-portage: install/stage2-up-to-pax-utils install/stage2-portage-workarounds
 #install/stage2-portage: install/stage2-up-to-pax-utils
 	# Update portage
-	env FEATURES="-collision-protect" emerge --oneshot portage
+	env FEATURES="-collision-protect" ${EMERGE} --oneshot portage
 	# Clean up tmp dir
 	#-rm -Rf ${EPREFIX}/tmp/*
 	-mv -f ${EPREFIX}/tmp ${EPREFIX}/tmp.old
 	# Synchronize repo
-	emerge --sync
+	${EMERGE} --sync
 	touch $@
 
 # ----------------------------------------------------------------------------
@@ -149,25 +149,25 @@ install/stage2-portage: install/stage2-up-to-pax-utils install/stage2-portage-wo
 # ----------------------------------------------------------------------------
 install/stage3: install/stage2 install/stage3-workarounds
 	# Update system
-	emerge -u system
+	${EMERGE} -u system
 	touch $@
 
 install/stage3-workarounds: install/stage2
 	# git workaround
-	USE="-git" emerge --oneshot --nodeps gettext
-	emerge --oneshot git
+	USE="-git" ${EMERGE} --oneshot --nodeps gettext
+	${EMERGE} --oneshot git
 	# gcc workaround
 	#echo 'sys-devel/gcc vanilla' >> ${EPREFIX}/etc/portage/package.use/gcc
-	#emerge --oneshot -u "=gcc-4.2*"
+	#${EMERGE} --oneshot -u "=gcc-4.2*"
 	#gcc-config 2
 	#source ${EPREFIX}/etc/profile
 	# XXX: remove old one?
-	# CLEAN_DELAY=0 emerge -C "=gcc-4.2*"
+	# CLEAN_DELAY=0 ${EMERGE} -C "=gcc-4.2*"
 	# KEEP THIS !!!
 	# groff workaround
 	mkdir -p ${EPREFIX}/etc/portage/env/sys-apps
 	echo "export MAKEOPTS=-j1" > ${EPREFIX}/etc/portage/env/sys-apps/groff
-	#MAKEOPTS=-j1 emerge -u groff
+	#MAKEOPTS=-j1 ${EMERGE} -u groff
 	touch $@
 
 # ----------------------------------------------------------------------------
@@ -175,9 +175,9 @@ install/stage3-workarounds: install/stage2
 # ----------------------------------------------------------------------------
 install/stage4: install/stage3 install/stage4-config install/stage4-workarounds
 	# -- recompile entire system
-	#emerge -ve --jobs ${N_PROCESSORS} --load-average=${N_PROCESSORS} --with-bdeps y system world
-	#emerge -ve --jobs ${N_PROCESSORS} system
-	emerge -ve -j system
+	#${EMERGE} -ve --jobs ${N_PROCESSORS} --load-average=${N_PROCESSORS} --with-bdeps y system world
+	#${EMERGE} -ve --jobs ${N_PROCESSORS} system
+	${EMERGE} -ve -j system
 	# XXX: unset USE, etc?
 	touch $@
 
@@ -193,24 +193,24 @@ install/stage4-config: install/stage3 make.conf
 install/stage4-workarounds: install/stage3 install/stage4-config
 	# XXX: DON'T USE THIS
 	# -- gcc workaround
-	#USE=-fortran emerge -uDN gcc
+	#USE=-fortran ${EMERGE} -uDN gcc
 	# Trying this:
 	# $ rm -vf ${EPREFIX}/etc/portage/package.use/gcc
-	# $ emerge --nodeps -uN gcc
-	# Next: gcc-config 2 && emerge -C "=gcc-4.2*"
-	#USE=-fortran emerge --nodeps -uN gcc
+	# $ ${EMERGE} --nodeps -uN gcc
+	# Next: gcc-config 2 && ${EMERGE} -C "=gcc-4.2*"
+	#USE=-fortran ${EMERGE} --nodeps -uN gcc
 	#gcc-config 2
 	#source ${EPREFIX}/etc/profile
 	# XXX: remove old one?
-	# CLEAN_DELAY=0 emerge -C "=gcc-4.2*"
+	# CLEAN_DELAY=0 ${EMERGE} -C "=gcc-4.2*"
 	# -- mpc workaround
 	#mkdir -p ${EPREFIX}/etc/portage/env/dev-libs
 	#echo "export LDFLAGS=-L${EPREFIX}/usr/lib" >> ${EPREFIX}/etc/portage/env/dev-libs/mpc
-	#emerge mpc
+	#${EMERGE} mpc
 	# -- openssh workaround
 	#mkdir -p ${EPREFIX}/etc/portage/env/net-misc
 	#echo "export LDFLAGS=\"-l:${EPREFIX}/usr/lib/libssl.so -l:${EPREFIX}/usr/lib/libcrypto.so\"" >> ${EPREFIX}/etc/portage/env/net-misc/openssh
-	#emerge openssh
+	#${EMERGE} openssh
 	rm -f ${EPREFIX}/etc/portage/env/dev-lang/python
 	touch $@
 
