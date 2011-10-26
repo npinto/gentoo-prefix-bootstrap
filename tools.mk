@@ -37,10 +37,14 @@ layman: eix
 	echo "source ${EPREFIX}/var/lib/layman/make.conf" >> ${EPREFIX}/etc/make.conf
 	eix-sync
 
-portage-tools: local-overlay
+portage-tools: local-overlay autounmask
 	emerge -uDN app-portage/portage-utils
 	emerge -uDN app-portage/gentoolkit
 	emerge -uDN app-portage/gentoolkit-dev
+
+autounmask:
+	echo "=dev-perl/PortageXS-0.02.09 **" >> ${EPREFIX}/etc/portage/package.keywords/PortageXS-0.02.09
+	echo ">dev-perl/PortageXS-0.02.09" >> ${EPREFIX}/etc/portage/package.mask/PortageXS-0.02.09+
 	emerge -uDN autounmask
 
 console-tools:
