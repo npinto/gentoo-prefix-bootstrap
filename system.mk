@@ -97,7 +97,7 @@ install/stage2-up-to-patch: install/stage2-gcc
 	# export CFLAGS=""  # coreutils throws some sort of error if CFLAGS not set
 	emerge --oneshot coreutils
 	# perl workaround (to avoid user confirmation)
-	emerge --oneshot --nodeps perl < /dev/null
+	emerge --oneshot perl < /dev/null
 	emerge --oneshot findutils
 	emerge --oneshot tar
 	emerge --oneshot grep
