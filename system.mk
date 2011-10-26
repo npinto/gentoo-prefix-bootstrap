@@ -124,6 +124,7 @@ install/stage2-up-to-pax-utils: install/stage2-up-to-patch
 install/stage2-portage-workarounds: install/stage2-up-to-pax-utils
 	# XXX: THIS IS NEEDED !!??
 	# python workaround
+	# XXX: instead USE="-ssl -pam -berkdb" ?
 	mkdir -p ${EPREFIX}/etc/portage/env/dev-lang/
 	echo "export LDFLAGS='-L/usr/lib64'" >> ${EPREFIX}/etc/portage/env/dev-lang/python
 	#LDFLAGS="-L/usr/lib64" emerge --oneshot python
@@ -210,6 +211,7 @@ install/stage4-workarounds: install/stage3 install/stage4-config
 	#mkdir -p ${EPREFIX}/etc/portage/env/net-misc
 	#echo "export LDFLAGS=\"-l:${EPREFIX}/usr/lib/libssl.so -l:${EPREFIX}/usr/lib/libcrypto.so\"" >> ${EPREFIX}/etc/portage/env/net-misc/openssh
 	#emerge openssh
+	rm -f ${EPREFIX}/etc/portage/env/dev-lang/python
 	touch $@
 
 endif
