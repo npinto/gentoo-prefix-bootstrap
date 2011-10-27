@@ -22,11 +22,11 @@ util-linux:
 	${EMERGE} -uDN util-linux
 
 local-overlay: eix
-	mkdir -p ${EPREFIX}/usr/local/portage/profiles
+	mkdir -p ${EPREFIX}/usr/local/portage
+	cp -va files/local_overlay/* ${EPREFIX}/usr/local/portage/
 	# XXX: One could use a ifeq here
 	#echo "PORTDIR_OVERLAY=\"\$${PORTDIR_OVERLAY} ${EPREFIX}/usr/local/portage/\"" >> ${EPREFIX}/etc/make.conf
 	echo "PORTDIR_OVERLAY=\"${EPREFIX}/usr/local/portage/\"" >> ${EPREFIX}/etc/make.conf
-	echo "local-overlay" > ${EPREFIX}/usr/local/portage/profiles/repo_name
 	eix-sync
 
 layman: eix
