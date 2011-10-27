@@ -37,8 +37,6 @@ numpy: atlas local-overlay
 	FEATURES=test ${EMERGE} -uN numpy
 
 scipy: numpy util-linux
-	#${EMERGE} -uDN umfpack
-	#echo "sci-libs/scipy doc umfpack" >> ${EPREFIX}/etc/portage/package.use/scipy
 	# XXX: scipy.test() still segfaults, due to superlu or atlas.
 	# It might be related to gfortran/g77, see:
 	# http://comments.gmane.org/gmane.comp.python.scientific.devel/15541
