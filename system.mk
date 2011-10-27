@@ -188,7 +188,7 @@ install/stage4-config: install/stage3 make.conf
 	echo "MAKEOPTS=\"${MAKEOPTS}\"" >> ${EPREFIX}/etc/make.conf
 	# -- python USE and MASK
 	echo 'dev-lang/python sqlite wide-unicode berkdb' > ${EPREFIX}/etc/portage/package.use/python
-	echo '>dev-lang/python-2.7.1-r1' > ${EPREFIX}/etc/portage/package.env/python-2.7.1-r1+
+	echo '>dev-lang/python-2.7.1-r1' > ${EPREFIX}/etc/portage/package.mask/python-2.7.1-r1+
 	touch $@
 
 install/stage4-workarounds: install/stage3 install/stage4-config
