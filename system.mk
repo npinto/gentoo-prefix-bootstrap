@@ -32,7 +32,8 @@ install/stage1: bootstrap-prefix-patched.sh
 	# export HOME
 	# export EPREFIX
 	# export PATH
-	./bootstrap-prefix-patched.sh ${EPREFIX} tree
+	#./bootstrap-prefix-patched.sh ${EPREFIX} tree
+	./bootstrap-prefix-patched.sh ${EPREFIX} latest_tree
 	#./bootstrap-prefix-patched-with-gcc424.sh ${EPREFIX}/tmp gcc
 	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp make
 	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp wget
@@ -50,7 +51,6 @@ install/stage1: bootstrap-prefix-patched.sh
 	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp bash
 	# XXX: hash -r (for cmd line)
 	./bootstrap-prefix-patched.sh ${EPREFIX} portage
-	./bootstrap-prefix-patched.sh ${EPREFIX} latest_tree
 	mkdir -p ${EPREFIX}/etc/portage/package.keywords
 	mkdir -p ${EPREFIX}/etc/portage/package.use
 	mkdir -p ${EPREFIX}/etc/portage/package.mask
@@ -90,6 +90,8 @@ install/stage2-gcc: install/stage2-binutils
 	emerge --oneshot --nodeps gcc-config
 	# errno.h missing
 	#emerge --oneshot --nodeps linux-headers
+	# XXX: Ubuntu 10+ Fixes, binutils / linker search path patches
+	# https://bugs.launchpad.net/ubuntu/+source/binutils/+bug/738098
 	emerge --oneshot --nodeps "=gcc-4.2.4-r01.4"
 	echo ">sys-devel/gcc-4.2.4-r01.4" > ${EPREFIX}/etc/portage/package.mask/gcc-4.2.4-r01.4+
 	touch $@
@@ -101,6 +103,9 @@ install/stage2-up-to-patch: install/stage2-gcc
 	# perl workaround (to avoid user confirmation)
 	emerge --oneshot --nodeps perl < /dev/null
 	emerge --oneshot findutils
+	# -- tar: workaround "buffer overflow detected" error with gcc-4.5, see:
+	# https://bugs.gentoo.org/317139
+	echo ">app-arch/tar-1.23-r2" > ${EPREFIX}/etc/portage/package.mask/tar-1.23-r2+
 	emerge --oneshot tar
 	emerge --oneshot grep
 	emerge --oneshot patch
