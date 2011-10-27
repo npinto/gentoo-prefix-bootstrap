@@ -13,5 +13,6 @@ PATH:=${EPREFIX}/usr/bin:${EPREFIX}/bin:${EPREFIX}/tmp/usr/bin:${EPREFIX}/tmp/bi
 #CHOST:="x86_64-pc-linux-gnu"
 
 EMERGE:=emerge --quiet
+PIP:=pip
 
 endif
