@@ -9,6 +9,8 @@ source ./update_env.sh
 . ./update_env.sh
 
 make uninstall-force
+
+hash -r
 make install/stage1
 make install/stage2-up-to-bison
 
