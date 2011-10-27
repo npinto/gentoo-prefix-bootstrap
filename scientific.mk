@@ -20,7 +20,7 @@ pip:
 	easy_install -U pip
 
 ipython: pip
-	${PIP} install -vUI ipython
+	${PIP} install -UI ipython
 
 atlas:
 	${EMERGE} -uDN cblas blas
@@ -49,13 +49,13 @@ matplotlib: numpy
 	${EMERGE} -uDN matplotlib
 
 pycuda: pip
-	${PIP} install -vUI pycuda
+	${PIP} install -UI pycuda
 
 joblib: pip
-	${PIP} install -vUI joblib
+	${PIP} install -UI joblib
 
 scikits.learn: pip
-	${PIP} install -vUI scikits.learn
+	${PIP} install -UI scikits.learn
 
 mongodb: local-overlay pip
 	${EMERGE} -uDN portage-utils
@@ -70,7 +70,7 @@ mongodb: local-overlay pip
 	echo "export CXXFLAGS=\"-I/usr/include -I${EPREFIX}/usr/include \"" >> ${EPREFIX}/etc/portage/env/dev-db/mongodb
 	echo "export CXX=${EPREFIX}/usr/bin/g++" >> ${EPREFIX}/etc/portage/env/dev-db/mongodb
 	${EMERGE} -uDN mongodb
-	${PIP} install -vUI pymongo
+	${PIP} install -UI pymongo
 	# Useful aliases from:
 	# http://www.bitcetera.com/en/techblog/2011/02/15/nosql-on-mac-os-x
 	# alias mongo-start="mongod --fork --dbpath \${EPREFIX}/var/lib/mongodb --logpath \${EPREFIX}/var/log/mongodb.log"
