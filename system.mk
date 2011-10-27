@@ -33,7 +33,7 @@ install/stage1: bootstrap-prefix-patched.sh
 	# export EPREFIX
 	# export PATH
 	./bootstrap-prefix-patched.sh ${EPREFIX} tree
-	./bootstrap-prefix-patched-with-gcc424.sh ${EPREFIX}/tmp gcc
+	#./bootstrap-prefix-patched-with-gcc424.sh ${EPREFIX}/tmp gcc
 	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp make
 	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp wget
 	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp sed
@@ -50,6 +50,7 @@ install/stage1: bootstrap-prefix-patched.sh
 	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp bash
 	# XXX: hash -r (for cmd line)
 	./bootstrap-prefix-patched.sh ${EPREFIX} portage
+	./bootstrap-prefix-patched.sh ${EPREFIX} latest_tree
 	mkdir -p ${EPREFIX}/etc/portage/package.keywords
 	mkdir -p ${EPREFIX}/etc/portage/package.use
 	mkdir -p ${EPREFIX}/etc/portage/package.mask
