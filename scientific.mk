@@ -31,14 +31,10 @@ atlas:
 	${EMERGE} -uDN lapack-atlas
 	eselect lapack set atlas || exit 0
 
-numpy: atlas
-	#echo "=dev-python/numpy-1.6.1-r1" >> ${EPREFIX}/etc/portage/package.mask/numpy-1.6.1-r1
+numpy: atlas local-overlay
 	echo "dev-python/numpy doc lapack test" >> ${EPREFIX}/etc/portage/package.use/numpy
-	#${EMERGE} -u sqlite
 	${EMERGE} -uDN --onlydeps numpy
 	FEATURES=test ${EMERGE} -uN numpy
-	#${EMERGE} -uDN numpy
-	#python -c 'import numpy as np; np.test(verbose=2)'
 
 scipy: numpy util-linux
 	#${EMERGE} -uDN umfpack
