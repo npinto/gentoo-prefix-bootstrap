@@ -1,5 +1,7 @@
 #!/bin/bash
 
+hash -r
+
 set -x
 set -e
 
