@@ -1,0 +1,63 @@
+# ChangeLog for sys-process/parallel
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-process/parallel/ChangeLog,v 1.10 2011/06/02 07:26:49 fauli Exp $
+
+*parallel-20110522 (02 Jun 2011)
+
+  02 Jun 2011; Christian Faulhammer <fauli@gentoo.org>
+  -parallel-20110322.ebuild, +parallel-20110522.ebuild:
+  version bump and clean up
+
+*parallel-20110422 (06 May 2011)
+
+  06 May 2011; Christian Faulhammer <fauli@gentoo.org>
+  -parallel-20110205.ebuild, +parallel-20110422.ebuild:
+  version bump and clean up
+
+*parallel-20110322 (17 Apr 2011)
+
+  17 Apr 2011; Christian Faulhammer <fauli@gentoo.org>
+  -parallel-20110122.ebuild, +parallel-20110322.ebuild:
+  version bump and clean up
+
+*parallel-20110205 (12 Feb 2011)
+
+  12 Feb 2011; Christian Faulhammer <fauli@gentoo.org>
+  -parallel-20101222-r1.ebuild, +parallel-20110205.ebuild:
+  version bump and clean up
+
+  25 Jan 2011; Christian Faulhammer <fauli@gentoo.org>
+  -parallel-20101222.ebuild:
+  clean up
+
+*parallel-20110122 (25 Jan 2011)
+
+  25 Jan 2011; Christian Faulhammer <fauli@gentoo.org>
+  +parallel-20110122.ebuild:
+  Version bump
+
+*parallel-20101222-r1 (03 Jan 2011)
+
+  03 Jan 2011; Christian Faulhammer <fauli@gentoo.org>
+  -parallel-20101202.ebuild, +parallel-20101222-r1.ebuild:
+  Remove file collision with sys-apps/moreutils by renaming binary and man
+  page to gparallel, patch by maintainer Ryoichiro Suzuki
+
+*parallel-20101222 (24 Dec 2010)
+
+  24 Dec 2010; Christian Faulhammer <fauli@gentoo.org>
+  +parallel-20101222.ebuild:
+  version bump for bug 349365
+
+  21 Dec 2010; Christian Faulhammer <fauli@gentoo.org>
+  parallel-20101202.ebuild:
+  Block sys-apps/moreutils due to file collisions, see bug 349225 by Helmut
+  Jarausch <jarausch AT igpm DOT rwth-aachen DOT de>
+
+*parallel-20101202 (20 Dec 2010)
+
+  20 Dec 2010; Christian Faulhammer <fauli@gentoo.org>
+  +parallel-20101202.ebuild, +metadata.xml:
+  initial commit for bug 348716, ebuild by Ryoichiro Suzuki <ryoichiro DOT
+  suzuki AT gmail DOT com>, who will maintain this
+
