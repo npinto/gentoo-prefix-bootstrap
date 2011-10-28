@@ -30,6 +30,6 @@ make install/stage2-up-to-bison
 #LIBRARY_PATH=/usr/lib/x86_64-linux-gnu emerge --nodeps --oneshot binutils gcc-config '=gcc-4.2*'
 emerge --nodeps --oneshot binutils
 emerge --nodeps --oneshot gcc-config
-emerge --nodeps tar
+emerge --nodeps app-arch/tar
 LIBRARY_PATH=/usr/lib/x86_64-linux-gnu emerge --nodeps --oneshot '=gcc-4.2*'
 
