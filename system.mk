@@ -126,7 +126,7 @@ install/stage2-portage: install/stage2-up-to-pax-utils install/stage2-portage-wo
 # ----------------------------------------------------------------------------
 install/stage3: install/stage2 install/stage3-workarounds
 	# -- Update system
-	${EMERGE} -u system
+	${EMERGE} -u -j system
 	touch $@
 
 install/stage3-workarounds: install/stage2
