@@ -13,7 +13,7 @@ eix:
 ifeq ($(shell test -f ${EPREFIX}/etc/eix-sync.conf && grep "^-e" ${EPREFIX}/etc/eix-sync.conf), )
 	echo -e '\055e' >> ${EPREFIX}/etc/eix-sync.conf
 endif
-	eix-sync
+	${EIXSYNC}
 
 util-linux:
 	# util-linux workaround
@@ -27,7 +27,7 @@ local-overlay: eix
 	# XXX: One could use a ifeq here
 	#echo "PORTDIR_OVERLAY=\"\$${PORTDIR_OVERLAY} ${EPREFIX}/usr/local/portage/\"" >> ${EPREFIX}/etc/make.conf
 	echo "PORTDIR_OVERLAY=\"${EPREFIX}/usr/local/portage/\"" >> ${EPREFIX}/etc/make.conf
-	eix-sync
+	${EIXSYNC}
 
 layman: eix
 	${EMERGE} -uDN layman
@@ -35,7 +35,7 @@ layman: eix
 	-layman -a sekyfsr
 	# XXX: One could use a ifeq here
 	echo "source ${EPREFIX}/var/lib/layman/make.conf" >> ${EPREFIX}/etc/make.conf
-	eix-sync
+	${EIXSYNC}
 
 portage-tools: local-overlay autounmask
 	${EMERGE} -uDN app-portage/portage-utils

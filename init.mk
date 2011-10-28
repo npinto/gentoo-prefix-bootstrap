@@ -14,5 +14,6 @@ PATH:=${EPREFIX}/usr/bin:${EPREFIX}/bin:${EPREFIX}/tmp/usr/bin:${EPREFIX}/tmp/bi
 
 EMERGE:=emerge --quiet
 PIP:=pip
+EIXSYNC:=eix-sync -q
 
 endif
