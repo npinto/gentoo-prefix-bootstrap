@@ -159,6 +159,8 @@ install/stage4-config: install/stage3 make.conf
 install/stage4-workarounds: install/stage3 install/stage4-config
 	# -- python: remove stage2 workaround
 	rm -f ${EPREFIX}/etc/portage/env/dev-lang/python
+	${EMERGE} python
+	# -- gcc: workaround (reinstall?)
 	touch $@
 
 endif
