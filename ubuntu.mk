@@ -2,6 +2,7 @@
 all: default
 
 include init.mk
+include system.mk
 
 default: uninstall-force install/stage1 install/stage2-up-to-bison
 	emerge --nodeps --oneshot binutils
