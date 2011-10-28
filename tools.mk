@@ -18,14 +18,12 @@ endif
 util-linux:
 	# util-linux workaround
 	echo "=sys-apps/util-linux-2.18-r1 **" >> ${EPREFIX}/etc/portage/package.keywords/util-linux
-	#${EMERGE} --oneshot --nodeps util-linux
 	${EMERGE} -uDN util-linux
 
 local-overlay: eix
 	mkdir -p ${EPREFIX}/usr/local/portage
 	cp -va files/local_overlay/* ${EPREFIX}/usr/local/portage/
 	# XXX: One could use a ifeq here
-	#echo "PORTDIR_OVERLAY=\"\$${PORTDIR_OVERLAY} ${EPREFIX}/usr/local/portage/\"" >> ${EPREFIX}/etc/make.conf
 	echo "PORTDIR_OVERLAY=\"${EPREFIX}/usr/local/portage/\"" >> ${EPREFIX}/etc/make.conf
 	${EIXSYNC}
 
@@ -64,23 +62,11 @@ console-tools:
 	# * to your ~/.zshrc
 
 cmake:
-	# libarchive workaround
-	#mkdir -p ${EPREFIX}/etc/portage/env/app-arch
-	#-rm -vf ${EPREFIX}/etc/portage/env/app-arch/libarchive
-	#echo "export LDFLAGS=-l:\$$(ls \$${EPREFIX}/usr/lib/libz.so* | head -n 1)" >> ${EPREFIX}/etc/portage/env/app-arch/libarchive
 	${EMERGE} -uDN libarchive
-	# cmake workaround
-	#mkdir -p ${EPREFIX}/etc/portage/env/dev-util
-	#-rm -vf ${EPREFIX}/etc/portage/env/dev-util/cmake
-	#echo "export LDFLAGS=-l:\$$(ls \$${EPREFIX}/usr/lib/libz.so* | head -n 1)" >> ${EPREFIX}/etc/portage/env/dev-util/cmake
-	#${EMERGE} -uDN cmake
 	${EMERGE} -uDN cmake
 
 vim:
 	echo "app-editors/vim bash-completion vim-pager python ruby perl" >> ${EPREFIX}/etc/portage/package.use/vim
-	# tinfo/ncurses workaround
-	#mkdir -p ${EPREFIX}/etc/portage/env/app-editors
-	#echo "export LDFLAGS=-lncurses" >> ${EPREFIX}/etc/portage/env/app-editors/vim
 	${EMERGE} -uDN vim vim-core
 	eselect bashcomp enable --global vim &> /dev/null | exit 0
 
@@ -89,15 +75,9 @@ ruby:
 	${EMERGE} -uDN ruby
 
 tmux:
-	# tinfo/ncurses workaround
-	mkdir -p ${EPREFIX}/etc/portage/env/app-misc
-	echo "export LDFLAGS=\"-l:${EPREFIX}/usr/lib/libevent.so \$$LDFLAGS\"" >> ${EPREFIX}/etc/portage/env/app-misc/tmux
 	${EMERGE} -uDN tmux
 
 tig:
-	mkdir -p ${EPREFIX}/etc/portage/env/dev-vcs
-	-rm -vf ${EPREFIX}/etc/portage/env/dev-vcs/tig
-	echo "export LDFLAGS=-l:\$$(ls \$${EPREFIX}/usr/lib/libncursesw.so* | head -n 1)" >> ${EPREFIX}/etc/portage/env/dev-vcs/tig
-	${EMERGE} -v tig
+	${EMERGE} -uDN tig
 
 endif
