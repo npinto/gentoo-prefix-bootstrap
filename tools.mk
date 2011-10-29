@@ -43,6 +43,7 @@ portage-tools: local-overlay autounmask
 autounmask:
 	echo "=dev-perl/PortageXS-0.02.09 **" >> ${EPREFIX}/etc/portage/package.keywords/PortageXS-0.02.09
 	echo ">dev-perl/PortageXS-0.02.09" >> ${EPREFIX}/etc/portage/package.mask/PortageXS-0.02.09+
+	# XXX: ebuild needs to be patched (and pushed upstream) to prepend $EPREFIX
 	${EMERGE} -uDN autounmask
 
 console-tools:
