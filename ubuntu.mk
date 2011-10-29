@@ -1,5 +1,5 @@
 
-default: install/stage1 install/stage2-up-to-bison gcc-ubuntu install/stage2-portage-ubuntu  install/stage3 install/stage4
+default: install/stage1 install/stage2-up-to-bison install/stage2-gcc-ubuntu install/stage2-portage-ubuntu  install/stage3 install/stage4
 
 include init.mk
 include system.mk
