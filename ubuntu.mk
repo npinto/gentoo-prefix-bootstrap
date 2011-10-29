@@ -1,10 +1,9 @@
 
-all: default
+default: install/stage1 install/stage2-up-to-bison gcc-ubuntu install/stage2-portage  install/stage3 install/stage4
 
 include init.mk
 include system.mk
 
-default: uninstall-force install/stage1 install/stage2-up-to-bison gcc-ubuntu install/stage2-portage  install/stage3 install/stage4
 
 gcc-ubuntu:
 	emerge --nodeps --oneshot binutils
@@ -14,6 +13,4 @@ gcc-ubuntu:
 	touch install/stage2-binutils
 	touch install/stage2-gcc
 	touch $@
-
-
 
