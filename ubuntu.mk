@@ -1,5 +1,6 @@
 
-default: install/stage1 install/stage2-up-to-bison install/stage2-gcc-ubuntu install/stage2-portage-ubuntu  install/stage3 install/stage4
+default: install/stage1 install/stage2-up-to-bison install/stage2-gcc-ubuntu \
+	install/stage2-portage-ubuntu  install/stage3-ubuntu install/stage4-ubuntu
 
 include init.mk
 include system.mk
@@ -40,7 +41,7 @@ install/stage2-portage-workarounds-ubuntu: install/stage2-up-to-pax-utils-ubuntu
 	# -- texinfo: workaround help2man dependency
 	touch $@
 
-install/stage2-portage-ubuntu: install/stage2-up-to-pax-utils install/stage2-portage-workarounds-ubuntu
+install/stage2-portage-ubuntu: install/stage2-up-to-pax-utils-ubuntu install/stage2-portage-workarounds-ubuntu
 	# -- Update portage
 	env FEATURES="-collision-protect" ${EMERGE} --oneshot portage
 	# -- Move tmp directory
@@ -49,46 +50,47 @@ install/stage2-portage-ubuntu: install/stage2-up-to-pax-utils install/stage2-por
 	${EMERGE} --sync
 	touch $@
 
-## ----------------------------------------------------------------------------
-## -- STAGE 3
-## ----------------------------------------------------------------------------
-#install/stage3: install/stage2 install/stage3-workarounds
-	## -- Update system
-	#${EMERGE} -u -j system
-	#touch $@
+# ----------------------------------------------------------------------------
+# -- STAGE 3
+# ----------------------------------------------------------------------------
+install/stage3-ubuntu: 
+	#install/stage2-ubuntu install/stage3-workarounds-ubuntu
+	# -- Update system
+	${EMERGE} -u -j system
+	touch $@
 
-#install/stage3-workarounds: install/stage2
-	## -- git: workaround
-	#USE="-git" ${EMERGE} --oneshot --nodeps gettext
-	#${EMERGE} --oneshot git
-	## -- groff: workaround
-	#mkdir -p ${EPREFIX}/etc/portage/env/sys-apps
-	#echo "export MAKEOPTS=-j1" > ${EPREFIX}/etc/portage/env/sys-apps/groff
-	#touch $@
+install/stage3-workarounds-ubuntu: install/stage2-ubuntu
+	# -- git: workaround
+	USE="-git" ${EMERGE} --oneshot --nodeps gettext
+	${EMERGE} --oneshot git
+	# -- groff: workaround
+	mkdir -p ${EPREFIX}/etc/portage/env/sys-apps
+	echo "export MAKEOPTS=-j1" > ${EPREFIX}/etc/portage/env/sys-apps/groff
+	touch $@
 
-## ----------------------------------------------------------------------------
-## -- STAGE 4
-## ----------------------------------------------------------------------------
-#install/stage4: install/stage3 install/stage4-config install/stage4-workarounds
-	## -- Recompile entire system
-	#${EMERGE} -ve -j system
-	#touch $@
+# ----------------------------------------------------------------------------
+# -- STAGE 4
+# ----------------------------------------------------------------------------
+install/stage4-ubuntu: install/stage3-ubuntu install/stage4-config-ubuntu \
+	install/stage4-workarounds-ubuntu
+	# -- Recompile entire system
+	${EMERGE} -ve -j system
+	touch $@
 
-#install/stage4-config: install/stage3 make.conf
-	## -- Update make.conf
-	#cp -vf make.conf ${EPREFIX}/etc/
-	#echo "MAKEOPTS=\"${MAKEOPTS}\"" >> ${EPREFIX}/etc/make.conf
-	## -- python: update USE and mask >python-2.7.1-r1 to avoid this bug:
-	## http://bugs.python.org/issue9762
-	#echo 'dev-lang/python sqlite wide-unicode berkdb' > ${EPREFIX}/etc/portage/package.use/python
-	#echo '>dev-lang/python-2.7.1-r1' > ${EPREFIX}/etc/portage/package.mask/python-2.7.1-r1+
-	#touch $@
+install/stage4-config-ubuntu: install/stage3-ubuntu make.conf
+	# -- Update make.conf
+	cp -vf make.conf ${EPREFIX}/etc/
+	echo "MAKEOPTS=\"${MAKEOPTS}\"" >> ${EPREFIX}/etc/make.conf
+	# -- python: update USE and mask >python-2.7.1-r1 to avoid this bug:
+	# http://bugs.python.org/issue9762
+	echo 'dev-lang/python sqlite wide-unicode berkdb' > ${EPREFIX}/etc/portage/package.use/python
+	echo '>dev-lang/python-2.7.1-r1' > ${EPREFIX}/etc/portage/package.mask/python-2.7.1-r1+
+	touch $@
 
-#install/stage4-workarounds: install/stage3 install/stage4-config
-	## -- python: remove stage2 workaround
-	#rm -f ${EPREFIX}/etc/portage/env/dev-lang/python
-	#${EMERGE} python
-	## -- gcc: workaround (reinstall?)
-	#touch $@
+install/stage4-workarounds-ubuntu: install/stage3-ubuntu install/stage4-config-ubuntu
+	# -- python: remove stage2 workaround
+	rm -f ${EPREFIX}/etc/portage/env/dev-lang/python
+	${EMERGE} python
+	# -- gcc: workaround (reinstall?)
+	touch $@
 
-#endif
