@@ -55,7 +55,7 @@ install/stage1: bootstrap-prefix-patched.sh
 # -- STAGE 2
 # ----------------------------------------------------------------------------
 install/stage2: install/stage1 install/stage2-up-to-bison \
-	install/stage2-binutils install/stage2-gcc install/stage2-gawk \
+	install/stage2-binutils install/stage2-gcc \
 	install/stage2-up-to-pax-utils install/stage2-portage
 	touch $@
 
