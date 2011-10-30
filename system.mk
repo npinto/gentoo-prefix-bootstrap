@@ -85,7 +85,8 @@ install/stage2-binutils: install/stage2-up-to-bison
 
 install/stage2-gcc: install/stage2-binutils
 	${EMERGE} --oneshot --nodeps gcc-config
-	# -- errno.h missing
+	# -- errno.h missing, test if in /usr/include/asm/errno.h
+	# if not, then try to emerge the right one?
 	#${EMERGE} --oneshot --nodeps linux-headers
 	${EMERGE} --oneshot --nodeps "=gcc-4.2.4-r01.4"
 	echo ">sys-devel/gcc-4.2.4-r01.4" > ${EPREFIX}/etc/portage/package.mask/gcc-4.2.4-r01.4+
@@ -126,7 +127,7 @@ install/stage2-portage: install/stage2-up-to-pax-utils install/stage2-portage-wo
 # ----------------------------------------------------------------------------
 install/stage3: install/stage2 install/stage3-workarounds
 	# -- Update system
-	${EMERGE} -u system
+	${EMERGE} -u -j system
 	touch $@
 
 install/stage3-workarounds: install/stage2
@@ -159,6 +160,8 @@ install/stage4-config: install/stage3 make.conf
 install/stage4-workarounds: install/stage3 install/stage4-config
 	# -- python: remove stage2 workaround
 	rm -f ${EPREFIX}/etc/portage/env/dev-lang/python
+	${EMERGE} python
+	# -- gcc: workaround (reinstall?)
 	touch $@
 
 endif
