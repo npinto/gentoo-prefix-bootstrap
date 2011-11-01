@@ -1,0 +1,2423 @@
+    1  ls
+    2  ls -alF
+    3  ssh-add --help
+    4  cd dotfiles
+    5  grep -R keychain *
+    6  ls ~/.bashrc
+    7  keychain ~/.ssh/id_rsa
+    8  keychain ~/.ssh/id_dsa
+    9  vim sh/.sh.d/S91_ssh_keychain
+   10  git add sh/.sh.d/S91_ssh_keychain
+   11  git cim "sh: fix ssh keychain key detection"
+   12  gp
+   13  keychain ~/.ssh/id_dsa
+   14  cd dotfiles
+   15  gl
+   16  cd
+   17  ls
+   18  ls .*
+   19  cd dotfiles
+   20  ls
+   21  cd sh
+   22  ls
+   23  vim install.sh
+   24  ./install.sh
+   25  vim install.sh
+   26  ./install.sh
+   27  cd ../
+   28  ls
+   29  git add -u
+   30  git st
+   31  git cim "sh: fix install script"
+   32  gp
+   33  cd dotfiles
+   34  g
+   35  gl
+   36  ls
+   37  l
+   38  vim install.sh
+   39  l
+   40  ls sh/.sh.d/S91_ssh_keychain 
+   41  cat sh/.sh.d/S91_ssh_keychain 
+   42  vim install.sh
+   43  ./install.sh
+   44  git add -u
+   45  git cim "main install script now try to use keychain"
+   46  gp
+   47  cd ../
+   48  l
+   49  ls
+   50  l
+   51  ls
+   52  cd .ssh
+   53  ls
+   54  vim ~/.ssh/authorized_keys
+   55  ls
+   56  vim .ssh/authorized_keys
+   57  df -h
+   58  ls
+   59  rm -rvf voc2011_neurons
+   60  l
+   61  ls
+   62  mout
+   63  mount
+   64  ll /mnt/md101/pinto
+   65  cd /mnt/md101/pinto
+   66  l
+   67  mkdir projects
+   68  l
+   69  rm -rvf projects
+   70  l
+   71  cd
+   72  ln -sf /mnt/md101/pinto md101
+   73  du -Ssch md101
+   74  /du -Ssch md101
+   75  du -Ssch md101/
+   76  watch du -Ssch md101/
+   77  l
+   78  cd md101
+   79  l
+   80  cd
+   81  l
+   82  ls
+   83  mkdir Ha_Data
+   84  mv -vf *h5 Ha_Data
+   85  l
+   86  cd Ha_Data
+   87  l
+   88  vim README.txt
+   89  l
+   90  cd ../
+   91  l
+   92  mkdir Ha_Data_Chabo_Tito_Var00a_03a_06a_20111027
+   93  mv -vf Ha_Data Ha_Data_rsynced_2011-10-19
+   94  l
+   95  cp -vf Ha_Data_rsynced_2011-10-19/*pooled* ./Ha_Data_Chabo_Tito_Var00a_03a_06a_20111027
+   96  l
+   97  mv -vf Ha_Data_* md101/
+   98  ls md101
+   99  ls md101/Ha_Data_Chabo_Tito_Var00a_03a_06a_20111027
+  100  ls md101/Ha_Data_Chabo_Tito_Var00a_03a_06a_20111027/Chabo_Tito_20110907_Var0
+  101  ls
+  102  ls md101
+  103  ls Ha_Data_rsynced_2011-10-19
+  104  ls md101/Ha_Data_rsynced_2011-10-19
+  105  cp -vf md101/Ha_Data_rsynced_2011-10-19/README.txt md101/Ha_Data_Chabo_Tito_Var00a_03a_06a_20111027
+  106  watch du -Ssch md101/
+  107  ls
+  108  cd projects
+  109  l
+  110  git clone git@github.com:dicarlolab/voc2011_neurons.git
+  111  cd voc2011_neurons
+  112  l
+  113  git-pup
+  114  ~/dotfiles/git/git-pup
+  115  cp -vf ~/dotfiles/git/git-pup .
+  116  git add git-pup
+  117  git cimna
+  118  gp
+  119  ll
+  120  watch du -Ssch md101/voc2011_neurons
+  121  cat x_generate_v1like__gparallel.sh
+  122  python v1like_pkg/v1like/v1like_extract.py ./v1like_pkg/v1like/config/v1like_a_plus.py ~/md101/voc2011_neurons/VOC2011/VOCdevkit/VOC2011/JPEGImages/2008_000001.jpg test.mat
+  123  l
+  124  ipython
+  125  tmux new -s voc11
+  126  cd
+  127  cd projects
+  128  cd voc2011_neurons
+  129  ipython
+  130  ls
+  131  ipython
+  132  l
+  133  python v1like_pkg/v1like/v1like_extract.py ./v1like_pkg/v1like/config/v1like_a_plus.py ~/md101/voc2011_neurons/VOC2011/VOCdevkit/VOC2011/JPEGImages/2008_000001.jpg test.mat
+  134  rm -vf test.mat
+  135  python v1like_pkg/v1like/v1like_extract.py ./v1like_pkg/v1like/config/v1like_a_plus.py ~/md101/voc2011_neurons/VOC2011/VOCdevkit/VOC2011/JPEGImages/2008_000001.jpg test.mat --overwrite
+  136  vim v1like_pkg/v1like/v1like_extract.py
+  137  grep -R Writing *
+  138  vim v1like_pkg/v1like/v1like_extract.py
+  139  ls v1like_pkg
+  140  vim v1like_pkg/v1like/v1like_extract.py
+  141  python v1like_pkg/v1like/v1like_extract.py ./v1like_pkg/v1like/config/v1like_a_plus.py ~/md101/voc2011_neurons/VOC2011/VOCdevkit/VOC2011/JPEGImages/2008_000001.jpg test.mat --overwrite
+  142  cd v1like_pkg
+  143  git fetch origin
+  144  git branch -a
+  145  git co develop
+  146  gst
+  147  git add -u
+  148  git cim "Fix io/matlab crap"
+  149  gp
+  150  cd ../
+  151  l
+  152  git add v1like_pkg
+  153  git add -u
+  154  git cimna
+  155  gp
+  156  ls
+  157  cd ../
+  158  l
+  159  git clone git@github.com:npinto/np-toolbox.git
+  160  cd np-toolbox
+  161  cd sysadmin/gentoo_prefix
+  162  l
+  163  cp -vf install_gentoo_prefix.sh dicarlo2.sh
+  164  screen -S gentoo
+  165  ls
+  166  htop
+  167  ls
+  168  l
+  169  vim dicarlo2.sh
+  170  ls
+  171  l
+  172  vim dicarlo2.sh
+  173  ls
+  174  cat ~/.vimrc
+  175  vim
+  176  vim --version
+  177  ls
+  178  ./install_gentoo_prefix.sh
+  179  l
+  180  ./dicarlo2.sh
+  181  emerge --oneshot --nodeps bash
+  182  source env
+  183  source env.sh
+  184  emerge --oneshot --nodeps bash
+  185  emerge --oneshot --nodeps yacc
+  186  emerge --oneshot --nodeps flex
+  187  emerge --oneshot --nodeps bison
+  188  l
+  189  git co -b dicarlo2
+  190  git add dicarlo2.sh
+  191  git cimna
+  192  gp origin dicarlo2
+  193  git co master
+  194  git co -b tmp-dicarlo2
+  195  gst
+  196  l
+  197  git co dicarlo2
+  198  git co -b tmp-dicarlo2
+  199  l
+  200  git branch -D tmp-dicarlo2
+  201  git co -b tmp-dicarlo2
+  202  gp origin tmp-dicarlo2
+  203  git push dicarlo2:
+  204  git push origin dicarlo2:
+  205  git push origin :dicarlo2
+  206  emerge --oneshot --nodeps bash
+  207  yacc
+  208  hash -r
+  209  yacc
+  210  flex
+  211  eix -s yacc
+  212  emerge --oneshot bash
+  213  emerge --oneshot --nodeps bison
+  214  ls /bin/sh
+  215  yacc
+  216  yacc.bison
+  217  emerge --oneshot --nodeps sh
+  218  yacc
+  219  ls $EPREFIX/bin/sh
+  220  ls $EPREFIX/bin/
+  221  ln -sf $SHELL $EPREFIX/bin/sh 
+  222  emerge --oneshot --nodeps bison
+  223  emerge --oneshot --nodeps bash
+  224  cd dot
+  225  cd
+  226  cd dotfiles
+  227  l
+  228  cd ipython
+  229  l
+  230  cat install.sh
+  231  ./dicarlo2.sh
+  232  cd
+  233  screen -ls
+  234  cd projects
+  235  l
+  236  mkdir archive
+  237  mv -vf voc2011_neurons archive/
+  238  git clone git@github.com:npinto/neurons_vs_machines.git
+  239  git clone git@github.com:dicarlolab/neurons_vs_machines.git
+  240  cd neurons_vs_machines
+  241  l
+  242  cd voc2011
+  243  l
+  244  git mv -f git-pup ../
+  245  git cim "Move git-pup to root folder"
+  246  gp
+  247  cd ../
+  248  l
+  249  ./git-pup
+  250  vim README.txt
+  251  git add README.txt
+  252  git cim "Add readme"
+  253  gp
+  254  l
+  255  cd voc2011
+  256  l
+  257  python v1like_pkg/v1like/v1like_extract.py ./v1like_pkg/v1like/config/v1like_a_plus.py ~/md101/voc2011_neurons/VOC2011/VOCdevkit/VOC2011/JPEGImages/2008_000001.jpg test.mat --overwrite
+  258  vim data
+  259  cd vim
+  260  l
+  261  cd data
+  262  l
+  263  vim x_create_symlinks.sh
+  264  cd ../
+  265  screen -S voc11
+  266  htop
+  267  ls
+  268  l
+  269  clean
+  270  l
+  271  ls /mnt/md10
+  272  ls /mnt/md101
+  273  cd /mnt/md101
+  274  l
+  275  cd pinto
+  276  l
+  277  mkdir -p projects/neurons_vs_machines/data
+  278  l
+  279  cd projects
+  280  l
+  281  cd neurons_vs_machines
+  282  l
+  283  cd data
+  284  l
+  285  mv -vf ../../../../pinto/voc2011_neurons/* .
+  286  rm -rf ../../../../pinto/voc2011_neurons
+  287  l
+  288  dl
+  289  l
+  290  git mv -f data/x_create_symlinks.sh .
+  291  l
+  292  git mv -f x_create_symlinks.sh x_data_create_symlinks.sh
+  293  vim x_data_create_symlinks.sh
+  294  export T=1
+  295  test ! -z $T
+  296  test ! -z $TE
+  297  test ! -z $T && echo 1
+  298  vim x_data_create_symlinks.sh
+  299  ./x_data_create_symlinks.sh
+  300  vim x_data_create_symlinks.sh
+  301  ./x_data_create_symlinks.sh
+  302  vim x_data_create_symlinks.sh
+  303  ./x_data_create_symlinks.sh
+  304  vim x_data_create_symlinks.sh
+  305  ./x_data_create_symlinks.sh
+  306  vim x_data_create_symlinks.sh
+  307  ./x_data_create_symlinks.sh
+  308  vim x_data_create_symlinks.sh
+  309  ./x_data_create_symlinks.sh
+  310  vim x_data_create_symlinks.sh
+  311  export NEURONS_VS_MACHINES_DATA_PATH=/mnt/md101
+  312  vim x_data_create_symlinks.sh
+  313  ./x_data_create_symlinks.sh
+  314  vim x_data_create_symlinks.sh
+  315  ./x_data_create_symlinks.sh
+  316  vim x_data_create_symlinks.sh
+  317  ./x_data_create_symlinks.sh
+  318  vim x_data_create_symlinks.sh
+  319  ./x_data_create_symlinks.sh
+  320  cd
+  321  cd dotfiles
+  322  gl
+  323  source ~/.zshrc
+  324  ./x_data_create_symlinks.sh
+  325  vim x_data_create_symlinks.sh
+  326  ./x_data_create_symlinks.sh
+  327  vim x_data_create_symlinks.sh
+  328  ./x_data_create_symlinks.sh
+  329  vim x_data_create_symlinks.sh
+  330  ./x_data_create_symlinks.sh
+  331  vim x_data_create_symlinks.sh
+  332  ./x_data_create_symlinks.sh
+  333  vim x_data_create_symlinks.sh
+  334  ./x_data_create_symlinks.sh
+  335  l
+  336  ls data
+  337  l
+  338  ll
+  339  ./x_data_create_symlinks.sh
+  340  vim x_data_create_symlinks.sh
+  341  man test
+  342  vim x_data_create_symlinks.sh
+  343  ./x_data_create_symlinks.sh
+  344  vim x_data_create_symlinks.sh
+  345  ./x_data_create_symlinks.sh
+  346  vim x_data_create_symlinks.sh
+  347  ./x_data_create_symlinks.sh
+  348  vim x_data_create_symlinks.sh
+  349  ./x_data_create_symlinks.sh
+  350  vim x_data_create_symlinks.sh
+  351  ./x_data_create_symlinks.sh
+  352  vim x_data_create_symlinks.sh
+  353  ./x_data_create_symlinks.sh
+  354  vim x_data_create_symlinks.sh
+  355  ./x_data_create_symlinks.sh
+  356  NEURONS_VS_MACHINES_DATA_PATH=/mnt/md101/pinto/projects/neurons_vs_machines/data ./x_data_create_symlinks.sh
+  357  ./x_data_create_symlinks.sh
+  358  vim x_data_create_symlinks.sh
+  359  ./x_data_create_symlinks.sh
+  360  NEURONS_VS_MACHINES_DATA_PATH=/mnt/md101/pinto/projects/neurons_vs_machines/data ./x_data_create_symlinks.sh
+  361  ls data
+  362  cd data
+  363  l
+  364  ls VOC2011
+  365  cd ../
+  366  l
+  367  git add *sh
+  368  git cim "Update and fix the data linking script"
+  369  gp
+  370  git add *py
+  371  git cim "Various"
+  372  gp
+  373  vim .gitignore
+  374  l
+  375  gst
+  376  cd data
+  377  l
+  378  touch .gitignore
+  379  git add -f .gitignore
+  380  cd ../
+  381  git add .gitignore
+  382  git cim "Add gitignore files"
+  383  gp
+  384  ls
+  385  cd ../
+  386  l
+  387  ls
+  388  ll
+  389  cd
+  390  cd 
+  391  l
+  392  cat x_generate_v1like__gparallel.sh
+  393  ./x_generate_v1like__gparallel.sh
+  394  parallel
+  395  screen -ls
+  396  screen -dRR gentoo
+  397  cd
+  398  ls
+  399  mv -vf summary_code dseibert_summary_code
+  400  l
+  401  cd dseibert_summary_code
+  402  l
+  403  ls *mat
+  404  ls *m
+  405  l
+  406  rm -vf *mat
+  407  l
+  408  du -Ssc .
+  409  cd ../
+  410  mv -vf dseibert_summary_code ~/projects/neurons_vs_machines
+  411  cd projects/neurons_vs_machines
+  412  l
+  413  git add dseibert_summary_code/
+  414  git cim "Add Darren's summary code"
+  415  gp
+  416  l
+  417  gst
+  418  cd voc2011/data
+  419  ls
+  420  vim .gitignore
+  421  git add -f .gitignore
+  422  git cim "Update data/.gitignore"
+  423  gp
+  424  gst
+  425  l
+  426  cd ../
+  427  l
+  428  clean
+  429  l
+  430  screen -ls
+  431  screen -dRR gentoo
+  432  ls /usr/include/linux/errno.h
+  433  cat /usr/include/linux/errno.h
+  434  emerge --oneshot --nodeps gentoo-headers
+  435  emerge --oneshot --nodeps linux-headers
+  436  uname -r
+  437  grep gcc *sh
+  438  emerge --oneshot --nodeps "=gcc-4.2*"
+  439  l
+  440  emerge --search libc
+  441  emerge libc
+  442  emerge --oneshot --nodeps "=gcc-4.2*"
+  443  gcc --version
+  444  fg
+  445  emerge emul-linux-x86-glibc emul-linux-x86-compat emul-linux-x86-baselibs
+  446  eix -s emul
+  447  emerge --oneshot --nodeps gcc
+  448  ls /usr/lib
+  449  ls /usr/lib/libc*
+  450  ls /usr/lib/libc.*
+  451  ls /usr/lib64/libc.*
+  452  find /lib* -name "*libc.*"
+  453  find /usr/lib* -name "*libc.*"
+  454  LDFLAGS="-L/usr/lib/x86_64-linux-gnu/"
+  455  LDFLAGS="-L/usr/lib/x86_64-linux-gnu/" emerge --oneshot --nodeps "=gcc-4.2*"
+  456  fg
+  457  rm -vf $EPREFIX/bin/sh
+  458  vim dicarlo2.sh
+  459  rm -vf $EPREFIX/bin/sh
+  460  LDFLAGS="-L/usr/lib/x86_64-linux-gnu/" emerge --oneshot --nodeps "=gcc-4.2*"
+  461  rm -vf $EPREFIX/bin/sh
+  462  find $EPREFIX/ -type l -exec ls -l {} \;
+  463  LDFLAGS="-L/usr/lib/x86_64-linux-gnu/" emerge --oneshot --nodeps "=gcc-4.2*"
+  464  find $EPREFIX/ -type l -exec ls -l {} \;
+  465  find /usr/lib* -name "*libc.*"
+  466  ls
+  467  ./install_gentoo_prefix.sh
+  468  ./dicarlo2.sh
+  469  screen -dRR gentoo
+  470  ls
+  471  cd
+  472  mkdir install
+  473  cd install
+  474  wget http://ftp.gnu.org/gnu/parallel/parallel-20110822.tar.bz2
+  475  tar xjvf parallel-20110822.tar.bz2
+  476  cd parallel-20110822
+  477  l
+  478  mkdir ~/local
+  479  ./configure --prefix=$HOME/local
+  480  make -j13
+  481  make install
+  482  ./configure --help
+  483  ./configure --prefix=$HOME/local --program-prefix=g
+  484  make
+  485  make install
+  486  gparallel
+  487  cd
+  488  local
+  489  gparallel
+  490  l
+  491  htop
+  492  l
+  493  ./x_generate_v1like__gparallel.sh
+  494  cat x_generate_v1like__gparallel.sh
+  495  find ./data/VOC2011/VOCdevkit/VOC2011/JPEGImages -name "*jpg.v1like_a_plus.mat"  | wc -l
+  496  find ./data/VOC2011/VOCdevkit/VOC2011/JPEGImages -size 0
+  497  find ./data/VOC2011/VOCdevkit/VOC2011/JPEGImages -name "*hsv"
+  498  find ./data/VOC2011/VOCdevkit/VOC2011/JPEGImages -name "*hsv.mat"
+  499  find ./data/VOC2011/VOCdevkit/VOC2011/JPEGImages -size 0 -exec rm -vf {} \;
+  500  ls
+  501  vim x_generate_v1like__gparallel.sh
+  502  find ./data/VOC2011/VOCdevkit/VOC2011/JPEGImages -name "*jpg.v1like_a_plus.mat"  | wc -l
+  503  find ./data/VOC2011/VOCdevkit/VOC2011/JPEGImages -name "*jpg.v1like_a_plus_hsv.mat"  | wc -l
+  504  ./x_generate_v1like__gparallel.sh
+  505  vim x_generate_v1like__gparallel.sh
+  506  find ./data/VOC2011/VOCdevkit/VOC2011/JPEGImages -name "*jpg.v1like_a_plus_hsv.mat"  | wc -l
+  507  find ./data/VOC2011/VOCdevkit/VOC2011/JPEGImages -name "*jpg.v1like_a_plus.mat"  | wc -l
+  508  find ./data/VOC2011/VOCdevkit/VOC2011/JPEGImages -name "*jpg"  | wc -l
+  509  vim x_generate_v1like__gparallel.sh
+  510  ./x_generate_v1like__gparallel.sh
+  511  emerge --oneshot linux-headers
+  512  vim x_generate_v1like__gparallel.sh
+  513  ./x_generate_v1like__gparallel.sh
+  514  vim x_generate_v1like__gparallel.sh
+  515  ./x_generate_v1like__gparallel.sh
+  516  vim x_generate_v1like__gparallel.sh
+  517  ./x_generate_v1like__gparallel.sh
+  518  vim x_generate_v1like__gparallel.sh
+  519  ./x_generate_v1like__gparallel.sh
+  520  ./x_generate_v1like__gparallel.sh
+  521  vim x_generate_v1like__gparallel.sh
+  522  d ../
+  523  cd ../
+  524  ./voc2011/x_generate_v1like__gparallel.sh
+  525  cd voc2011
+  526  ./x_generate_v1like__gparallel.sh
+  527  python v1like_pkg/v1like/v1like_extract.py ./v1like_pkg/v1like/config/v1like_a_plus.py ~/md101/voc2011_neurons/VOC2011/VOCdevkit/VOC2011/JPEGImages/2008_000001.jpg test.mat --overwrite
+  528  python v1like_pkg/v1like/v1like_extract.py ./v1like_pkg/v1like/config/v1like_a_plus.py data/VOC2011/VOCdevkit/VOC2011/JPEGImages/2008_000001.jpg test.mat --overwrite
+  529  python v1like_pkg/v1like/v1like_extract.py ./v1like_pkg/v1like/config/v1like_a_plus_hsv.py ~/md101/voc2011_neurons/VOC2011/VOCdevkit/VOC2011/JPEGImages/2008_000001.jpg test.mat --overwrite
+  530  python v1like_pkg/v1like/v1like_extract.py ./v1like_pkg/v1like/config/v1like_a_plus_hsv.py data/VOC2011/VOCdevkit/VOC2011/JPEGImages/2008_000001.jpg test.mat --overwrite
+  531  ./x_generate_v1like__gparallel.sh
+  532  ./dicarlo2.sh
+  533  vim /mnt/md1/home/pinto/projects/neurons_vs_machines/voc2011/v1like_pkg/v1like/v1like_funcs.py
+  534  ls
+  535  ./dicarlo2.sh
+  536  cd v1like_pkg
+  537  git fetch origin
+  538  git co develop
+  539  git add -u
+  540  git cim "Catch IOError on Image.open"
+  541  gp
+  542  cd ../
+  543  git add v1like_pkg
+  544  git cim "Update v1like"
+  545  gp
+  546  bc -l
+  547  gst
+  548  git add x_generate_v1like__gparallel.sh
+  549  git cim "Update v1like gparallel script for voc2011"
+  550  l
+  551  gp
+  552  ls /usr/include
+  553  ls /usr/src
+  554  uname -r
+  555  emerge --oneshot --nodeps "=gcc-4.2*"
+  556  emerge -C linux-headers
+  557  emerge --oneshot --nodeps "=gcc-4.2*"
+  558  uname -r
+  559  ls /usr/src/linux-headers-2.6.38-11-server
+  560  ls /usr/src/linux-headers-2.6.38-11-server/
+  561  find /usr/src -name "*err*h"
+  562  find /usr/src -name "*err*h" | grep asm
+  563  find /usr/src -name "*errno.h" | grep asm
+  564  find ~/gentoo -name "errno.h"
+  565  find ~/gentoo -name "errno.h" | grep asm
+  566  find /usr/src -name "errno.h" | grep asm
+  567  find /usr/src -name "errno.h" | grep '/asm
+  568  find /usr/src -name "errno.h" | grep '/asm'
+  569  find /usr/src -name "errno.h" | grep '/asm/'
+  570  find /usr/src -name "errno.h" | grep '/asm/' | less
+  571  find /usr/include -name "errno.h"
+  572  EXTRA_CFLAGS="-I/usr/include/x86_64-linux-gnu/" 
+  573  emerge --oneshot --nodeps "=gcc-4.2*"
+  574  EXTRA_CFLAGS="-I/usr/include/x86_64-linux-gnu/" emerge --oneshot --nodeps "=gcc-4.2*"
+  575  CFLAGS="-I/usr/include/x86_64-linux-gnu/" emerge --oneshot --nodeps "=gcc-4.2*"
+  576  ls
+  577  find ./data/VOC2011 -name "*jpg.v1like_a_plus_hsv.mat" | wc -l
+  578  find ./data/VOC2011/ -name "*jpg.v1like_a_plus_hsv.mat" | wc -l
+  579  find ./data/VOC2011/ -name "*jpg" | wc -l
+  580  find ./data/VOC2011/ -name "*jpg.v1like_a_plus_hsv.mat" | wc -l
+  581  watch 'find ./data/VOC2011/ -name "*jpg.v1like_a_plus_hsv.mat" | wc -l'
+  582  watch -n 600 'find ./data/VOC2011/ -name "*jpg.v1like_a_plus_hsv.mat" | wc -l'
+  583  find ./data/VOC2011/ -name "*jpg" | wc -l
+  584  watch -n 600 'find ./data/VOC2011/ -name "*jpg.v1like_a_plus_hsv.mat" | wc -l'
+  585  STAGE1_CFLAGS="-I/usr/include/x86_64-linux-gnu/" emerge --oneshot --nodeps "=gcc-4.2*"
+  586  BOOT_CFLAGS="-I/usr/include/x86_64-linux-gnu/" emerge --oneshot --nodeps "=gcc-4.2*"
+  587  export BOOT_CFLAGS="-I/usr/include/x86_64-linux-gnu/" 
+  588  emerge --oneshot --nodeps "=gcc-4.2*"
+  589  ln -sf /usr/include/x86_64-linux-gnu/asm $EPREFIX/usr/include
+  590  emerge --oneshot --nodeps "=gcc-4.2*"
+  591  emerge --oneshot --nodeps sys-libs/glic
+  592  emerge --oneshot --nodeps "=gcc-4.2*"
+  593  cat /etc/debian_version
+  594  cat /etc/apt/sources.list
+  595  emerge --oneshot --nodeps "=gcc-4.2*"
+  596  emerge --oneshot --nodeps "=gcc-4.2*" 2>&1 | tee emerge.log
+  597  \tscp emerge.log npinto@primo.rowland.org:~/
+  598  rm -vf $EPREFIX/usr/include/asm
+  599  emerge --oneshot --nodeps "=gcc-4.2*" 2>&1 | tee emerge.2.log
+  600  fg
+  601  $ LDFLAGS="-L/usr/lib/x86_64-linux-gnu/" emerge --oneshot --nodeps "=gcc-4.2*"
+  602  LDFLAGS="-L/usr/lib/x86_64-linux-gnu/" emerge --oneshot --nodeps "=gcc-4.2*"
+  603  grep gcc 8sh
+  604  grep gcc *sh
+  605  grep gcc *sh | grep 4
+  606  USE=vanilla emerge --oneshot --nodeps "=gcc-4.2*"
+  607  CFLAGS="-I/usr/include/x86_64-linux-gnu/" emerge --oneshot --nodeps "=gcc-4.2*"
+  608  emerge --oneshot linux-headers
+  609  USE=vanilla emerge --oneshot --nodeps "=gcc-4.2*"
+  610  emerge --oneshot --nodeps gcc
+  611  source env.sh
+  612  eix -s gcc
+  613  USE=vanilla emerge --oneshot --nodeps "=gcc-4.1*"
+  614  emerge --oneshot --nodeps "=gcc-4.1*"
+  615  LDFLAGS="-L/usr/lib/x86_64-linux-gnu/" emerge --oneshot --nodeps "=gcc-4.1*"
+  616  echo $CHOST
+  617  /home/pinto/gentoo/usr/bin/x86_64-pc-linux-gnu-ld
+  618  which g++
+  619  which gcc
+  620  ls
+  621  git pull
+  622  rm -rvf ~/gentoo
+  623  rm -rvf gentoo
+  624  ls
+  625  rm -rvf gentoo-backup-2011-10-*
+  626  rm -rf gentoo-backup-2011-10-*
+  627  cd
+  628  ls
+  629  ln -sf projects/np-toolbox/sysadmin/gentoo_prefix .
+  630  cd gentoo_prefix
+  631  screen -S gentoo
+  632  htop
+  633  ls
+  634  ./install_gentoo_prefix.sh
+  635  ls
+  636  vim install_gentoo_prefix.sh
+  637  gl
+  638  cd
+  639  ls
+  640  ls projects
+  641  rm -rvf projects/np-toolbox
+  642  cd projects
+  643  ls
+  644  git clone git@github.com:npinto/np-toolbox.git 
+  645  ln -sf ~/projects/np-toolbox/sysadmin/gentoo_prefix ~/
+  646  cd
+  647  cd ~/gentoo_prefix
+  648  ls
+  649  vim install_gentoo_prefix.sh
+  650  ./install_gentoo_prefix.sh
+  651  cat /proc/cpuinfo
+  652  ls $EPREFIX/usr/include/
+  653  ls $EPREFIX/usr/include/asm
+  654  ln -sf /usr/include/asm-generic $EPREFIX/usr/include/asm
+  655  source ./update_env.sh
+  656  ln -sf /usr/include/asm-generic $EPREFIX/usr/include/asm
+  657  cd
+  658  cd gentoo_prefix
+  659  ls
+  660  source ./update_env.sh
+  661  emerge --oneshot --nodeps "=gcc-4.2*"
+  662  find **/lib -name "*libc*"
+  663  find /lib/ -name "*libc*"
+  664  find /lib/ -name "*libc.so"
+  665  find /usr/lib*/ -name "*libc.so"
+  666  cd
+  667  cd gentoo_prefix
+  668  ls
+  669  ls /usr/include/asm-generic
+  670  find /usr/include -name "errno.h"
+  671  CFLAGS="-I /usr/include/x86_64-linux-gnu" emerge --oneshot --nodeps "=gcc-4.2*"
+  672  rm -vf $EPREFIX/usr/include/asm
+  673  FEATURES=noclean emerge --resume
+  674  find /usr/lib* -name "*libc.so"
+  675  LDFLAGS="-L /usr/lib/x86_64-linux-gnu" CFLAGS="-I /usr/include/x86_64-linux-gnu" emerge --oneshot --nodeps "=gcc-4.2*"
+  676  ln -sf /usr/include/asm-generic $EPREFIX/usr/include/asm
+  677  ls /usr/lib/x86_64-linux-gnu
+  678  ldd /usr/lib/x86_64-linux-gnu/libc.so
+  679  objdump -T /usr/lib/x86_64-linux-gnu/libc.so
+  680  ll /usr/lib/x86_64-linux-gnu/
+  681  whereis ldd
+  682  ll /usr/lib/x86_64-linux-gnu/ | grep libso
+  683  ll /usr/lib/x86_64-linux-gnu/ | grep libc
+  684  vim /usr/lib/x86_64-linux-gnu
+  685  vim /usr/lib/x86_64-linux-gnu/libc.so
+  686  cp -vf /usr/lib/x86_64-linux-gnu/libc.so $EPREFIX/usr/lib/
+  687  emerge --oneshot --nodeps "=gcc-4.2*"
+  688  LIBPATH=/usr/lib/x86_64-linux-gnu emerge --oneshot --nodeps "=gcc-4.2*"
+  689  l
+  690  vim install_gentoo_prefix.sh
+  691  vim gcc.bug.txt
+  692  screen -ls
+  693  screen -dRR gentoo
+  694  vim install_gentoo_prefix.sh
+  695  rm -vf $EPREFIX/usr/lib/libc.so
+  696  LIBPATH=/usr/lib/x86_64-linux-gnu emerge --oneshot --nodeps "=gcc-4.2*"
+  697  cd /mnt/md1/home/pinto/gentoo/var/tmp/portage/sys-devel/gcc-4.2.4-r01.4/work/build
+  698  ls
+  699  make 
+  700  find /usr/lib -name "libc.*"
+  701  find /usr/lib* -name "libc.*"
+  702  find /lib* -name "libc.*"
+  703  ls /usr/lib/x86_64-linux-gnu/
+  704  LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu/ make 
+  705  LDFLAGS=/usr/lib/x86_64-linux-gnu/ make 
+  706  /mnt/md1/home/pinto/gentoo/var/tmp/portage/sys-devel/gcc-4.2.4-r01.4/work/build/./gcc/xgcc -B/mnt/md1/home/pinto/gentoo/var/tmp/portage/sys-devel/gcc-4.2.4-r01.4/work/build/./gcc/ -B/mnt/md1/home/pinto/gentoo/usr/x86_64-pc-linux-gnu/bin/ -B/mnt/md1/home/pinto/gentoo/usr/x86_64-pc-linux-gnu/lib/ -isystem /mnt/md1/home/pinto/gentoo/usr/x86_64-pc-linux-gnu/include -isystem /mnt/md1/home/pinto/gentoo/usr/x86_64-pc-linux-gnu/sys-include -O2  -O2 -O2 -pipe  -DIN_GCC    -W -Wall -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wold-style-definition  -isystem ./include  -fPIC -g -DHAVE_GTHR_DEFAULT -DIN_LIBGCC2 -D__GCC_FLOAT_NOT_NEEDED  -shared -nodefaultlibs -Wl,--soname=libgcc_s.so.1 -Wl,--version-script=libgcc/./libgcc.map -o ./libgcc_s.so.1.tmp  libgcc/./_muldi3_s.o libgcc/./_negdi2_s.o libgcc/./_lshrdi3_s.o libgcc/./_ashldi3_s.o libgcc/./_ashrdi3_s.o libgcc/./_cmpdi2_s.o libgcc/./_ucmpdi2_s.o libgcc/./_clear_cache_s.o libgcc/./_enable_execute_stack_s.o libgcc/./_trampoline_s.o libgcc/./__main_s.o libgcc/./_absvsi2_s.o libgcc/./_absvdi2_s.o libgcc/./_addvsi3_s.o libgcc/./_addvdi3_s.o libgcc/./_subvsi3_s.o libgcc/./_subvdi3_s.o libgcc/./_mulvsi3_s.o libgcc/./_mulvdi3_s.o libgcc/./_negvsi2_s.o libgcc/./_negvdi2_s.o libgcc/./_ctors_s.o libgcc/./_ffssi2_s.o libgcc/./_ffsdi2_s.o libgcc/./_clz_s.o libgcc/./_clzsi2_s.o libgcc/./_clzdi2_s.o libgcc/./_ctzsi2_s.o libgcc/./_ctzdi2_s.o libgcc/./_popcount_tab_s.o libgcc/./_popcountsi2_s.o libgcc/./_popcountdi2_s.o libgcc/./_paritysi2_s.o libgcc/./_paritydi2_s.o libgcc/./_powisf2_s.o libgcc/./_powidf2_s.o libgcc/./_powixf2_s.o libgcc/./_powitf2_s.o libgcc/./_mulsc3_s.o libgcc/./_muldc3_s.o libgcc/./_mulxc3_s.o libgcc/./_multc3_s.o libgcc/./_divsc3_s.o libgcc/./_divdc3_s.o libgcc/./_divxc3_s.o libgcc/./_divtc3_s.o libgcc/./_fixunssfsi_s.o libgcc/./_fixunsdfsi_s.o libgcc/./_fixunsxfsi_s.o libgcc/./_fixsfdi_s.o libgcc/./_fixunssfdi_s.o libgcc/./_floatdisf_s.o libgcc/./_floatundisf_s.o libgcc/./_fixdfdi_s.o libgcc/./_fixunsdfdi_s.o libgcc/./_floatdidf_s.o libgcc/./_floatundidf_s.o libgcc/./_fixxfdi_s.o libgcc/./_fixunsxfdi_s.o libgcc/./_floatdixf_s.o libgcc/./_floatundixf_s.o libgcc/./_fixtfdi_s.o libgcc/./_fixunstfdi_s.o libgcc/./_floatditf_s.o libgcc/./_floatunditf_s.o libgcc/./_divdi3_s.o libgcc/./_moddi3_s.o libgcc/./_udivdi3_s.o libgcc/./_umoddi3_s.o libgcc/./_udiv_w_sdiv_s.o libgcc/./_udivmoddi4_s.o libgcc/./unwind-dw2_s.o libgcc/./unwind-dw2-fde-glibc_s.o libgcc/./unwind-sjlj_s.o libgcc/./gthr-gnat_s.o libgcc/./unwind-c_s.o -lc
+  707  make
+  708  cd gcc
+  709  ake
+  710  make
+  711  /mnt/md1/home/pinto/gentoo/var/tmp/portage/sys-devel/gcc-4.2.4-r01.4/work/build/./gc
+  712  c/xgcc -B/mnt/md1/home/pinto/gentoo/var/tmp/portage/sys-devel/gcc-4.2.4-r01.4/work/b
+  713  uild/./gcc/ -B/mnt/md1/home/pinto/gentoo/usr/x86_64-pc-linux-gnu/bin/ -B/mnt/md1/hom
+  714  e/pinto/gentoo/usr/x86_64-pc-linux-gnu/lib/ -isystem /mnt/md1/home/pinto/gentoo/usr/
+  715  x86_64-pc-linux-gnu/include -isystem /mnt/md1/home/pinto/gentoo/usr/x86_64-pc-linux-
+  716  gnu/sys-include -O2  -O2 -O2 -pipe  -DIN_GCC    -W -Wall -Wwrite-strings -Wstrict-pr
+  717  ototypes -Wmissing-prototypes -Wold-style-definition  -isystem ./include  -fPIC -g -
+  718  DHAVE_GTHR_DEFAULT -DIN_LIBGCC2 -D__GCC_FLOAT_NOT_NEEDED  -shared -nodefaultlibs -Wl
+  719  ,--soname=libgcc_s.so.1 -Wl,--version-script=libgcc/./libgcc.map -o ./libgcc_s.so.1.
+  720  tmp  libgcc/./_muldi3_s.o libgcc/./_negdi2_s.o libgcc/./_lshrdi3_s.o libgcc/./_ashldi3_s.o libgcc/./_ashrdi3_s.o libgcc/./_cmpdi2_s.o libgcc/./_ucmpdi2_s.o libgcc/./_clear_cache_s.o libgcc/./_enable_execute_stack_s.o libgcc/./_trampoline_s.o libgcc/./_
+  721  make
+  722  make 2>&1 | make.log
+  723  make 2>&1 | tee make.log
+  724  cat make.log
+  725  cp -vf make.log tmp.sh
+  726  vim tmp.sh
+  727  bash ./tmp.sh
+  728  vim tmp.sh
+  729  bash ./tmp.sh
+  730  vim tmp.sh
+  731  ls /mnt/md1/home/pinto/gentoo/usr/x86_64-pc-linux-gnu/lib/
+  732  ls /mnt/md1/home/pinto/gentoo/usr/x86_64-pc-linux-gnu/
+  733  cd
+  734  find /usr/lib -name "libc.so"
+  735  bash ./tmp.sh
+  736  vim tmp.sh
+  737  bash ./tmp.sh
+  738  vim tmp.sh
+  739  bash ./tmp.sh
+  740  make
+  741  cat tmp.sh
+  742  LDFLAGS=-L/usr/lib/x86_64-linux-gnu make
+  743  ls
+  744  grep LDFLAGS *
+  745  ls
+  746  LDFLAGS=-L/usr/lib/x86_64-linux-gnu make
+  747  MULTILIB_CFLAGS=-L/usr/lib/x86_64-linux-gnu make
+  748  export MULTILIB_CFLAGS=-L/usr/lib/x86_64-linux-gnu make
+  749  export MULTILIB_CFLAGS=-L/usr/lib/x86_64-linux-gnu
+  750  make
+  751  cd -
+  752  l
+  753  MULTILIB_CFLAGS=-L/usr/lib/x86_64-linux-gnu make
+  754  MAKEOVERRIDES=-L/usr/lib/x86_64-linux-gnu make
+  755  MAKEOVERRIDES=-L/usr/lib/x86_64-linux-gnu emerge --oneshot --nodeps "=gcc-4.2*"
+  756  echo $MAKEOPTS
+  757  fg
+  758  screen -ls
+  759  screen -dRR voc11
+  760  USE='-vanilla fortran' emerge --oneshot --nodeps "=gcc-4.2*"
+  761  CC='gcc -L/usr/lib/x86_64-linux-gnu' emerge --oneshot --nodeps "=gcc-4.2*"
+  762  emerge --info =sys-devel/gcc-4.2.4-r01.4
+  763  emerge --info "=sys-devel/gcc-4.2.4-r01.4"
+  764  source ./update_env.sh
+  765  emerge --info "=sys-devel/gcc-4.2.4-r01.4"
+  766  LDFLAGS=-L/test emerge --info "=sys-devel/gcc-4.2.4-r01.4"
+  767  emerge --info "=sys-devel/gcc-4.2.4-r01.4"
+  768  ls /usr/lib/x86_64-linux-gnu
+  769  ls /usr/lib/x86_64-linux-gnu | grep libc
+  770  LDFLAGS="-L/home/pinto/gentoo/usr/lib -Wl,-rpath=/home/pinto/gentoo/usr/lib -L/home/pinto/gentoo/lib -Wl,-rpath=/home/pinto/gentoo/lib -L/usr/lib/x86_64-linux-gnu -Wl,r-path=/usr/lib/x86_64-linux-gnu" emerge --oneshot --nodeps "=gcc-4.2*"
+  771  fg
+  772  LDFLAGS="-L/home/pinto/gentoo/usr/lib -Wl,-rpath=/home/pinto/gentoo/usr/lib -L/home/pinto/gentoo/lib -Wl,-rpath=/home/pinto/gentoo/lib -L/usr/lib/x86_64-linux-gnu -Wl,r-path=/usr/lib/x86_64-linux-gnu" emerge --oneshot --nodeps --info "=sys-devel/gcc-4.2.4-r01.4"
+  773  gcc --version
+  774  which gcc
+  775  LDFLAGS="-L/home/pinto/gentoo/usr/lib -Wl,-rpath=/home/pinto/gentoo/usr/lib -L/home/pinto/gentoo/lib -Wl,-rpath=/home/pinto/gentoo/lib -L/usr/lib/x86_64-linux-gnu -Wl,-rpath=/usr/lib/x86_64-linux-gnu" emerge --oneshot --nodeps "=gcc-4.2*"
+  776  for f in /usr/lib/x86_64-linux-gnu/*so
+  777  ls /usr/lib/x86_64-linux-gnu/*so
+  778  for f in /usr/lib/x86_64-linux-gnu/*so; do ln -sf $f $EPREFIX/usr/lib/; done;
+  779  emerge --oneshot --nodeps "=gcc-4.2*"
+  780  git pull
+  781  rm -vf bootstrap-prefix.sh 
+  782  diff -u install_gentoo_prefix.sh
+  783  ls
+  784  diff -u install_gentoo_prefix.sh
+  785  ls
+  786  git pull
+  787  git diff -u install_gentoo_prefix.sh
+  788  git add install_gentoo_prefix.sh
+  789  git cim "Fix bison"
+  790  gl
+  791  gp
+  792  ls
+  793  gst
+  794  ls
+  795  git rm -f bootstrap-*sh
+  796  git cim "Cleaning up"
+  797  ls
+  798  vim install_gentoo_prefix.sh
+  799  ls
+  800  git add install_gentoo_prefix.sh
+  801  ls
+  802  rm -vf *patch
+  803  ls
+  804  git pull
+  805  git cim "Various fixes"
+  806  g
+  807  gp
+  808  ls
+  809  gl
+  810  gst
+  811  ls
+  812  cd
+  813  ls
+  814  rm -rf gentoo-backu*
+  815  cd gentoo_prefix
+  816  ls
+  817  ./install_gentoo_prefix.sh
+  818  cd
+  819  rm -rvf ~/gentoo-*
+  820  Ac
+  821  screen -dRR gcc
+  822  screen -dRR gentoo
+  823  emerge --oneshot --nodeps "=gcc-4.3*"
+  824  cd gentoo_prefix
+  825  ls
+  826  emerge --oneshot --nodeps "=gcc-4.1*"
+  827  screen -dRR
+  828  echo $CFLAGS
+  829  evn
+  830  env
+  831  env | grep FL
+  832  env | grep LIB
+  833  LIBPATH=-L/usr/lib/x86_64-linux-gnu
+  834  LIBPATH=-L/usr/lib/x86_64-linux-gnu emerge --oneshot --nodeps "=gcc-4.2*"
+  835  find $EPREFIX/ -name "*gcc-4.2*ebuild"
+  836  vim /home/pinto/gentoo/usr/portage/sys-devel/gcc/gcc-4.2.4-r01.4.ebuild
+  837  rm -vf $EPREFIX/usr/include/asm
+  838  emerge --oneshot --nodeps "=gcc-4.2*"
+  839  CC="gcc -I /usr/include/x86_64-linux-gnu" emerge --oneshot --nodeps "=gcc-4.2*"
+  840  which gcc
+  841  CC="gcc -I /usr/include/x86_64-linux-gnu" emerge --oneshot --nodeps "=gcc-4.2*"
+  842  ln -sf /usr/include/asm-generic $EPREFIX/usr/include/asm
+  843  ln -sf /usr/lib/x86_64-linux-gnu/libc.so $EPREFIX/usr/lib/
+  844  ln -sf /usr/lib/x86_64-linux-gnu/libm.so $EPREFIX/usr/lib/
+  845  emerge --oneshot --nodeps "=gcc-4.2*"
+  846  screen -ls
+  847  screen -dRR voc11
+  848  gcc --version
+  849  ./bootstrap-prefix.sh $EPREFIX/tmp gcc
+  850  find ~/gentoo -name "errno.h"
+  851  ln -sf /usr/include/asm-generic $EPREFIX/usr/include/asm
+  852  source ./update_env.sh
+  853  ln -sf /usr/include/asm-generic $EPREFIX/usr/include/asm
+  854  rm -vf /home/pinto/gentoo/usr/include/asm/asm-generic
+  855  rm -vf /home/pinto/gentoo/usr/include/asm
+  856  ln -sf /usr/include/asm-generic $EPREFIX/usr/include/asm
+  857  ./bootstrap-prefix.sh $EPREFIX/tmp gcc
+  858  ./bootstrap-prefix.sh $EPREFIX/tmp "=gcc-4.4*"
+  859  vim bootstrap-prefix
+  860  vim bootstrap-prefix.sh
+  861  ls /usr/lib/x86_64-linux-gnu
+  862  ./bootstrap-prefix.sh $EPREFIX/tmp "=gcc-4.4*"
+  863  MAKEOPTS="LDFLAGS=-L/usr/lib/x86_64-linux-gnu" ./bootstrap-prefix.sh $EPREFIX/tmp "=gcc-4.4*"
+  864  MAKEOPTS="LDFLAGS=-L/usr/lib/x86_64-linux-gnu" ./bootstrap-prefix.sh $EPREFIX/tmp "=gcc-4.2*"
+  865  MAKEOPTS="LDFLAGS=-L/usr/lib/x86_64-linux-gnu" ./bootstrap-prefix.sh $EPREFIX/tmp gcc
+  866  vim bootstrap-prefix
+  867  vim bootstrap-prefix.sh
+  868  CFLAGS=--disable-multilib emerge --oneshot --nodeps "=gcc-4.2*"
+  869  find /usr/include -name "syslimits*h"
+  870  rm -vf /home/pinto/gentoo/usr/include/asm
+  871  emerge linux-headers
+  872  CFLAGS=--disable-multilib emerge --oneshot --nodeps "=gcc-4.2*"
+  873  ls
+  874  ./install_gentoo_prefix.sh
+  875  rm -rf ~/gentoo-*
+  876  df -h
+  877  gcc --version
+  878  emerge --oneshot --nodeps linux-headers
+  879  git pull
+  880  ls
+  881  cd
+  882  l
+  883  cd
+  884  git clone git@github.com:npinto/gentoo_prefix_bootstrap.git
+  885  d
+  886  cd
+  887  d
+  888  ls
+  889  l
+  890  rm -rf gentoo_prefix projects/np-toolbox
+  891  l
+  892  cd gentoo_prefix_bootstrap
+  893  l
+  894  cd gentoo_prefix_bootstrap
+  895  l
+  896  vim install_gentoo_prefix.sh
+  897  emerge --oneshot --nodeps "=gcc-4.2*"
+  898  ls
+  899  ./install_gentoo_prefix.sh
+  900  rm -rvf ~/gentoo-*
+  901  USE=multilib emerge --oneshot --nodeps "=gcc-4.2*"
+  902  vim bootstrap-prefix
+  903  vim bootstrap-prefix.sh
+  904  grep GCC_EXTRA *
+  905  GCC_EXTRA_OPTS="--disable-multilib --with-gnu-ld" emerge --oneshot --nodeps "=gcc-4.2*"
+  906  vim bootstrap-prefix.sh
+  907  GCC_EXTRA_OPTS="--disable-multilib --with-gnu-ld" emerge --oneshot --nodeps "=gcc-4.2*"
+  908  emerge --oneshot --nodeps "=gcc-4.2*"
+  909  cd
+  910  cd gentoo_prefix_bootstrap
+  911  source upd
+  912  source ./update_env.sh
+  913  ls
+  914  cd /mnt/md1/home/pinto/gentoo/var/tmp/portage/sys-devel/gcc-4.2.4-r01.4/work/build/gcc
+  915  ls
+  916  make
+  917  LDFLAGS=-L/usr/lib/x86_64-linux-gnu  make
+  918  USE=-multilib emerge --oneshot --nodeps "=gcc-4.2*"
+  919  make
+  920  cd
+  921  ls ~/gentoo/usr/portage/sys-devel/binutils
+  922  binutils-2.18-r04.1.ebuild    binutils-2.21.1-r1.ebuild          ChangeLog  metadata.xml
+  923  binutils-2.19.1-r01.1.ebuild  binutils-2.21.51.0.7-r00.1.ebuild  files
+  924  ls ~/gentoo/usr/portage
+  925  ls ~/gentoo/usr/portage/sys-devel/gcc
+  926  l ~/gentoo/usr/portage/sys-devel/gcc
+  927  l -l ~/gentoo/usr/portage/sys-devel/gcc
+  928  l -sl ~/gentoo/usr/portage/sys-devel/gcc
+  929  USE=-multilib emerge --oneshot --nodeps "=gcc-4.6*"
+  930  USE=-multilib emerge --oneshot --nodeps "=gcc-4.5*"
+  931  gcc --version
+  932  which gcc
+  933  emerge --oneshot --nodeps "=gcc-4.5*"
+  934  emerge --oneshot --nodeps mpc
+  935  LDFLAGS=-L$EPREFIX/usr/lib emerge --oneshot --nodeps mpc
+  936  source ./update_env.sh
+  937  LDFLAGS=-L$EPREFIX/usr/lib emerge --oneshot --nodeps mpc
+  938  LDFLAGS=-L$EPREFIX/usr/lib emerge --oneshot mpc
+  939  emerge --oneshot --nodeps "=gcc-4.5*"
+  940  emerge --oneshot --nodeps "=gcc-4.3*"
+  941  USE=-multilib emerge --oneshot --nodeps "=gcc-4.3*"
+  942  USE=-multilib emerge --oneshot --nodeps "=gcc-4.1*"
+  943  emerge --oneshot --nodeps "=gcc-4.2*"
+  944  git pull
+  945  git diff
+  946  DT_RPATH=/usr/lib64 emerge --oneshot --nodeps "=gcc-4.2*"
+  947  env | grep LD
+  948  cd /mnt/md1/home/pinto/gentoo/var/tmp/portage/sys-devel/gcc-4.2.4-r01.4
+  949  ls
+  950  cd work
+  951  ls
+  952  cd gcc-4.2.4
+  953  ls
+  954  make
+  955  ls
+  956  make
+  957  cd gcc
+  958  make
+  959  ls
+  960  cd
+  961  cd /mnt/md1/home/pinto/gentoo/var/tmp/portage/sys-devel/gcc-4.2.4-r01.4/work/build
+  962  ls
+  963  make
+  964  DT_RPATH=/usr/lib/x86_64-linux-gnu make
+  965  LDPATH=-L/usr/lib/x86_64-linux-gnu make
+  966  CFLAGS=-L/usr/lib/x86_64-linux-gnu make
+  967  MULTILIB_CFLAGS=-L/usr/lib/x86_64-linux-gnu make
+  968  cd /mnt/md1/home/pinto/gentoo/var/tmp/portage/sys-devel/gcc-4.2.4-r01.4/work/build/gcc
+  969  ls
+  970  make
+  971  LDPATH=-L/usr/lib/x86_64-linux-gnu make
+  972  CFFLAGS=-L/usr/lib/x86_64-linux-gnu make
+  973  CFLAGS=-L/usr/lib/x86_64-linux-gnu make
+  974  vim Makefile
+  975  export CFLAGS=-L/usr/lib/x86_64-linux-gnu
+  976  make
+  977  grep CFLAGS *
+  978  CC="gcc -L/usr/lib/x86_64-linux-gnu" make
+  979  vim libgcc.mk
+  980  ls
+  981  make
+  982  find ../../ -name "libc.so*"
+  983  ls
+  984  cat /etc/ld.so.conf
+  985  cat /etc/ld.so.conf.d/*
+  986  cat /etc/ld.so.conf.d/libc.conf
+  987  ls /usr/local/lib
+  988  ldconfig
+  989  ldconfig -v
+  990  ldconfig -v | grep libc
+  991  make
+  992  grep nodefaultlibs *
+  993  vim libgcc.mk
+  994  make
+  995  emerge --resume
+  996  cd
+  997  cd gentoo_prefix_bootstrap
+  998  ls
+  999  vim bootstrap-prefix.sh
+ 1000  emerge --oneshot --nodeps "=gcc-4.2*"
+ 1001  ./bootstrap-prefix.sh $EPREFIX/tmp "=gcc-4.2*"
+ 1002  ./bootstrap-prefix.sh $EPREFIX/tmp gcc
+ 1003  ./bootstrap-prefix.sh $EPREFIX/tmp "~gcc-4.2*"
+ 1004  ./bootstrap-prefix.sh $EPREFIX/tmp gcc
+ 1005  find ~/gentoo -name "gcc-4.2.4*ebuild"
+ 1006  vim /home/pinto/gentoo/usr/portage/sys-devel/gcc/gcc-4.2.4-r01.4.ebuild
+ 1007  ebuild /home/pinto/gentoo/usr/portage/sys-devel/gcc/gcc-4.2.4-r01.4.ebuild clean merge
+ 1008  source ~/gentoo_prefix_bootstrap/update_env.sh
+ 1009  ebuild /home/pinto/gentoo/usr/portage/sys-devel/gcc/gcc-4.2.4-r01.4.ebuild clean merge
+ 1010  cd
+ 1011  ebuild /home/pinto/gentoo/usr/portage/sys-devel/gcc/gcc-4.2.4-r01.4.ebuild clean merge
+ 1012  ebuild /home/pinto/gentoo/usr/portage/sys-devel/gcc/gcc-4.2.4-r01.4.ebuild manifest clean merge
+ 1013  MAKEOPTS="LDFLAGS=\"-Wl,-L/usr/lib/x86_64-linux-gnu\"" ebuild /home/pinto/gentoo/usr/portage/sys-devel/gcc/gcc-4.2.4-r01.4.ebuild manifest clean merge
+ 1014  cd /mnt/md1/home/pinto/gentoo/var/tmp/portage/sys-devel/gcc-4.2.4-r01.4/work/build/gcc
+ 1015  ls
+ 1016  vim /home/pinto/gentoo/usr/portage/sys-devel/gcc/gcc-4.2.4-r01.4.ebuild
+ 1017  ebuild /home/pinto/gentoo/usr/portage/sys-devel/gcc/gcc-4.2.4-r01.4.ebuild manifest clean merge
+ 1018  cd ../
+ 1019  l
+ 1020  cd ../
+ 1021  ls
+ 1022  cd gcc-4.2.4
+ 1023  l
+ 1024  make bootstrap-lean
+ 1025  ls
+ 1026  grep defaultlibs *
+ 1027  cd ../
+ 1028  grep -R defaultlibs *
+ 1029  grep -R defaultlibs gcc-4.2.4
+ 1030  vim /home/pinto/gentoo/usr/portage/sys-devel/gcc/gcc-4.2.4-r01.4.ebuild
+ 1031  fg
+ 1032  /home/pinto/gentoo/usr/portage/sys-devel/gcc/
+ 1033  ls
+ 1034  cd files
+ 1035  ls
+ 1036  vim gcc-4.2.4-linux-x86-on-amd64.patch
+ 1037  grep -R OSDIRNAMES *
+ 1038  vim gcc-4.2.4-linux-x86-on-amd64.patch
+ 1039  ls /usr/lib/
+ 1040  ls /usr/lib/x86_64-linux-gnu
+ 1041  vim gcc-4.2.4-linux-x86-on-amd64.patch
+ 1042  ebuild /home/pinto/gentoo/usr/portage/sys-devel/gcc/gcc-4.2.4-r01.4.ebuild manifest clean merge
+ 1043  vim /home/pinto/gentoo/usr/portage/sys-devel/gcc/gcc-4.2.4-r01.4.ebuild
+ 1044  ebuild /home/pinto/gentoo/usr/portage/sys-devel/gcc/gcc-4.2.4-r01.4.ebuild manifest clean merge
+ 1045  eix-sync
+ 1046  ./install_gentoo_prefix.sh
+ 1047  find /usr/lib* -name "*libc*"
+ 1048  find /usr/lib* -name "*libc.*"
+ 1049  screen -dRR gentoo
+ 1050  eix-sync
+ 1051  ls /usr/lib32
+ 1052  rm -rf ~/gentoo-*
+ 1053  rm -rf ~/gentoo
+ 1054  ls
+ 1055  git pull
+ 1056  git diff -u
+ 1057  mv -vf install_gentoo_prefix.sh dicarlo2.sh
+ 1058  git co install_gentoo_prefix.sh
+ 1059  git ull
+ 1060  gt pull
+ 1061  git pull
+ 1062  ls
+ 1063  ./install_gentoo_prefix.sh
+ 1064  screen -dRR voc11
+ 1065  cd
+ 1066  cd /mnt/md1/home/pinto/gentoo/var/tmp/portage/sys-devel/gcc-4.2.4-r01.4/work/build
+ 1067  ls
+ 1068  make
+ 1069  gerp lib32 *
+ 1070  grep lib32 *
+ 1071  grep lib32 ../*
+ 1072  grep -R lib32 ../*
+ 1073  export MULTILIB_OSDIRNAMES=/usr/lib32
+ 1074  make
+ 1075  grep -R MULTILIBS ../../../*
+ 1076  cd ../
+ 1077  l
+ 1078  cd gcc-4.2.4
+ 1079  l
+ 1080  cd
+ 1081  cd gentoo
+ 1082  ls
+ 1083  cd var/lib/portage
+ 1084  ls
+ 1085  ls /usr/lib32
+ 1086  ls
+ 1087  grep lib32 *
+ 1088  cd
+ 1089  find gentoo -name "gcc*ebuild"
+ 1090  dcd
+ 1091  cd ~/gentoo/usr/portage/sys-devel/gcc/gcc-4.2.4-r01.2.ebuild
+ 1092  cd ~/gentoo/usr/portage/sys-devel/gcc/
+ 1093  ls
+ 1094  vim gcc-4.2.4-r01.4.ebuild
+ 1095  ls
+ 1096  ls files
+ 1097  l
+ 1098  vim files/gcc-4.2.4-linux-x86-on-amd64.patch
+ 1099  vim gcc/config/t-linux 
+ 1100  grep MULTI gcc/config/*
+ 1101  emerge --oneshot --nodeps "=gcc-4.2*"
+ 1102  fg
+ 1103  grep -R SYSTEAM_ *
+ 1104  grep -R SYSTEM_ *
+ 1105  grep -R MULTILIBS_ *
+ 1106  ls
+ 1107  cd ../../
+ 1108  l
+ 1109  cd work
+ 1110  ls
+ 1111  ls patch
+ 1112  grep lib32 patch/*
+ 1113  cd gcc-4.2.4
+ 1114  ls
+ 1115  grep SYSTEM_HEADER *
+ 1116  grep -R SYSTEM_HEADER *
+ 1117  ls
+ 1118  grep -R MULTILIB_DIR *
+ 1119  grep -R MULTILIB_DIR * | grep 32
+ 1120  vim gcc/config/i386/t-linux32
+ 1121  s
+ 1122  make
+ 1123  ls
+ 1124  export MULTILIB_OSDIRNAMES=/usr/lib32
+ 1125  make
+ 1126  ls
+ 1127  rm -vf *~
+ 1128  ls
+ 1129  make
+ 1130  ls
+ 1131  cd gcc
+ 1132  make
+ 1133  ls
+ 1134  cd ../../
+ 1135  l
+ 1136  cd gcc-4.2.4
+ 1137  ls
+ 1138  make
+ 1139  cd /mnt/md1/home/pinto/gentoo/var/tmp/portage/sys-devel/gcc-4.2.4-r01.4/work/build
+ 1140  ls
+ 1141  make
+ 1142  grep -R MULTILIB_ *
+ 1143  make
+ 1144  LDFLAGS='-L/usr/lib32' make
+ 1145  LD_LIBRARY_PATH='/usr/lib32' make
+ 1146  ls
+ 1147  grep -R MULTILIBS_*
+ 1148  grep lib32 *
+ 1149  cd ../
+ 1150  l
+ 1151  cd gcc-4.2.4
+ 1152  ls
+ 1153  grep -R lib32 *
+ 1154  ake
+ 1155  make
+ 1156  ls
+ 1157  cd ../../
+ 1158  l
+ 1159  cd work/build
+ 1160  ls
+ 1161  make
+ 1162  vim gcc/Makefile
+ 1163  make
+ 1164  grep -R nodefaultlibs *
+ 1165  cp -vf gcc/libgcc.mk{,orig}
+ 1166  cp -vf gcc/libgcc.mk{,.orig}
+ 1167  vim gcc/libgcc.mk
+ 1168  make
+ 1169  vim gcc/libgcc.mk
+ 1170  find /usr/lib -name "libc.so"
+ 1171  echo $(dirname find /usr/lib -name "libc.so")
+ 1172  echo $(dirname $(find /usr/lib -name "libc.so"))
+ 1173  echo $(dirname $(find /usr/lib* -name "libc.so"))
+ 1174  find /usr/lib* -name "libc.so")
+ 1175  find /usr/lib* -name "libc.so"
+ 1176  make
+ 1177  cat config.
+ 1178  cat config.log
+ 1179  gcc --version
+ 1180  gcc -c -O2 -pipe -fkeep-inline-functions -I/home/pinto/gentoo/usr/include conftest.
+ 1181  cgcc -c -O2 -pipe -fkeep-inline-functions -I/home/pinto/gentoo/usr/include conftest.
+ 1182  gcc -c -O2 -pipe -fkeep-inline-functions -I/home/pinto/gentoo/usr/include conftest.c
+ 1183  ls
+ 1184  vim config.log
+ 1185  find ~/gentoo -name "*gmp.h*"
+ 1186  emerge --oneshot --nodeps gmp
+ 1187  make
+ 1188  cat config.log
+ 1189  vim config.log
+ 1190  find ~/gentoo -name "*gmp*"
+ 1191  make
+ 1192  vim config.log
+ 1193  cat config.log
+ 1194  gcc -c -O2 -pipe -fkeep-inline-functions -I/home/pinto/gentoo/usr/include conftest.c
+ 1195  ls
+ 1196  vim conftest.c
+ 1197  grep confdef *
+ 1198  vim conftest.c
+ 1199  gcc -c -O2 -pipe -fkeep-inline-functions -I/home/pinto/gentoo/usr/include conftest.c
+ 1200  ls
+ 1201  make
+ 1202  rm -vf config.log
+ 1203  make
+ 1204  cat config.lo
+ 1205  find . -name "config.log"
+ 1206  cat intl/config.log
+ 1207  vim intl/config.log
+ 1208  LDFLAGS=-L/usr/lib/x86_64-linux-gnu make
+ 1209  LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu make
+ 1210  ls
+ 1211  CFLAGS=-L/usr/lib/x86_64-linux-gnu make
+ 1212  make CFLAGS=-L/usr/lib/x86_64-linux-gnu
+ 1213  ln -sf /usr/lib/x86_64-linux-gnu/libc.so $EPREFIX/usr/lib/
+ 1214  ln -sf /usr/lib/x86_64-linux-gnu/libc.so ~/gentoo/usr/lib/
+ 1215  make
+ 1216  x86_64-pc-linux-gnu-ar
+ 1217  whereis ar
+ 1218  AR=ar make
+ 1219  alias x86_64-pc-linux-gnu-ar=ar
+ 1220  AR=ar make
+ 1221  emerge --oneshot --nodeps "=gcc-4.2*"
+ 1222  ln -sf /usr/lib/x86_64-linux-gnu/libm.so ~/gentoo/usr/lib/
+ 1223  screen -dRR gentoo
+ 1224  ls
+ 1225  grep tar *
+ 1226  grep tar *.sh
+ 1227  vim install_gentoo_prefix.sh
+ 1228  cd gentoo_prefix_bootstrap
+ 1229  l
+ 1230  emerge --oneshot tar
+ 1231  source update_env.sh
+ 1232  emerge --oneshot tar
+ 1233  emerge --oneshot --nodeps "=gcc-4.2*"
+ 1234  vim /mnt/md1/home/pinto/gentoo/var/tmp/portage/sys-devel/gcc-4.2.4-r01.4/temp/build.log
+ 1235  less /mnt/md1/home/pinto/gentoo/var/tmp/portage/sys-devel/gcc-4.2.4-r01.4/temp/build.log
+ 1236  cd
+ 1237  cd /mnt/md1/home/pinto/gentoo/var/tmp/portage/sys-devel/gcc-4.2.4-r01.4/work/build
+ 1238  make
+ 1239  equery u gcc
+ 1240  emerge equery
+ 1241  emerge gentoolkit
+ 1242  emerge --nodeps gentoolkit
+ 1243  emerge equery
+ 1244  USE=-openmp emerge --oneshot --nodeps "=gcc-4.2*"
+ 1245  ln -sf /usr/include/asm-generic $EPREFIX/usr/include/asm
+ 1246  which bash
+ 1247  which gcc
+ 1248  ldd /usr/bin/gcc
+ 1249  ldd /usr/bin/gcc | grep lib
+ 1250  ldd /usr/bin/gcc | grep libc
+ 1251  for f in /usr/bin/; do ldd $f | grep libm; done;
+ 1252  for f in /usr/bin/*; do ldd $f | grep libm; done;
+ 1253  for f in /usr/bin/*; do echo $f; ldd $f | grep libm; done;
+ 1254  hash -r
+ 1255  for f in /usr/bin/*; do echo $f; ldd $f | grep libm; done;
+ 1256  or f in /usr/bin/*; do echo $f; ldd $f | grep libm; done;
+ 1257  for f in /usr/bin/*; do echo $f; ldd $f | grep libm; done;
+ 1258  for f in /usr/bin/*; do ldd $f | grep libm | echo $f; done;
+ 1259  for f in /usr/bin/*; do ldd $f | grep libm &&  echo $f; done;
+ 1260  for f in /usr/bin/*; do ldd $f | grep libm &> /dev/null &&  echo $f; done;
+ 1261  ldd /usr/bin/awk
+ 1262  ldd /usr/bin/awk | grep libm.so
+ 1263  ldd /usr/bin/awk | grep libm.so | awk '{print $4}'
+ 1264  ldd /usr/bin/awk | grep libm.so | awk '{print $3}'
+ 1265  emerge --oneshot coreutils
+ 1266  which gcc
+ 1267  gcc --version
+ 1268  LDFLAGS=-lpthread emerge --oneshot coreutils
+ 1269  CFLAGS=-lpthread emerge --oneshot coreutils
+ 1270  emerge --oneshot coreutils
+ 1271  emerge --oneshot linux-headers
+ 1272  rm -vf /home/pinto/gentoo/usr/include/asm
+ 1273  emerge --oneshot linux-headers
+ 1274  emerge --oneshot coreutils
+ 1275  find /usr/lib -name "*thread*so"
+ 1276  find /usr/lib -name "*thread*so*"
+ 1277  find /usr/lib -name "*pthread*so*"
+ 1278  LDPATH=/usr/lib/x86_64-linux-gnu/ emerge --oneshot coreutils
+ 1279  env
+ 1280  env | grep x86
+ 1281  cat /etc/ld.so.conf
+ 1282  cat /etc/ld.so.conf.d/*conf
+ 1283  ll /usr/local/lib
+ 1284  cat /etc/ld.so.conf.d/*conf
+ 1285  git pull
+ 1286  make clean
+ 1287  make backup
+ 1288  make stage1
+ 1289  ls
+ 1290  cd
+ 1291  gcc -v
+ 1292  which gcc
+ 1293  gcc -v
+ 1294  make stage2
+ 1295  git pull
+ 1296  make clean
+ 1297  cd
+ 1298  l
+ 1299  make stage1
+ 1300  make stage2
+ 1301  ln -sf $(ldd /usr/bin/awk | grep libc.so | awk '{print $3}') ${EPREFIX}/usr/lib/libc.sO
+ 1302  ln -sf $(ldd /usr/bin/awk | grep libm.so | awk '{print $3}') ${EPREFIX}/usr/lib/libm.so
+ 1303  make stage2
+ 1304  ln -sf $(ldd /usr/bin/awk | grep libc.so | awk '{print $3}') ${EPREFIX}/usr/lib/libc.s
+ 1305  ln -sf $(ldd /usr/bin/awk | grep libc.so | awk '{print $3}') ${EPREFIX}/usr/lib/libc.so
+ 1306  make stage2
+ 1307  make clean
+ 1308  ls
+ 1309  cd
+ 1310  cd gentoo_prefix_bootstrap
+ 1311  ls
+ 1312  git pull
+ 1313  make stage1
+ 1314  make stage2
+ 1315  make stage1
+ 1316  make clean
+ 1317  make stage1
+ 1318  make stage2
+ 1319  gl
+ 1320  make clean; make clean
+ 1321  git pull
+ 1322  make stage1
+ 1323  git pull
+ 1324  make clean; make clean
+ 1325  make stage1
+ 1326  git pull; make clean; make clean
+ 1327  make stage1
+ 1328  who
+ 1329  ls
+ 1330  git pull; make clean; make clean
+ 1331  make stage1
+ 1332  cd
+ 1333  cd gentoo_prefix_bootstrap
+ 1334  git pull
+ 1335  screen -S gentoo
+ 1336  htop
+ 1337  ls
+ 1338  df -h
+ 1339  ls
+ 1340  make clean
+ 1341  git pull; make clean; make clean
+ 1342  df -h
+ 1343  ls
+ 1344  vim Makefile
+ 1345  EPREFIX=~/tmp make stage1
+ 1346  ls 
+ 1347  cd
+ 1348  ls
+ 1349  git add -u
+ 1350  git diff
+ 1351  git add -u
+ 1352  git cim "Allow EPREFIX to be specified by env, update doc, etc."
+ 1353  gp
+ 1354  make stage2
+ 1355  EPREFIX=~/tmp make stage2
+ 1356  fg
+ 1357  uname -u
+ 1358  uname -a
+ 1359  EPREFIX=~/tmp make uninstall
+ 1360  EPREFIX=~/tmp make uninstall-force
+ 1361  ls
+ 1362  gst
+ 1363  git add -u
+ 1364  git cim "Remove clean target, and use uninstall instead with warning message and confirmation, thanks @poilvert for the feedback"
+ 1365  gp
+ 1366  gl
+ 1367  gp
+ 1368  cat /etc/debian_version
+ 1369  cat /etc/apt/sources.list
+ 1370  git pull
+ 1371  git pull
+ 1372  make uninstall-force
+ 1373  make stage1
+ 1374  make stage2
+ 1375  ls
+ 1376  make clean
+ 1377  make uninstall
+ 1378  ls
+ 1379  make stage1
+ 1380  make stage2
+ 1381  gl
+ 1382  vim system.mk
+ 1383  make install/stage2-gcc-workarounds
+ 1384  vim system.mk
+ 1385  emerge --oneshot linux-headers -u
+ 1386  source update_env.sh
+ 1387  emerge --oneshot linux-headers -u
+ 1388  emerge --oneshot -u tar
+ 1389  cd /mnt/md1/home/pinto/gentoo/var/tmp/portage/app-arch/tar-1.26/work/tar-1.26
+ 1390  make
+ 1391  ls
+ 1392  cd -
+ 1393  make stage2
+ 1394  l
+ 1395  gl
+ 1396  make install/stage2
+ 1397  git pull
+ 1398  make uninstall-force
+ 1399  rm -rf ~/tmp
+ 1400  rm -rf ~/gentoo*
+ 1401  hash -r
+ 1402  make uninstall-force
+ 1403  cd
+ 1404  ls
+ 1405  git clone git@github.com:npinto/gentoo_prefix_bootstrap.git
+ 1406  cd gentoo_prefix_bootstrap
+ 1407  make uninstall-force
+ 1408  vim Makefile
+ 1409  vim system.mk
+ 1410  make uninstall-force
+ 1411  cd ../
+ 1412  cd -
+ 1413  vim system.mk
+ 1414  mv -vf ~/gentoo{,.bak}
+ 1415  mv -vf ~/gentoo{,.bak} &> /dev/null
+ 1416  make uninstall-force
+ 1417  make install/stage2
+ 1418  make uninstall-force
+ 1419  make install/stage2
+ 1420  cd ../
+ 1421  cd -
+ 1422  git add -u
+ 1423  git cim "Uninstall needs to use exit 0"
+ 1424  gp
+ 1425  gitp ull
+ 1426  gl
+ 1427  make uninstall-force
+ 1428  make install/stage1
+ 1429  gl
+ 1430  ls
+ 1431  make clean
+ 1432  make backup
+ 1433  ls
+ 1434  gl
+ 1435  make install/stage1
+ 1436  grep boot *sh | grep bash
+ 1437  grep bootstrapp | grep bash
+ 1438  grep bootstrap | grep bash
+ 1439  grep bootstrap * | grep bash
+ 1440  source update_env.sh
+ 1441  ./bootstrap-prefix-patched.sh ${EPREFIX}/tmp bash
+ 1442  make install/stage1
+ 1443  make uninstall-force
+ 1444  ls
+ 1445  make install/stage1
+ 1446  ./bootstrap-prefix-patched.sh ${EPREFIX}/tmp bash
+ 1447  make -pn install/stage1
+ 1448  make -n install/stage1
+ 1449  ./bootstrap-prefix-patched.sh /home/pinto/gentoo/tmp zlib
+ 1450  make -pn install/stage1
+ 1451  make -n install/stage1
+ 1452  ./bootstrap-prefix-patched.sh /home/pinto/gentoo/tmp python
+ 1453  make uninstall-force
+ 1454  ls
+ 1455  make -p install/stage1
+ 1456  make -n install/stage1
+ 1457  make -s install/stage1
+ 1458  make uninstall-force
+ 1459  make -s install/stage1
+ 1460  make -n install/stage1
+ 1461  mount
+ 1462  df -h
+ 1463  pwd
+ 1464  dmesg
+ 1465  ls
+ 1466  l
+ 1467  make -n install/stage1
+ 1468  ./bootstrap-prefix-patched.sh /home/pinto/gentoo/tmp python
+ 1469  gl
+ 1470  make debug
+ 1471  git pull
+ 1472  make debug
+ 1473  make debug system
+ 1474  make debug
+ 1475  make debug system
+ 1476  echo $EPREFIX
+ 1477  make debug system
+ 1478  git status
+ 1479  git add -u
+ 1480  vim install/.gitignore
+ 1481  git add u
+ 1482  git add -u
+ 1483  gst
+ 1484  git add helpers.mk
+ 1485  git cim "Add helpers.mk and debug action"
+ 1486  gp
+ 1487  vim helpers.mk
+ 1488  git add -u
+ 1489  git cim "Add help on debug"
+ 1490  gp
+ 1491  ls
+ 1492  make uninstall-force
+ 1493  make clean
+ 1494  ls
+ 1495  make install/stage1
+ 1496  make uninstall-force
+ 1497  make -n install/stage1
+ 1498  wget -O bootstrap-prefix.sh http://overlays.gentoo.org/proj/alt/browser/trunk/prefix-overlay/scripts/bootstrap-prefix.sh\?format\=txt
+ 1499  # Patch to disable python crypt and nis modules
+ 1500  # For more info:
+ 1501  # * https://bugs.gentoo.org/show_bug.cgi\?id\=381163
+ 1502  # * http://archives.gentoo.org/gentoo-alt/msg_a1856438065eec550b5bf410488db9bb.xml
+ 1503  wget https://raw.github.com/gist/1294750/d96a4b0f2be742dcca3adcb220a603b2260c4cc9/bootstrap-prefix-python-disable-crypt-nis.patch
+ 1504  patch -p0 < bootstrap-prefix-python-disable-crypt-nis.patch
+ 1505  mv -vf bootstrap-prefix.sh bootstrap-prefix-patched.sh
+ 1506  chmod 755 bootstrap-prefix-patched.sh
+ 1507  ./bootstrap-prefix-patched.sh /home/pinto/gentoo tree
+ 1508  ./bootstrap-prefix-patched.sh /home/pinto/gentoo/tmp make
+ 1509  ./bootstrap-prefix-patched.sh /home/pinto/gentoo/tmp wget
+ 1510  ./bootstrap-prefix-patched.sh /home/pinto/gentoo/tmp sed
+ 1511  make -n install/stage1
+ 1512  ./bootstrap-prefix-patched.sh /home/pinto/gentoo/tmp coreutils6
+ 1513  ./bootstrap-prefix-patched.sh /home/pinto/gentoo/tmp findutils5
+ 1514  ./bootstrap-prefix-patched.sh /home/pinto/gentoo/tmp tar15
+ 1515  ./bootstrap-prefix-patched.sh /home/pinto/gentoo/tmp patch
+ 1516  ./bootstrap-prefix-patched.sh /home/pinto/gentoo/tmp grep
+ 1517  ./bootstrap-prefix-patched.sh /home/pinto/gentoo/tmp gawk
+ 1518  make -n install/stage1
+ 1519  ./bootstrap-prefix-patched.sh /home/pinto/gentoo/tmp bash
+ 1520  make -n install/stage1
+ 1521  ./bootstrap-prefix-patched.sh /home/pinto/gentoo/tmp zlib
+ 1522  ./bootstrap-prefix-patched.sh /home/pinto/gentoo/tmp python
+ 1523  ./bootstrap-prefix-patched.sh /home/pinto/gentoo/tmp bison
+ 1524  ./bootstrap-prefix-patched.sh /home/pinto/gentoo portage
+ 1525  touch install/stage1
+ 1526  make install/stage2
+ 1527  make -n install/stage2
+ 1528  make -n install/stage2 | head -n 10
+ 1529  make help | grep stage2
+ 1530  make install/stage2-up-to-bison
+ 1531  make -n install/stage2 | head -n 10
+ 1532  make help | grep stage2
+ 1533  gl
+ 1534  make install/stage2-binutils
+ 1535  make help | grep stage2
+ 1536  git pull
+ 1537  make help | grep stage2
+ 1538  make install/stage2-gcc
+ 1539  make -n install/stage2-gcc
+ 1540  make -n install/stage2-gcc-workarounds
+ 1541  ldd /usr/bin
+ 1542  ldd /usr/bin/awk
+ 1543  gl
+ 1544  vim system.mk
+ 1545  make -n install/stage2-gcc-workarounds
+ 1546  ln -sf /lib/x86_64-linux-gnu/libc.so.6 /home/pinto/gentoo/usr/lib/libc.so
+ 1547  ln -sf /lib/x86_64-linux-gnu/libm.so.6 /home/pinto/gentoo/usr/lib/libm.so
+ 1548  make -n install/stage2-gcc
+ 1549  emerge --oneshot --nodeps gcc-config
+ 1550  git add -u
+ 1551  cd
+ 1552  cd gentoo
+ 1553  cd ../gentoo_prefix_bootstrap
+ 1554  l
+ 1555  git add -u
+ 1556  git cim "Working on gcc workarounds (dicarlo2)"
+ 1557  gp
+ 1558  emerge --oneshot --nodeps "=gcc-4.2*
+ 1559  emerge --oneshot --nodeps "=gcc-4.2*"
+ 1560  cd /mnt/md1/home/pinto/gentoo/var/tmp/portage/sys-devel/gcc-4.2.4-r01.4/work/build
+ 1561  l
+ 1562  make
+ 1563  vim config.
+ 1564  l
+ 1565  cp -vf config.log cmd.sh
+ 1566  vim cmd.sh
+ 1567  cp -vf config.log cmd.sh
+ 1568  make
+ 1569  less config.log
+ 1570  make
+ 1571  vim config.log
+ 1572  cp -vf config.log cmd.sh
+ 1573  vim cmd.sh
+ 1574  bash ./cmd.sh
+ 1575  vim cmd.sh
+ 1576  bash ./cmd.sh
+ 1577  ls ~/gentoo/usr/include
+ 1578  grep gmp *
+ 1579  grep gmp *
+ 1580  emerge -u gmp
+ 1581  source update_env.sh
+ 1582  emerge -u gmp
+ 1583  ls ~/gentoo/usr/include
+ 1584  bash ./cmd.sh
+ 1585  equery w gcc
+ 1586  emerge --oneshot --nodeps gentoolkit
+ 1587  find ~/gentoo/tmp -name "*gcc*ebuild"
+ 1588  find ~/gentoo -name "*gcc*ebuild"
+ 1589  ebuild /home/pinto/gentoo/usr/portage/sys-devel/gcc/gcc-4.2.4-r01.4.ebuild
+ 1590  ebuild /home/pinto/gentoo/usr/portage/sys-devel/gcc/gcc-4.2.4-r01.4.ebuild configure
+ 1591  ebuild /home/pinto/gentoo/usr/portage/sys-devel/gcc/gcc-4.2.4-r01.4.ebuild merge
+ 1592  cd
+ 1593  cd -
+ 1594  l
+ 1595  make
+ 1596  cp -vf config.log cmd.sh
+ 1597  vim cmd.sh
+ 1598  emerge mpfr
+ 1599  ebuild /home/pinto/gentoo/usr/portage/sys-devel/gcc/gcc-4.2.4-r01.4.ebuild compile
+ 1600  cd -
+ 1601  l
+ 1602  make
+ 1603  cp -vf config.log cmd.sh
+ 1604  vim cmd.sh
+ 1605  grep cannot *
+ 1606  make
+ 1607  rm -vf config.log cmd.sh
+ 1608  make
+ 1609  cat config.log
+ 1610  ls
+ 1611  find . -name "*log"
+ 1612  cd intl
+ 1613  make
+ 1614  l
+ 1615  vim config.log
+ 1616  cp -vf config.log cmd.sh
+ 1617  vim cmd.sh
+ 1618  bash ./cmd.sh
+ 1619  vim cmd.sh
+ 1620  bash ./cmd.sh
+ 1621  vim cmd.sh
+ 1622  make
+ 1623  bash ./cmd.sh
+ 1624  echo $EPREFIX
+ 1625  source ~/gentoo_prefix_bootstrap/update_env.sh
+ 1626  echo $EPREFIX
+ 1627  bash ./cmd.sh
+ 1628  objdump -T $EPREFIX/usr/lib/libc.so | grep fini
+ 1629  objdump -T /usr/lib32/libc.so | grep fini
+ 1630  nm /usr/lib32/libc.so | grep fini
+ 1631  cat /usr/lib32/libc.so
+ 1632  nm /lib32/libc.so.6
+ 1633  objdump -Tm /lib32/libc.so.6
+ 1634  objdump -T /lib32/libc.so.6
+ 1635  objdump -T /lib32/libc.so.6 | grep ini
+ 1636  objdump -T /lib32/libc.so.6 | grep fini
+ 1637  ls
+ 1638  bash ./cmd.sh
+ 1639  vim cmd.sh 
+ 1640  bash ./cmd.sh
+ 1641  vim cmd.sh 
+ 1642  cat cmd.sh
+ 1643  mnt/md1/home/pinto/gentoo/var/tmp/portage/sys-devel/gcc-4.2.4-r01.4/work/build/./prev-gcc/xgcc -B/mnt/md1/home/pinto/gentoo/var/tmp/portage/sys-devel/gcc-4.2.4-r01.4/work/build/./prev-gcc/ -B/mnt/md1/home/pinto/gentoo/usr/x86_64-pc-linux-gnu/bin/ -g -O2   conftest.c -L$EPREFIX/usr/lib -L/usr/lib -L/usr/lib64 
+ 1644  ls
+ 1645  cd 
+ 1646  cd -
+ 1647  l
+ 1648  cd ../
+ 1649  l
+ 1650  cd libiberty
+ 1651  make
+ 1652  l
+ 1653  cat config.log
+ 1654  cp -vf config.log cmd.sh
+ 1655  vim cmd.sh
+ 1656  cd ../
+ 1657  make
+ 1658  emerge --oneshot --nodeps "=gcc-4.3*"
+ 1659  git pull
+ 1660  git diff
+ 1661  git add u
+ 1662  git add -u
+ 1663  git cim "Still trying to fix bugs on Ubuntu 10.10"
+ 1664  gp
+ 1665  gl
+ 1666  gp
+ 1667  ls
+ 1668  l
+ 1669  vim system.mk
+ 1670  make uninstall-force
+ 1671  make install/stage2
+ 1672  make install/stage2-gcc-workarounds
+ 1673  git diff
+ 1674  make install/stage2-gcc
+ 1675  gl
+ 1676  git diff
+ 1677  mkdir dicarlo2
+ 1678  cd dicarlo2
+ 1679  cp -rvf ../*mk ../*utils ../Makefile .
+ 1680  l
+ 1681  git add -u
+ 1682  git cim "add dicarlo2 space"
+ 1683  gp
+ 1684  gl
+ 1685  git co ../system.mk
+ 1686  gl
+ 1687  gp
+ 1688  cp -rvf ../*mk ../*utils ../Makefile .
+ 1689  l
+ 1690  git add -u
+ 1691  l
+ 1692  vim system.mk
+ 1693  cd dicarlo2
+ 1694  cp -vf ../update_env.sh .
+ 1695  source upd
+ 1696  source updateq
+ 1697  source update_env.sh
+ 1698  l
+ 1699  make uninstall-force
+ 1700  ls
+ 1701  l
+ 1702  vim Makefile
+ 1703  grep uninstall
+ 1704  grep uninstall *
+ 1705  vim Makefile
+ 1706  make uninstall
+ 1707  ls
+ 1708  l
+ 1709  make -f helpers.mk uninstall
+ 1710  ls
+ 1711  vim Makefile
+ 1712  make uninstall
+ 1713  vim Makefile
+ 1714  ls
+ 1715  hash -r
+ 1716  make
+ 1717  l
+ 1718  make uninstall-froce
+ 1719  make uninstall-force
+ 1720  ls
+ 1721  cd
+ 1722  cd gentoo_prefix_bootstrap
+ 1723  make uninstall-force
+ 1724  l
+ 1725  gl
+ 1726  gp
+ 1727  gl
+ 1728  cd dicarlo2
+ 1729  l
+ 1730  gl
+ 1731  cd ../
+ 1732  rm -rf dicarlo2
+ 1733  ls
+ 1734  mkdir dicarlo2
+ 1735  cp -avf Makefile *mk update_env.sh utils make.conf dicarlo2
+ 1736  mkdir default
+ 1737  cd default
+ 1738  ln -sf ../Makefile l
+ 1739  ln -sf ../Makefile .
+ 1740  l
+ 1741  rm -vf l
+ 1742  l
+ 1743  ls
+ 1744  cd ../
+ 1745  rm -rf default
+ 1746  l
+ 1747  cd dicarlo2
+ 1748  l
+ 1749  make install/stage1
+ 1750  hash -r
+ 1751  make install/stage1
+ 1752  source update_env.sh
+ 1753  make install/stage1
+ 1754  which wget
+ 1755  make uninstall-force
+ 1756  git add *
+ 1757  l
+ 1758  git add *
+ 1759  l
+ 1760  rm -vf bootstrap-prefix.sh
+ 1761  git add *
+ 1762  l
+ 1763  make install/stage1
+ 1764  pws
+ 1765  pwd
+ 1766  l
+ 1767  cb
+ 1768  cd 
+ 1769  cd -
+ 1770  l
+ 1771  vim notes.txt
+ 1772  apl
+ 1773  mkdir install
+ 1774  cp -a ../install .
+ 1775  l
+ 1776  rm -rf install
+ 1777  cp -a ../install .
+ 1778  l
+ 1779  make install/stage1
+ 1780  make uninstall-force
+ 1781  make install/stage1
+ 1782  make install/stage2
+ 1783  cd
+ 1784  cd gentoo_prefix_bootstrap/dicarlo2
+ 1785  l
+ 1786  make clean
+ 1787  rm -rf *
+ 1788  rsync -avuz ../* .
+ 1789  rm -rf dicarlo2
+ 1790  l
+ 1791  make uninstall-force
+ 1792  make install/stage1
+ 1793  cp -a ~/gentoo ~/gentoo-stage1.ok
+ 1794  make -n install/stage2
+ 1795  make help | grep stage2
+ 1796  make install/stage2-up-to-bison
+ 1797  make help | grep stage2
+ 1798  make install/stage2-binutils
+ 1799  make help | grep stage2
+ 1800  make -n install/stage2-gcc
+ 1801  emerge --oneshot --nodeps gcc-config
+ 1802  echo "emerge --oneshot --nodeps gcc-config" >> notes.txt
+ 1803  make -n install/stage2-gcc
+ 1804  emerge --oneshot --nodeps "=gcc-4.2*"
+ 1805  make -n install/stage2-gcc
+ 1806  make help | grep stage2
+ 1807  make -n install/stage2-gcc-workarounds:
+ 1808  make -n install/stage2-gcc-workarounds
+ 1809  ln -sf /lib/x86_64-linux-gnu/libc.so.6 /home/pinto/gentoo/usr/lib/libc.so
+ 1810  emerge --oneshot --nodeps "=gcc-4.2*"
+ 1811  cd /mnt/md1/home/pinto/gentoo/var/tmp/portage/sys-devel/gcc-4.2.4-r01.4/work/build
+ 1812  l
+ 1813  make
+ 1814  source ~/gentoo_prefix_bootstrap/update_env.sh
+ 1815  make
+ 1816  export LDFLAGS="-L${EPREFIX}/usr/lib -R${EPREFIX}/usr/lib \n-L${EPREFIX}/lib -R${EPREFIX}/lib" 
+ 1817  export CPPFLAGS="-I${EPREFIX}/usr/include" 
+ 1818  hash -r 
+ 1819  export USE="-berkdb -fortran -gdbm -nls -pcre -ssl -pam"
+ 1820  emerge --oneshot sed 
+ 1821  vim notes.txt
+ 1822  emerge --oneshot --nodeps wget 
+ 1823  emerge --oneshot bash 
+ 1824  emerge --oneshot --nodeps baselayout-prefix 
+ 1825  emerge --oneshot --nodeps lzma-utils 
+ 1826  emerge --oneshot --nodeps m4 
+ 1827  emerge --oneshot --nodeps flex 
+ 1828  emerge --oneshot --nodeps bison 
+ 1829  emerge --oneshot --nodeps binutils-config 
+ 1830  emerge --oneshot --nodeps binutils 
+ 1831  emerge --oneshot --nodeps gcc-config 
+ 1832  rm -rf ~/gentoo{,.broken}
+ 1833  mv -vf ~/gentoo{,.broken}
+ 1834  cp -a ~/gentoo-stage1.ok ~/gentoo
+ 1835  export LDFLAGS="-L${EPREFIX}/usr/lib -R${EPREFIX}/usr/lib \n-L${EPREFIX}/lib -R${EPREFIX}/lib" 
+ 1836  echo $LDFLAGS
+ 1837  export LDFLAGS="-L${EPREFIX}/usr/lib -R${EPREFIX}/usr/lib -L${EPREFIX}/lib -R${EPREFIX}/lib"
+ 1838  export CPPFLAGS="-I${EPREFIX}/usr/include" 
+ 1839  hash -r 
+ 1840  export USE="-berkdb -fortran -gdbm -nls -pcre -ssl -pam"
+ 1841  emerge --oneshot sed 
+ 1842  emerge --oneshot --nodeps wget 
+ 1843  emerge --oneshot bash 
+ 1844  source ~/gentoo_prefix_bootstrap/update_env.sh
+ 1845  emerge --oneshot bash 
+ 1846  git pull
+ 1847  make backup
+ 1848  ../ubuntu.sh
+ 1849  exec -c /bin/bash --norc --noprofile
+ 1850  cd
+ 1851  cd gentoo_prefix_bootstrap
+ 1852  l
+ 1853  cd dicarlo2
+ 1854  ll
+ 1855  ln -sf ../ubuntu.sh .
+ 1856  vim ubuntu.sh
+ 1857  l
+ 1858  git add ../*sh
+ 1859  cd ../
+ 1860  l
+ 1861  git add ubuntu.sh
+ 1862  git cim "Update temp ubuntu script"
+ 1863  gp
+ 1864  vim ubuntu.sh
+ 1865  cd
+ 1866  cd gentoo_prefix_bootstrap
+ 1867  l
+ 1868  git add -u
+ 1869  git cim "up ubuntu"
+ 1870  gp
+ 1871  git add -u
+ 1872  git cim "Up ubuntu"
+ 1873  gp
+ 1874  gl
+ 1875  gp
+ 1876  make uninstall-force
+ 1877  make install/stage1
+ 1878  make -n install/stage2-up-to-bison
+ 1879  make install/stage2-up-to-bison
+ 1880  make -n install/stage2
+ 1881  make -n install/stage2-up-to-patch
+ 1882  emerge --oneshot --nodeps binutils
+ 1883  make -n install/stage2-up-to-patch
+ 1884  touch install/stage2-binutils
+ 1885  emerge --oneshot coreutils
+ 1886  make -n install/stage2-up-to-patch
+ 1887  touch install/stage2-gcc
+ 1888  emerge --oneshot findutils tar grep patch 
+ 1889  gl
+ 1890  make install/stage2-up-to-bison
+ 1891  history
+ 1892  emerge --oneshot findutils
+ 1893  env | grep FLAG
+ 1894  ./bootstrap-prefix-patched.sh $EPREFIX/tmp gcc
+ 1895  emerge --oneshot findutils
+ 1896  emerge --oneshot --nodeps findutils
+ 1897  emerge --oneshot findutils
+ 1898  unset LDFLAGS
+ 1899  emerge --oneshot findutils
+ 1900  hash -r
+ 1901  emerge --oneshot findutils
+ 1902  echo $CFLAGS
+ 1903  echo $LDFLAGS
+ 1904  env | grep FLAGS
+ 1905  export LDFLAGS="-L${EPREFIX}/usr/lib -R${EPREFIX}/usr/lib -L${EPREFIX}/lib -R${EPREFIX}/lib" 
+ 1906  hash -r 
+ 1907  emerge --oneshot --nodeps "=gcc-4.2*" 
+ 1908  export CPPFLAGS="-I${EPREFIX}/usr/include" 
+ 1909  grep gcc *mk
+ 1910  unset LDFLAGS CPPFLAGS CHOST CC CXX HOSTCC 
+ 1911  export CFLAGS=""
+ 1912  make -n install/stage2
+ 1913  emerge --oneshot coreutils
+ 1914  emerge --oneshot findutils tar grep patch 
+ 1915  exec -c /bin/bash --norc 
+ 1916  cd
+ 1917  vim test.sh
+ 1918  cat test.sh
+ 1919  exec -c /bin/bash --norc --noprofile make
+ 1920  exec -c /bin/bash --norc --noprofile -c make
+ 1921  exec -c /bin/bash --norc --noprofile
+ 1922  exec -c /bin/bash --norc --noprofile --help
+ 1923  cd messagebus
+ 1924  cd
+ 1925  cd gentoo_prefix_bootstrap
+ 1926  exec -c /bin/bash --norc --noprofile -c make
+ 1927  cd
+ 1928  cd gentoo_prefix_bootstrap
+ 1929  exec -c /bin/bash --norc --noprofile -c HOME=$HOME make
+ 1930  /bin/bash --norc --noprofile -c make
+ 1931  cd 
+ 1932  cd gentoo_prefix_bootstrap
+ 1933  /bin/bash --norc --noprofile -c make
+ 1934  vim Make
+ 1935  vim Makefile
+ 1936  vim system.mk
+ 1937  /bin/bash --norc --noprofile -c make
+ 1938  make
+ 1939  git pul
+ 1940  git pull
+ 1941  make
+ 1942  cd
+ 1943  cd gentoo_prefix_bootstrap
+ 1944  make
+ 1945  vim make
+ 1946  vim Makefile
+ 1947  make
+ 1948  make -d
+ 1949  vim Makefile
+ 1950  make -d
+ 1951  make
+ 1952  vim Make
+ 1953  vim Makefile
+ 1954  vim Make
+ 1955  make
+ 1956  emerge --oneshot findutils
+ 1957  export CPPFLAGS="-I${EPREFIX}/usr/include" 
+ 1958  export LDFLAGS="-L${EPREFIX}/usr/lib -R${EPREFIX}/usr/lib -L${EPREFIX}/lib -R${EPREFIX}/lib" 
+ 1959  emerge --oneshot findutils
+ 1960  export LDFLAGS="-L${EPREFIX}/usr/lib -Wl,-rpath,${EPREFIX}/usr/lib -L${EPREFIX}/lib -Wl,-rpath,${EPREFIX}/lib" 
+ 1961  emerge --oneshot findutils
+ 1962  make uninstall-force
+ 1963  hash -r
+ 1964  git pull
+ 1965  make install/stage1
+ 1966  export LDFLAGS="-L${EPREFIX}/usr/lib -R${EPREFIX}/usr/lib -L${EPREFIX}/lib -R${EPREFIX}/lib" 
+ 1967  export CPPFLAGS="-I${EPREFIX}/usr/include" 
+ 1968  echo $USER
+ 1969  echo $USE
+ 1970  make install/stage2-up-to-bison
+ 1971  make -n install/stage2
+ 1972  make -n install/stage2-binutils
+ 1973  emerge --oneshot --nodeps binutils-config
+ 1974  emerge --oneshot --nodeps binutils 
+ 1975  emerge --oneshot --nodeps gcc-config
+ 1976  emerge --oneshot --nodeps "=gcc-4.2*"
+ 1977  env | grep USE
+ 1978  env | grep FLA
+ 1979  unset CFLAGS
+ 1980  emerge --oneshot --nodeps "=gcc-4.2*"
+ 1981  env
+ 1982  echo $PATH
+ 1983  which gcc
+ 1984  hash -r
+ 1985  which gcc
+ 1986  source update_env.sh
+ 1987  hash -r
+ 1988  which gcc
+ 1989  env | grep FLA
+ 1990  emerge --oneshot --nodeps binutils
+ 1991  . /home/pinto/gentoo/etc/profile
+ 1992  emerge --oneshot --nodeps "=gcc-4.2*"
+ 1993  export LDFLAGS="-L${EPREFIX}/usr/lib -R${EPREFIX}/usr/lib -L${EPREFIX}/lib -R${EPREFIX}/lib" 
+ 1994  emerge --oneshot --nodeps "=gcc-4.2*"
+ 1995  echo $EPREFIX
+ 1996  export LDFLAGS="-L${EPREFIX}/usr/lib -R${EPREFIX}/usr/lib -L${EPREFIX}/lib -R${EPREFIX}/lib" 
+ 1997  unset EPREFIX
+ 1998  export LDFLAGS="-L${EPREFIX}/usr/lib -R${EPREFIX}/usr/lib -L${EPREFIX}/lib -R${EPREFIX}/lib" 
+ 1999  echo $LDFLAGS
+ 2000  emerge --oneshot --nodeps "=gcc-4.2*"
+ 2001  emerge --oneshot --nodeps binutils
+ 2002  emerge --oneshot --nodeps "=gcc-4.2*"
+ 2003  hash -r
+ 2004  cd
+ 2005  hash -r
+ 2006  cd gentoo_prefix_bootstrap
+ 2007  git pull
+ 2008  htop
+ 2009  cd gen-
+ 2010  cd
+ 2011  cd gentoo_prefix_bootstrap
+ 2012  ls
+ 2013  make install/stage1
+ 2014  make uninstall
+ 2015  make install/stage1
+ 2016  git pull
+ 2017  ls
+ 2018  git pull
+ 2019  git co no-vanilla
+ 2020  git pull
+ 2021  make uninstall-force
+ 2022  make install/stage2-up-to-pax-utils
+ 2023  git pull
+ 2024  make install/stage1
+ 2025  make uninstall-force
+ 2026  git pull
+ 2027  make install/stage1
+ 2028  git pull
+ 2029  make install/stage2
+ 2030  source update_env.sh
+ 2031  emerge --oneshot --nodeps "=gcc-4.2*"
+ 2032  fg
+ 2033  export LDFLAGS="-L/usr/lib -R/usr/lib -L/lib -R/lib" 
+ 2034  export CPPFLAGS="-I/usr/include" 
+ 2035  emerge --oneshot --nodeps "=gcc-4.2*"
+ 2036  grep binutils *mk
+ 2037  MAKEOPTS=-j1 emerge --oneshot --nodeps binutils
+ 2038  emerge --oneshot --nodeps "=gcc-4.2*"
+ 2039  /mnt/md1/home/pinto/gentoo/usr/x86_64-pc-linux-gnu/bin/ld
+ 2040  /mnt/md1/home/pinto/gentoo/usr/x86_64-pc-linux-gnu/bin/ld -v
+ 2041  emerge --oneshot --nodeps "=gcc-4.2*"
+ 2042  emerge --oneshot --nodeps "=gcc-4.5*"
+ 2043  gcc --version
+ 2044  make -n install/stage2
+ 2045  touch install/stage2-gcc
+ 2046  make install/stage2-up-to-patch
+ 2047  ebuild /home/pinto/gentoo/usr/portage/sys-devel/gcc/gcc-4.2.4-r01.4.ebuild manifest clean configure
+ 2048  ebuild /home/pinto/gentoo/usr/portage/sys-devel/gcc/gcc-4.2.4-r01.4.ebuild compile
+ 2049  ebuild --skip-manifest /home/pinto/gentoo/usr/portage/sys-devel/gcc/gcc-4.2.4-r01.4.ebuild compile
+ 2050  ebuild /home/pinto/gentoo/usr/portage/sys-devel/gcc/gcc-4.2.4-r01.4.ebuild compile
+ 2051  ebuild --skip-manifest /home/pinto/gentoo/usr/portage/sys-devel/gcc/gcc-4.2.4-r01.4.ebuild compile
+ 2052  make uninstall-force
+ 2053  make install/stage1
+ 2054  grep gcc *patched.sh
+ 2055  vim *patched.sh
+ 2056  ./bootstrap-prefix-patched.sh $EPREFIX/tmp gcc-42.
+ 2057  ./bootstrap-prefix-patched.sh $EPREFIX/tmp gcc4
+ 2058  find ~/gentoo -name "*gcc*ebuild*"
+ 2059  grep tar15 *sh
+ 2060  vim bootstrap-prefix-patched.sh
+ 2061  ./bootstrap-prefix-patched.sh $EPREFIX/tmp gcc 4.2.4
+ 2062  vim bootstrap-prefix-patched.sh
+ 2063  ./bootstrap-prefix-patched.sh $EPREFIX/tmp gcc 4.2.4
+ 2064  ./bootstrap-prefix-patched.sh $EPREFIX/tmp linux-headers
+ 2065  ./bootstrap-prefix-patched.sh $EPREFIX/tmp tar15
+ 2066  ./bootstrap-prefix-patched.sh $EPREFIX/tmp gcc 4.2.4
+ 2067  grep tar *mk
+ 2068  find /usr -name "*syslimits.h"
+ 2069  find /usr/ -name "*syslimits.h"
+ 2070  ./bootstrap-prefix-patched.sh $EPREFIX/tmp tar
+ 2071  grep tar *patched.sh
+ 2072  ./bootstrap-prefix-patched.sh $EPREFIX/tmp tar22
+ 2073  ./bootstrap-prefix-patched.sh $EPREFIX/tmp gcc 4.2.4
+ 2074  make uninstall-force
+ 2075  make install/stage0
+ 2076  source update_env.sh
+ 2077  ./bootstrap-prefix-patched.sh $EPREFIX tree
+ 2078  find ~/gentoo -name "*gcc*ebuild"
+ 2079  vim *patched.sh
+ 2080  ./bootstrap-prefix-patched.sh $EPREFIX/tmp gcc
+ 2081  vim *patched.sh
+ 2082  ./bootstrap-prefix-patched.sh $EPREFIX/tmp gcc
+ 2083  vim *patched.sh
+ 2084  ./bootstrap-prefix-patched.sh $EPREFIX/tmp gcc
+ 2085  make -n install/stage1
+ 2086  vim system.mk
+ 2087  make install/stage1
+ 2088  fg
+ 2089  make install/stage2
+ 2090  unset LDFLAGS
+ 2091  unset CPPFLAGS
+ 2092  echo $USE
+ 2093  make install/stage2
+ 2094  ls
+ 2095  git
+ 2096  ls
+ 2097  l
+ 2098  hash -r
+ 2099  make uninstall-force
+ 2100  ls
+ 2101  l
+ 2102  env | grep LD
+ 2103  unset LD_LIBRARY_PATH
+ 2104  unset DYLD_LIBRARY_PATH
+ 2105  make install/stage2
+ 2106  make -n install/stage2
+ 2107  emerge --oneshot --nodeps gcc-config
+ 2108  LDFLAGS="" emerge --oneshot --nodeps gcc-config
+ 2109  emerge --oneshot --nodeps gcc-config
+ 2110  find /usr/lib -name "*libc.so"
+ 2111  LDFLAGS="-L/home/pinto/gentoo/usr/lib -Wl,-rpath=/home/pinto/gentoo/usr/lib -L/home/pinto/gentoo/lib -Wl,-rpath=/home/pinto/gentoo/lib -L/usr/lib/x86_64-linux-gnu/ -Wl,rpath=/usr/lib/x86_64-linux-gnu/" emerge --oneshot --nodeps gcc-config
+ 2112  LDFLAGS="-L/home/pinto/gentoo/usr/lib -Wl,-rpath=/home/pinto/gentoo/usr/lib -L/home/pinto/gentoo/lib -Wl,-rpath=/home/pinto/gentoo/lib -L/usr/lib/x86_64-linux-gnu -Wl,rpath=/usr/lib/x86_64-linux-gnu" emerge --oneshot --nodeps gcc-config
+ 2113  ls /usr/lib/x86_64-linux-gnu
+ 2114  LDFLAGS="-L/home/pinto/gentoo/usr/lib -Wl,-rpath=/home/pinto/gentoo/usr/lib -L/home/pinto/gentoo/lib -Wl,-rpath=/home/pinto/gentoo/lib -L/usr/lib/x86_64-linux-gnu -Wl,rpath=/usr/lib/x86_64-linux-gnu" emerge --oneshot --nodeps gcc-config
+ 2115  LDFLAGS="-L/home/pinto/gentoo/usr/lib -Wl,-rpath=/home/pinto/gentoo/usr/lib -L/home/pinto/gentoo/lib -Wl,-rpath=/home/pinto/gentoo/lib -L/usr/lib/x86_64-linux-gnu" emerge --oneshot --nodeps gcc-config
+ 2116  make -n install/stage2
+ 2117  emerge --oneshot --nodeps "=gcc-4.2.4-r01.4"
+ 2118  LDFLAGS="-L/home/pinto/gentoo/usr/lib -Wl,-rpath=/home/pinto/gentoo/usr/lib -L/home/pinto/gentoo/lib -Wl,-rpath=/home/pinto/gentoo/lib -L/usr/lib/x86_64-linux-gnu" emerge --oneshot --nodeps "=gcc-4.2*"
+ 2119  less /mnt/md1/home/pinto/gentoo/var/tmp/portage/sys-devel/gcc-4.2.4-r01.4/temp/build.log
+ 2120  l
+ 2121  vim system.mk
+ 2122  make -n install/stage2
+ 2123  touch install/stage2-gcc
+ 2124  make install/stage2
+ 2125  make -n install/stage2
+ 2126  LDFLAGS="-L/home/pinto/gentoo/usr/lib -Wl,-rpath=/home/pinto/gentoo/usr/lib -L/home/pinto/gentoo/lib -Wl,-rpath=/home/pinto/gentoo/lib -L/usr/lib/x86_64-linux-gnu" emerge --oneshot --nodeps gcc-config
+ 2127  LDFLAGS="-L/home/pinto/gentoo/usr/lib -Wl,-rpath=/home/pinto/gentoo/usr/lib -L/home/pinto/gentoo/lib -Wl,-rpath=/home/pinto/gentoo/lib -L/usr/lib/x86_64-linux-gnu" emerge --oneshot --nodeps "=gcc-4.2*"
+ 2128  vim system.mk
+ 2129  make uninstall-force
+ 2130  make -n install/stage2
+ 2131  make install/stage2
+ 2132  vim system.mk
+ 2133  make uninstall-force
+ 2134  make install/stage2
+ 2135  make uninstall-force
+ 2136  /bin/bash --norc --noprofile
+ 2137  make uninstall-force
+ 2138  ln -sf ~/gentoo_from_ac ~/gentoo
+ 2139  source update_env.sh
+ 2140  emerge
+ 2141  rm -vf ~/gentoo
+ 2142  ln -sf ~/gentoo-stage2.ok ~/gentoo
+ 2143  source update_env.sh
+ 2144  which gcc
+ 2145  touch install/stage2
+ 2146  touch install/stage1
+ 2147  gcc --version
+ 2148  grep -R /home/ac/npinto/gentoo ~/gentoo/*
+ 2149  grep -nR /home/ac/npinto/gentoo ~/gentoo/*
+ 2150  make uninstall-force
+ 2151  which gcc
+ 2152  gcc --version
+ 2153  ls
+ 2154  make install/stage1
+ 2155  rm -vf ~/gentoo
+ 2156  rm -rf ~/gentoo
+ 2157  ln -sf ~/gentoo-stage2.ok ~/gentoo
+ 2158  grep -nR /home/ac/npinto/gentoo ~/gentoo/*
+ 2159  grep -nfR /home/ac/npinto/gentoo ~/gentoo/*
+ 2160  man grep
+ 2161  grep -nhR /home/ac/npinto/gentoo ~/gentoo/*
+ 2162  grep -hR /home/ac/npinto/gentoo ~/gentoo/*
+ 2163  grep -snhR /home/ac/npinto/gentoo ~/gentoo/*
+ 2164  grep -snH /home/ac/npinto/gentoo ~/gentoo/*
+ 2165  grep -snHR /home/ac/npinto/gentoo ~/gentoo/*
+ 2166  grep -l /home/ac/npinto/gentoo ~/gentoo/*
+ 2167  grep -Rl /home/ac/npinto/gentoo ~/gentoo/*
+ 2168  grep -Rl /home/ac/npinto/gentoo ~/gentoo/* > fl
+ 2169  ls
+ 2170  grep -Rl /home/ac/npinto/gentoo ~/gentoo/* > fl
+ 2171  for f in `cat fl`; do echo $f; sed -i -e 's:/home/ac/npinto/gentoo:/home/pinto/gentoo:g $f'; done;
+ 2172  for f in `cat fl`; do echo $f; sed -i -e 's:/home/ac/npinto/gentoo:/home/pinto/gentoo:g' $f; done;
+ 2173  source update_env.sh
+ 2174  hash -r
+ 2175  grep
+ 2176  make -n install/stage3
+ 2177  touch install/stage2
+ 2178  make -n install/stage3
+ 2179  touch install/stage1
+ 2180  make -n install/stage3
+ 2181  emerge install/stage3
+ 2182  grep -Rl /home/ac/npinto/gentoo ~/gentoo/* 
+ 2183  vim /home/pinto/gentoo/var/db/pkg/app-admin/eselect-python-20100321/CONTENTS
+ 2184  sed -i -e 's:/home/ac/npinto/gentoo:/home/pinto/gentoo:g' /home/pinto/gentoo/var/db/pkg/app-admin/eselect-python-20100321/CONTENTS
+ 2185  hash -r
+ 2186  sed -i -e 's:/home/ac/npinto/gentoo:/home/pinto/gentoo:g' /home/pinto/gentoo/var/db/pkg/app-admin/eselect-python-20100321/CONTENTS
+ 2187  /usr/bin/sed
+ 2188  whereis sed
+ 2189  for f in `cat fl`; do echo $f; /bin/sed -i -e 's:/home/ac/npinto/gentoo:/home/pinto/gentoo:g' $f; done;
+ 2190  grep ac/home/pinto/gentoo/usr/sbin/emerge-webrsync
+ 2191  grep ac /home/pinto/gentoo/usr/sbin/emerge-webrsync
+ 2192  /bin/grep ac /home/pinto/gentoo/usr/sbin/emerge-webrsync
+ 2193  fg
+ 2194  vim /home/pinto/gentoo/var/db/pkg/sys-apps/less-440/NEEDED
+ 2195  hash -r
+ 2196  source update_env.sh
+ 2197  emerge install/stage3
+ 2198  make install/stage3
+ 2199  make uninstall-force
+ 2200  hash -r
+ 2201  rm -rf ~/gentoo
+ 2202  hash -r
+ 2203  /bin/rm -rf ~/gentoo
+ 2204  hash -r
+ 2205  make uninstall-force
+ 2206  make install/stage1
+ 2207  make install/stage2
+ 2208  vim system.mk
+ 2209  make install/stage2
+ 2210  make uninstall-force
+ 2211  make install/stage2
+ 2212  ls /usr/lib/
+ 2213  ls /usr/lib/x86_64-linux-gnu
+ 2214  CHOST=x86_64-linux-gnu emerge
+ 2215  make install/stage2
+ 2216  make -n install/stage2
+ 2217  CHOST=x86_64-linux-gnu emerge --oneshot --nodeps "=gcc-4.2.4-r01.4"
+ 2218  CHOST=x86_64-linux-gnu emerge --oneshot --nodeps binutils "=gcc-4.2.4-r01.4"
+ 2219  CBUILD=x86_64-linux-gnu CHOST=x86_64-linux-gnu emerge --oneshot --nodeps binutils "=gcc-4.2.4-r01.4"
+ 2220  emerge --oneshot "=gcc-4.2.4-r01.4"
+ 2221  LDFLAGS="-L/home/pinto/gentoo/usr/lib -Wl,-rpath=/home/pinto/gentoo/usr/lib -L/home/pinto/gentoo/lib -Wl,-rpath=/home/pinto/gentoo/lib -L/usr/lib/x86_64-linux-gnu" emerge --oneshot --nodeps gcc-config
+ 2222  emerge --oneshot --nodeps gcc-config
+ 2223  emerge --oneshot --nodeps binutils "=gcc-4.2.4-r01.4"
+ 2224  grep CHOST *
+ 2225  grep CHOST *.mk
+ 2226  vim in
+ 2227  vim init.mk
+ 2228  make uninstall-force
+ 2229  git pull
+ 2230  git co no-vanill
+ 2231  agit co no-vanill
+ 2232  vim init.mk
+ 2233  make uninstall-force
+ 2234  make install/stage2
+ 2235  rehash
+ 2236  vim tmp.mk
+ 2237  make -f tmp.mk
+ 2238  git push
+ 2239  git pull
+ 2240  git pull origin no-vanilla
+ 2241  git diff
+ 2242  git add -u
+ 2243  git cim "na"
+ 2244  git push
+ 2245  ls
+ 2246  hash -r
+ 2247  ls
+ 2248  l
+ 2249  ls in
+ 2250  ls install
+ 2251  emerge --nodeps --oneshot '=gcc-4.2*"
+ 2252  emerge --nodeps --oneshot '=gcc-4.2*'
+ 2253  USE=-multilib emerge --nodeps --oneshot '=gcc-4.2*'
+ 2254  USE="-multilib -sandbox" emerge --nodeps --oneshot '=gcc-4.2*'
+ 2255  LIBRARY_PATH=/usr/lib/x86_64-linux-gnu  emerge --nodeps --oneshot binutils '=gcc-4.2*'
+ 2256  emerge --nodeps --oneshot tar
+ 2257  LIBRARY_PATH=/usr/lib/x86_64-linux-gnu  emerge --nodeps --oneshot tar binutils '=gcc-4.2*'
+ 2258  vim ~/gentoo/etc/portage/package.mask/tar-1.23-r2
+ 2259  echo ">app-arch/tar-1.23-r2" ~/gentoo/etc/portage/package.mask/tar-1.23-r2+
+ 2260  echo ">app-arch/tar-1.23-r2" > ~/gentoo/etc/portage/package.mask/tar-1.23-r2+
+ 2261  LIBRARY_PATH=/usr/lib/x86_64-linux-gnu  emerge --nodeps --oneshot tar binutils '=gcc-4.2*'
+ 2262  LIBRARY_PATH=/usr/lib/x86_64-linux-gnu  emerge --nodeps --oneshot "=tar-1.23" binutils '=gcc-4.2*'
+ 2263  grep tree *mk
+ 2264  ./bootstrap-prefix-patched.sh ${EPREFIX} latest_tree
+ 2265  vim system.mk
+ 2266  make uninstall-force
+ 2267  make install/stage1
+ 2268  make help | grep stage2
+ 2269  make install/stage2-up-to-bison
+ 2270  make -n install/stage2
+ 2271  emerge --nodeps tar
+ 2272  find ~/gentoo -name "*tar*ebuild"
+ 2273  find ~/gentoo -name "*tar-*ebuild"
+ 2274  emerge --nodeps "=tar-1.23*"
+ 2275  emerge --nodeps "=app-arch/tar-1.23*"
+ 2276  ACCEPT_KEYWORDS="**" emerge --nodeps "=app-arch/tar-1.23*"
+ 2277  find ~/gentoo -name "*tar-*ebui;d\n
+ 2278  find ~/gentoo -name "*tar-*ebuild\n
+ 2279  find ~/gentoo -name "*tar-*ebuild"\n
+ 2280  vim /home/pinto/gentoo/usr/portage/app-arch/tar/tar-1.23-r4.ebuild
+ 2281  diff -u /home/pinto/gentoo/usr/portage/app-arch/tar/tar-1.2{3-r4,6}.ebuild
+ 2282  vim /home/pinto/gentoo/usr/portage/app-arch/tar/tar-1.23-r4.ebuild
+ 2283  diff -u /home/pinto/gentoo/usr/portage/app-arch/tar/tar-1.2{3-r4,6}.ebuild
+ 2284  vim /home/pinto/gentoo/usr/portage/app-arch/tar/tar-1.23-r4.ebuild
+ 2285  diff -u /home/pinto/gentoo/usr/portage/app-arch/tar/tar-1.2{3-r4,6}.ebuild
+ 2286  vim /home/pinto/gentoo/usr/portage/app-arch/tar/tar-1.23-r4.ebuild
+ 2287  diff -u /home/pinto/gentoo/usr/portage/app-arch/tar/tar-1.2{3-r4,6}.ebuild
+ 2288  vim /home/pinto/gentoo/usr/portage/app-arch/tar/tar-1.23-r4.ebuild
+ 2289  ebuild /home/pinto/gentoo/usr/portage/app-arch/tar/tar-1.23-r4.ebuild manifest clean merge
+ 2290  vim /home/pinto/gentoo/usr/portage/app-arch/tar/tar-1.23-r4.ebuild
+ 2291  mkdir -p files/local_overlay
+ 2292  cp -a /home/pinto/gentoo/usr/portage/app-arch/tar files/local_overlay/
+ 2293  ls
+ 2294  ls files/local_overlay/tar
+ 2295  ls files/local_overlay/tar/files
+ 2296  LIBRARY_PATH=/usr/lib/x86_64-linux-gnu  emerge --nodeps --oneshot tar binutils '=gcc-4.2*'
+ 2297  LIBRARY_PATH=/usr/lib/x86_64-linux-gnu  emerge --nodeps --oneshot binutils '=gcc-4.2*'
+ 2298  history
+ 2299  history > history.working
+ 2300  vi history.working
+ 2301  historyi | awk '{print $2}'  > history.working
+ 2302  history | awk '{print $2}'  > history.working
+ 2303  rm -vf *working
+ 2304  history | awk '{print $2}'  > history.working
+ 2305  vim history.working
+ 2306  history > history.working
+ 2307  rm -vf *working
+ 2308  history > history.working
+ 2309  vim history.working
+ 2310  cp -vf history.working{,.sh}
+ 2311  git add *working*sh
+ 2312  git cim "Prelim bash script, seems to work"
+ 2313  bash ./history.working.sh
+ 2314  vim history.working
+ 2315  vim history.working.sh
+ 2316  bash ./history.working.sh
+ 2317  vim ./history.working.sh
+ 2318  emerge --nodeps '=app-arch/tar-1.23*'
+ 2319  l
+ 2320  find ~/gentoo -name "*tar-1.24-r4.ebuild"
+ 2321  find ~/gentoo -name "*tar-1.23-r4.ebuild"
+ 2322  cp -vf files/local_overlay/tar/* ${EPREFIX}/usr/portage/app-arch/tar/
+ 2323  cp -vf files/local_overlay/tar/tar-1.23-r4.ebuild ${EPREFIX}/usr/portage/app-arch/tar/
+ 2324  vim history.working
+ 2325  vim history.working.sh
+ 2326  chmod +x ./history.working.sh
+ 2327  git add -u
+ 2328  git cim "FIX: ubuntu prelim script"
+ 2329  git push
+ 2330  ./history.working.sh
+ 2331  vim history.working
+ 2332  vim history.working.sh
+ 2333  ./history.working.sh
+ 2334  git pull
+ 2335  git pull origin no-vanilla
+ 2336  git reset
+ 2337  git pull origin ubuntu
+ 2338  ls
+ 2339  cat history.working.sh
+ 2340  ./history.working.sh
+ 2341  vim Makefile
+ 2342  grep HEAD *
+ 2343  vim init.mk
+ 2344  grep HEAD *
+ 2345  vim system.mk
+ 2346  git add -u
+ 2347  git cim "conflicts"
+ 2348  git push
+ 2349  git pull origin ubuntu
+ 2350  ls
+ 2351  ./history.working.sh
+ 2352  hash -r
+ 2353  vim history.working
+ 2354  git mv -f history.working junk
+ 2355  mkdir junk
+ 2356  git mv -f history.working junk
+ 2357  git add -u
+ 2358  vim history.working.sh
+ 2359  git add -u
+ 2360  git cimna
+ 2361  git push
+ 2362  ./history.working.sh
+ 2363  vim files/local_overlay/tar/tar-1.23-r4.ebuild
+ 2364  git pull
+ 2365  l
+ 2366  git status
+ 2367  cd files/local_overlay
+ 2368  l
+ 2369  cd tar
+ 2370  l
+ 2371  vim tar-1.23-r4.ebuild
+ 2372  diff -u tar-1.23-r4.ebuild tar-1.26.ebuild
+ 2373  diff -u tar-1.23-r4.ebuild tar-1.26.ebuild > patch
+ 2374  vim patch
+ 2375  patch -p1 < patch
+ 2376  l
+ 2377  vim tar-1.23-r4.ebuild
+ 2378  rm -vf patch
+ 2379  l
+ 2380  diff -u tar-1.23-r4.ebuild tar-1.26.ebuild
+ 2381  git add *
+ 2382  cd ../
+ 2383  mkdir app-arch
+ 2384  l
+ 2385  git mv -f tar app-arch/
+ 2386  git cimna
+ 2387  git push
+ 2388  cd ../../
+ 2389  rm -vf history.working
+ 2390  vim history.working.sh
+ 2391  git add -u
+ 2392  git cimna
+ 2393  git push
+ 2394  git status
+ 2395  git push origin ubuntu
+ 2396  ./history.working.sh
+ 2397  hash -r
+ 2398  vim history.working.sh
+ 2399  ./history.working.sh
+ 2400  git ad d-u
+ 2401  git add -u
+ 2402  git cimna
+ 2403  git push
+ 2404  ./history.working.sh
+ 2405  cat ./history.working.sh
+ 2406  source update_env.sh
+ 2407  ebuild ${EPREFIX}/usr/portage/app-arch/tar/tar-1.23-r4.ebuild manifest
+ 2408  emerge --nodeps "=app-arch/tar-1.23*"
+ 2409  cat history.working.sh
+ 2410  vim history.working.sh
+ 2411  cat history.working.sh
+ 2412  LIBRARY_PATH=/usr/lib/x86_64-linux-gnu  emerge --nodeps --oneshot binutils '=gcc-4.2*'
+ 2413  emerge --nodeps "=app-arch/tar-1.23*"
+ 2414  history
+ 2415  history | grep tar
+ 2416  diff -u /home/pinto/gentoo/usr/portage/app-arch/tar/tar-1.2{3-r4,6}.ebuild
+ 2417  ls /home/pinto/gentoo/usr/portage/app-arch/tar/tar-1.23-r4.ebuild
+ 2418  echo ">app-arch/tar-1.23-r2" > ~/gentoo/etc/portage/package.mask/tar-1.23-r2+
+ 2419  history | grep tar
+ 2420  history | less
+ 2421  emerge --nodeps "=app-arch/tar-1.23*"
+ 2422  ebuild /home/pinto/gentoo/usr/portage/app-arch/tar/tar-1.23-r4.ebuild manifest clean merge
+ 2423  history

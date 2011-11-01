@@ -1,0 +1,12 @@
+LDFLAGS='-lm -lrt' emerge --nodeps --oneshot perl
+
+# fix attempt: sandbox 2.4: not working
+
+
+emerge --oneshot --nodeps rsync
+emerge --sync
+emerge --nodeps --oneshot ">=sys-apps/sandbox-2.5*"
+
+LDFLAGS='-lm -lrt' emerge --nodeps --oneshot perl
+
+
