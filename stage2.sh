@@ -3,7 +3,8 @@
 set -x
 set -e
 
-export EPREFIX=$HOME/gentoo
+#export EPREFIX=$HOME/gentoo
+source ./update_env.sh
 
 wget -O bootstrap-prefix.sh http://overlays.gentoo.org/proj/alt/browser/trunk/prefix-overlay/scripts/bootstrap-prefix.sh?format=txt
 #wget https://raw.github.com/gist/1294750/d96a4b0f2be742dcca3adcb220a603b2260c4cc9/bootstrap-prefix-python-disable-crypt-nis.patch
