@@ -1,24 +1,28 @@
-wget https://raw.github.com/gist/1294750/d96a4b0f2be742dcca3adcb220a603b2260c4cc9/bootstrap-prefix-python-disable-crypt-nis.patch
-patch -p0 < bootstrap-prefix-python-disable-crypt-nis.patch
-mv -vf bootstrap-prefix.sh bootstrap-prefix-patched.sh
-chmod 755 bootstrap-prefix-patched.sh
-./bootstrap-prefix-patched.sh /home/pinto/gentoo tree
-./bootstrap-prefix-patched.sh /home/pinto/gentoo/tmp make
-./bootstrap-prefix-patched.sh /home/pinto/gentoo/tmp wget
-./bootstrap-prefix-patched.sh /home/pinto/gentoo/tmp sed
-./bootstrap-prefix-patched.sh /home/pinto/gentoo/tmp coreutils6
-./bootstrap-prefix-patched.sh /home/pinto/gentoo/tmp findutils5
-./bootstrap-prefix-patched.sh /home/pinto/gentoo/tmp tar15
-./bootstrap-prefix-patched.sh /home/pinto/gentoo/tmp patch
-./bootstrap-prefix-patched.sh /home/pinto/gentoo/tmp grep
-./bootstrap-prefix-patched.sh /home/pinto/gentoo/tmp gawk
-./bootstrap-prefix-patched.sh /home/pinto/gentoo/tmp zlib
-./bootstrap-prefix-patched.sh /home/pinto/gentoo/tmp python
-./bootstrap-prefix-patched.sh /home/pinto/gentoo/tmp m4
-./bootstrap-prefix-patched.sh /home/pinto/gentoo/tmp bison
-./bootstrap-prefix-patched.sh /home/pinto/gentoo/tmp bash
+#!/bin/bash
+
+wget -O bootstrap-prefix.sh http://overlays.gentoo.org/proj/alt/browser/trunk/prefix-overlay/scripts/bootstrap-prefix.sh?format=txt
+#wget https://raw.github.com/gist/1294750/d96a4b0f2be742dcca3adcb220a603b2260c4cc9/bootstrap-prefix-python-disable-crypt-nis.patch
+#patch -p0 < bootstrap-prefix-python-disable-crypt-nis.patch
+#mv -vf bootstrap-prefix.sh bootstrap-prefix.sh
+#chmod 755 bootstrap-prefix.sh
+chmod +x bootstrap-prefix.sh
+./bootstrap-prefix.sh /home/pinto/gentoo tree
+./bootstrap-prefix.sh /home/pinto/gentoo/tmp make
+./bootstrap-prefix.sh /home/pinto/gentoo/tmp wget
+./bootstrap-prefix.sh /home/pinto/gentoo/tmp sed
+./bootstrap-prefix.sh /home/pinto/gentoo/tmp coreutils6
+./bootstrap-prefix.sh /home/pinto/gentoo/tmp findutils5
+./bootstrap-prefix.sh /home/pinto/gentoo/tmp tar15
+./bootstrap-prefix.sh /home/pinto/gentoo/tmp patch
+./bootstrap-prefix.sh /home/pinto/gentoo/tmp grep
+./bootstrap-prefix.sh /home/pinto/gentoo/tmp gawk
+./bootstrap-prefix.sh /home/pinto/gentoo/tmp zlib
+./bootstrap-prefix.sh /home/pinto/gentoo/tmp python
+./bootstrap-prefix.sh /home/pinto/gentoo/tmp m4
+./bootstrap-prefix.sh /home/pinto/gentoo/tmp bison
+./bootstrap-prefix.sh /home/pinto/gentoo/tmp bash
 hash -r
-./bootstrap-prefix-patched.sh /home/pinto/gentoo portage
+./bootstrap-prefix.sh /home/pinto/gentoo portage
 mkdir -p /home/pinto/gentoo/etc/portage/package.keywords
 mkdir -p /home/pinto/gentoo/etc/portage/package.use
 mkdir -p /home/pinto/gentoo/etc/portage/package.mask
