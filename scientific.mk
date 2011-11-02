@@ -38,8 +38,8 @@ numpy: atlas local-overlay
 
 scipy: numpy util-linux
 	# -- arpack: workaround linking the wrong libgfortran
-	mkdir -p ${EPREFIX}/etc/portage/env/sci-libs/
-	echo "export LDFLAGS=\"-L$(shell echo $(shell dirname $(shell echo $(shell find ${EPREFIX}/usr/lib/ -name "libfortran.so" | tail -n1))))\"" >> ${EPREFIX}/etc/portage/env/sci-libs/arpack
+	#mkdir -p ${EPREFIX}/etc/portage/env/sci-libs/
+	#echo "export LDFLAGS=\"-L$(shell echo $(shell dirname $(shell echo $(shell find ${EPREFIX}/usr/lib/ -name "libfortran.so" | tail -n1))))\"" >> ${EPREFIX}/etc/portage/env/sci-libs/arpack
 	#$LDFLAGS=-L$(shell echo $(shell dirname $(shell echo $(shell find /usr/lib/ -name "libfortran.so" | tail -n1)))) emerge -uDN arpack
 	emerge -uDN arpack
 	# XXX: scipy.test() still segfaults, due to superlu or atlas.
