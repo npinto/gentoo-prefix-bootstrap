@@ -7,9 +7,6 @@ include tools.mk
 scientific: eix bc gparallel atlas numpy scipy mongodb
 
 # ----------------------------------------------------------------------------
-tmppp:
-	echo ${EPREFIX}
-
 bc:
 	emerge -uDN bc
 
