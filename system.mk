@@ -19,8 +19,8 @@ bootstrap-prefix-patched.sh:
 	# For more info:
 	# * https://bugs.gentoo.org/show_bug.cgi?id=381163
 	# * http://archives.gentoo.org/gentoo-alt/msg_a1856438065eec550b5bf410488db9bb.xml
-	wget https://raw.github.com/gist/1294750/d96a4b0f2be742dcca3adcb220a603b2260c4cc9/bootstrap-prefix-python-disable-crypt-nis.patch
-	patch -p0 < bootstrap-prefix-python-disable-crypt-nis.patch
+	#wget https://raw.github.com/gist/1294750/d96a4b0f2be742dcca3adcb220a603b2260c4cc9/bootstrap-prefix-python-disable-crypt-nis.patch
+	#patch -p0 < bootstrap-prefix-python-disable-crypt-nis.patch
 	mv -vf bootstrap-prefix.sh bootstrap-prefix-patched.sh
 	chmod 755 bootstrap-prefix-patched.sh
 
@@ -97,7 +97,7 @@ install/stage2-up-to-pax-utils: install/stage2-gcc
 	# -- perl: workaround to avoid user confirmation
 	${EMERGE} --oneshot perl < /dev/null
 	${EMERGE} --oneshot findutils
-	${EMERGE} --oneshot tar
+	${EMERGE} --oneshot app-arch/tar
 	${EMERGE} --oneshot grep
 	${EMERGE} --oneshot patch
 	${EMERGE} --oneshot gawk
