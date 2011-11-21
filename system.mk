@@ -91,7 +91,7 @@ install/stage2-gcc: install/stage2-binutils
 install/stage2-gcc-workarounds: install/stage2-binutils
 	#emerge --oneshot linux-headers
 	# XXX: to test 'tar' (FIX dicarlo2 problem on tar overflow?)
-	emerge --oneshot tar
+	emerge --oneshot app-arch/tar
 	# XXX: trying to fix the issues on dicarlo2
 	emerge --oneshot gmp
 	emerge --oneshot mpfr
@@ -103,7 +103,7 @@ install/stage2-gcc-workarounds: install/stage2-binutils
 install/stage2-up-to-patch: install/stage2-gcc
 	emerge --oneshot coreutils
 	emerge --oneshot findutils
-	emerge --oneshot tar
+	emerge --oneshot app-arch/tar
 	emerge --oneshot grep
 	emerge --oneshot patch
 	touch $@
