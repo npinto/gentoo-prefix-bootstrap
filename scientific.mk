@@ -12,7 +12,6 @@ bc:
 	${EMERGE} -uDN bc
 
 gparallel:
-	cd ${EPREFIX}/usr/local/portage && ${EPREFIX}/usr/portage/scripts/ecopy sys-process/parallel
 	${EMERGE} -uDN sys-process/parallel
 
 pip:
