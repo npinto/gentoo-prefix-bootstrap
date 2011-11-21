@@ -19,7 +19,6 @@ install/stage0: bootstrap-prefix.sh
 
 bootstrap-prefix.sh:
 	wget -O bootstrap-prefix.sh http://overlays.gentoo.org/proj/alt/browser/trunk/prefix-overlay/scripts/bootstrap-prefix.sh?format=txt
-	mv -vf bootstrap-prefix.sh bootstrap-prefix.sh
 	chmod 755 bootstrap-prefix.sh
 
 # ----------------------------------------------------------------------------
