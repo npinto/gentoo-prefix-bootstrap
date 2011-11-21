@@ -26,7 +26,7 @@ $ make tools
 
 To just install the scientfic/development environment
 (atlas, python, numpy, scipy, mongo, etc.):
-$ make scientific(TODO: complete this)
+$ make scientific
 
 By default the Gentoo Prefix will be installed in $HOME/gentoo but this can
 be overriden by specifying the EPREFIX environment variable, for example:
@@ -37,7 +37,6 @@ Successfully tested on:
  * Gentoo ;-)
  * Fedora release 12 (Constantine)
  * CentOS release 5.6 (Final)
- * Ubuntu 11.04 (Natty Narwhal)
  * Ubuntu 10.10 (Maverick Meerkat)
  * Ubuntu 9.10 (Karmic Koala)
  * Mandriva Linux release 2011.0 (Official) for x86_64
