@@ -3,51 +3,45 @@ SYSTEM_MK=system.mk
 
 include init.mk
 
-system: install/stage0 install/stage1 install/stage2 install/stage3 install/stage4
+system: \
+	install/stage0 \
+	install/stage1 \
+	install/stage2 \
+	install/stage3 \
+	install/stage4
 
 # ----------------------------------------------------------------------------
 # -- STAGE 0
 # ----------------------------------------------------------------------------
-install/stage0: bootstrap-prefix-patched.sh
+install/stage0: bootstrap-prefix.sh
+	mkdir -p install
 	touch $@
 
-bootstrap-prefix-patched.sh:
-	# Grab latest bootstrap-prefix-patched.sh
+bootstrap-prefix.sh:
 	wget -O bootstrap-prefix.sh http://overlays.gentoo.org/proj/alt/browser/trunk/prefix-overlay/scripts/bootstrap-prefix.sh?format=txt
-	# Patch to disable python crypt and nis modules
-	# For more info:
-	# * https://bugs.gentoo.org/show_bug.cgi?id=381163
-	# * http://archives.gentoo.org/gentoo-alt/msg_a1856438065eec550b5bf410488db9bb.xml
-	wget https://raw.github.com/gist/1294750/d96a4b0f2be742dcca3adcb220a603b2260c4cc9/bootstrap-prefix-python-disable-crypt-nis.patch
-	patch -p0 < bootstrap-prefix-python-disable-crypt-nis.patch
-	mv -vf bootstrap-prefix.sh bootstrap-prefix-patched.sh
-	chmod 755 bootstrap-prefix-patched.sh
+	mv -vf bootstrap-prefix.sh bootstrap-prefix.sh
+	chmod 755 bootstrap-prefix.sh
 
 # ----------------------------------------------------------------------------
 # -- install/stage 1
 # ----------------------------------------------------------------------------
-install/stage1: bootstrap-prefix-patched.sh
-	./bootstrap-prefix-patched.sh ${EPREFIX} tree
-	# ./bootstrap-prefix.sh $EPREFIX/tmp gcc  # no g++ on Ubuntu by default 
-	# XXX: More on ubuntu:
-	# http://old.nabble.com/Re:-emerge--u-system-not-working-td24258970.html
-	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp make
-	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp wget
-	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp sed
-	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp coreutils6
-	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp findutils5
-	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp tar15
-	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp patch
-	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp grep
-	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp gawk
-	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp bash
-	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp zlib
-	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp python
-	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp m4
-	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp bison
-	./bootstrap-prefix-patched.sh ${EPREFIX} portage
-	# WARNING: if we were at the command line, we would run:
-	# hash -r
+install/stage1: bootstrap-prefix.sh
+	./bootstrap-prefix.sh ${EPREFIX} tree
+	./bootstrap-prefix.sh ${EPREFIX}/tmp make
+	./bootstrap-prefix.sh ${EPREFIX}/tmp wget
+	./bootstrap-prefix.sh ${EPREFIX}/tmp sed
+	./bootstrap-prefix.sh ${EPREFIX}/tmp coreutils6
+	./bootstrap-prefix.sh ${EPREFIX}/tmp findutils5
+	./bootstrap-prefix.sh ${EPREFIX}/tmp tar15
+	./bootstrap-prefix.sh ${EPREFIX}/tmp patch
+	./bootstrap-prefix.sh ${EPREFIX}/tmp grep
+	./bootstrap-prefix.sh ${EPREFIX}/tmp gawk
+	./bootstrap-prefix.sh ${EPREFIX}/tmp zlib
+	./bootstrap-prefix.sh ${EPREFIX}/tmp python
+	./bootstrap-prefix.sh ${EPREFIX}/tmp m4
+	./bootstrap-prefix.sh ${EPREFIX}/tmp bison
+	./bootstrap-prefix.sh ${EPREFIX}/tmp bash
+	./bootstrap-prefix.sh ${EPREFIX} portage
 	mkdir -p ${EPREFIX}/etc/portage/package.keywords
 	mkdir -p ${EPREFIX}/etc/portage/package.use
 	mkdir -p ${EPREFIX}/etc/portage/package.mask
@@ -57,158 +51,108 @@ install/stage1: bootstrap-prefix-patched.sh
 # -- STAGE 2
 # ----------------------------------------------------------------------------
 install/stage2: install/stage1 install/stage2-up-to-bison \
-	install/stage2-binutils install/stage2-gcc install/stage2-up-to-patch \
-	install/stage2-gawk install/stage2-up-to-pax-utils install/stage2-portage
+	install/stage2-binutils install/stage2-gcc \
+	install/stage2-up-to-pax-utils install/stage2-portage
 	touch $@
 
 install/stage2-up-to-bison: install/stage1
-	emerge --oneshot sed
-	emerge --oneshot --nodeps bash
-	emerge --oneshot --nodeps xz-utils
-	emerge --oneshot wget
-	emerge --oneshot --nodeps baselayout-prefix
-	emerge --oneshot --nodeps m4
-	emerge --oneshot --nodeps flex
-	emerge --oneshot --nodeps bison
+	${EMERGE} --oneshot sed
+	${EMERGE} --oneshot --nodeps bash
+	${EMERGE} --oneshot --nodeps xz-utils
+	${EMERGE} --oneshot wget
+	${EMERGE} --oneshot --nodeps baselayout-prefix
+	${EMERGE} --oneshot --nodeps m4
+	${EMERGE} --oneshot --nodeps flex
+	${EMERGE} --oneshot --nodeps bison
 	touch $@
 
 install/stage2-binutils: install/stage2-up-to-bison
-	emerge --oneshot --nodeps binutils-config
-	# XXX: MAKEOPTS in env/... ?
-	#MAKEOPTS=-j1 emerge --oneshot --nodeps binutils
-	#MAKEOPTS=-j1 emerge --oneshot --nodeps "~binutils-2.20.1-r1"
-	# work around binutils:
-	ebuild --skip-manifest ${EPREFIX}/usr/portage/sys-devel/binutils/binutils-2.20.1-r1.ebuild clean merge
+	${EMERGE} --oneshot --nodeps binutils-config
+	MAKEOPTS=-j1 ${EMERGE} --oneshot --nodeps binutils \
+		|| \
+		MAKEOPTS=-j1 ebuild --skip-manifest \
+		${EPREFIX}/usr/portage/sys-devel/binutils/binutils-2.20.1-r1.ebuild \
+		clean merge
 	touch $@
 
 install/stage2-gcc: install/stage2-binutils
-	emerge --oneshot --nodeps gcc-config
-	# errno.h missing
-	emerge --oneshot --nodeps linux-headers
-	emerge --oneshot --nodeps "=gcc-4.2*"
+	${EMERGE} --oneshot --nodeps gcc-config
+	# -- errno.h missing, test if in /usr/include/asm/errno.h
+	# if not, then try to emerge the right one by parsing kernel version
+	#${EMERGE} --oneshot --nodeps linux-headers
+	${EMERGE} --oneshot --nodeps "=gcc-4.2.4-r01.4"
+	echo ">sys-devel/gcc-4.2.4-r01.4" > ${EPREFIX}/etc/portage/package.mask/gcc-4.2.4-r01.4+
 	touch $@
 
-install/stage2-gcc-workarounds: install/stage2-binutils
-	#emerge --oneshot linux-headers
-	# XXX: to test 'tar' (FIX dicarlo2 problem on tar overflow?)
-	emerge --oneshot app-arch/tar
-	# XXX: trying to fix the issues on dicarlo2
-	emerge --oneshot gmp
-	emerge --oneshot mpfr
-	# lib{c,m}.so missing
-	ln -sf $(shell ldd /usr/bin/awk | grep libc.so | awk '{print $$3}') ${EPREFIX}/usr/lib/libc.so
-	ln -sf $(shell ldd /usr/bin/awk | grep libm.so | awk '{print $$3}') ${EPREFIX}/usr/lib/libm.so
-	touch $@
-
-install/stage2-up-to-patch: install/stage2-gcc
-	emerge --oneshot coreutils
-	emerge --oneshot findutils
-	emerge --oneshot app-arch/tar
-	emerge --oneshot grep
-	emerge --oneshot patch
-	touch $@
-
-install/stage2-gawk: install/stage2-up-to-patch
-	# gawk-4.0.0 is buggy (2011-10-22)
-	# XXX: has it been fixed?
-	echo "=sys-apps/gawk-4.0.0" >> ${EPREFIX}/etc/portage/package.mask/gawk-4.0.0
-	emerge --oneshot gawk
-	touch $@
-
-install/stage2-up-to-pax-utils: install/stage2-gawk
-	emerge --oneshot make
-	emerge --oneshot --nodeps file
-	emerge --oneshot --nodeps eselect
-	emerge --oneshot pax-utils
+install/stage2-up-to-pax-utils: install/stage2-gcc
+	${EMERGE} --oneshot coreutils
+	# -- perl: workaround to avoid user confirmation
+	${EMERGE} --oneshot perl < /dev/null
+	${EMERGE} --oneshot findutils
+	${EMERGE} --oneshot app-arch/tar
+	${EMERGE} --oneshot grep
+	${EMERGE} --oneshot patch
+	${EMERGE} --oneshot gawk
+	${EMERGE} --oneshot make
+	${EMERGE} --oneshot --nodeps file
+	${EMERGE} --oneshot --nodeps eselect
+	${EMERGE} --oneshot pax-utils
 	touch $@
 
 install/stage2-portage-workarounds: install/stage2-up-to-pax-utils
-	# python workaround
+	# -- python: workaround (only for stage2)
 	mkdir -p ${EPREFIX}/etc/portage/env/dev-lang/
-	echo "export LDFLAGS='-L/usr/lib64'" >> ${EPREFIX}/etc/portage/env/dev-lang/python
-	# libxml2 workaround
-	mkdir -p ${EPREFIX}/etc/portage/env/dev-libs
-	echo "export LDFLAGS=-l:\$$(ls ${EPREFIX}/usr/lib/libz.so* | head -n 1)" >> ${EPREFIX}/etc/portage/env/dev-libs/libxml2
+	echo "export LDFLAGS='-L/usr/lib64'" > ${EPREFIX}/etc/portage/env/dev-lang/python
 	touch $@
 
 install/stage2-portage: install/stage2-up-to-pax-utils install/stage2-portage-workarounds
-	# Update portage
-	env FEATURES="-collision-protect" emerge --oneshot portage
-	# Clean up tmp dir
-	#-rm -Rf ${EPREFIX}/tmp/*
+	# -- Update portage
+	env FEATURES="-collision-protect" ${EMERGE} --oneshot portage
+	# -- Move tmp directory
 	-mv -f ${EPREFIX}/tmp ${EPREFIX}/tmp.old
-	# Synchronize repo
-	emerge --sync
-	# WARNING: if we were at the command line, we would run:
-	# hash -r
+	# -- Synchronize repo
+	${EMERGE} --sync
 	touch $@
 
 # ----------------------------------------------------------------------------
 # -- STAGE 3
 # ----------------------------------------------------------------------------
 install/stage3: install/stage2 install/stage3-workarounds
-	# Update system
-	emerge -u system
+	# -- Update system
+	${EMERGE} -u -j system
 	touch $@
 
 install/stage3-workarounds: install/stage2
-	# git workaround
-	USE="-git" emerge --oneshot --nodeps gettext
-	emerge --oneshot git
-	# gcc workaround
-	echo 'sys-devel/gcc vanilla' >> ${EPREFIX}/etc/portage/package.use/gcc
-	emerge --oneshot -u "=gcc-4.2*"
-	#gcc-config 2
-	#source ${EPREFIX}/etc/profile
-	# XXX: remove old one?
-	# CLEAN_DELAY=0 emerge -C "=gcc-4.2*"
-	# XXX: MAKEOPTS in env
-	# groff workaround
+	# -- git: workaround
+	USE="-git" ${EMERGE} --oneshot --nodeps gettext
+	${EMERGE} --oneshot git
+	# -- groff: workaround
 	mkdir -p ${EPREFIX}/etc/portage/env/sys-apps
-	echo "export MAKEOPTS=-j1" >> ${EPREFIX}/etc/portage/env/sys-apps/groff
-	#MAKEOPTS=-j1 emerge -u groff
+	echo "export MAKEOPTS=-j1" > ${EPREFIX}/etc/portage/env/sys-apps/groff
 	touch $@
 
 # ----------------------------------------------------------------------------
 # -- STAGE 4
 # ----------------------------------------------------------------------------
 install/stage4: install/stage3 install/stage4-config install/stage4-workarounds
-	# -- recompile entire system
-	#emerge -ve --jobs ${N_PROCESSORS} --load-average=${N_PROCESSORS} --with-bdeps y system world
-	emerge -ve --jobs ${N_PROCESSORS} --load-average=${N_PROCESSORS} system
-	cd ${EPREFIX}/usr/portage/scripts && ./bootstrap-prefix.sh ${EPREFIX} startscript
-	@echo "You are now ready to use your Gentoo Prefix, to start run:"
-	@echo "$ ${EPREFIX}/startprefix"
+	# -- Recompile entire system
+	${EMERGE} -ve -j system
 	touch $@
 
-install/stage4-config: install/stage3 make.conf
+install/stage4-config: install/stage3 files/make.conf
 	# -- Update make.conf
-	cp -vf make.conf ${EPREFIX}/etc/
+	cp -vf files/make.conf ${EPREFIX}/etc/
 	echo "MAKEOPTS=\"${MAKEOPTS}\"" >> ${EPREFIX}/etc/make.conf
-	# -- python USE
-	echo 'dev-lang/python sqlite wide-unicode berkdb' >> ${EPREFIX}/etc/portage/package.use/python
+	# -- python: update USE and mask >python-2.7.1-r1 to avoid this bug:
+	# http://bugs.python.org/issue9762
+	echo 'dev-lang/python sqlite wide-unicode berkdb' > ${EPREFIX}/etc/portage/package.use/python
+	echo '>dev-lang/python-2.7.1-r1' > ${EPREFIX}/etc/portage/package.mask/python-2.7.1-r1+
 	touch $@
 
 install/stage4-workarounds: install/stage3 install/stage4-config
-	# -- gcc workaround
-	#USE=-fortran emerge -uDN gcc
-	# Trying this:
-	# $ rm -vf ${EPREFIX}/etc/portage/package.use/gcc
-	# $ emerge --nodeps -uN gcc
-	# Next: gcc-config 2 && emerge -C "=gcc-4.2*"
-	USE=-fortran emerge --nodeps -uN gcc
-	#gcc-config 2
-	#source ${EPREFIX}/etc/profile
-	# XXX: remove old one?
-	# CLEAN_DELAY=0 emerge -C "=gcc-4.2*"
-	# -- mpc workaround
-	mkdir -p ${EPREFIX}/etc/portage/env/dev-libs
-	echo "export LDFLAGS=-L${EPREFIX}/usr/lib" >> ${EPREFIX}/etc/portage/env/dev-libs/mpc
-	emerge mpc
-	# -- openssh workaround
-	mkdir -p ${EPREFIX}/etc/portage/env/net-misc
-	echo "export LDFLAGS=\"-l:${EPREFIX}/usr/lib/libssl.so -l:${EPREFIX}/usr/lib/libcrypto.so\"" >> ${EPREFIX}/etc/portage/env/net-misc/openssh
-	emerge openssh
+	# -- python: remove stage2 workaround
+	rm -f ${EPREFIX}/etc/portage/env/dev-lang/python
+	${EMERGE} python
 	touch $@
 
 endif
