@@ -5,8 +5,7 @@ debug:
 	export EPREFIX=${EPREFIX}-debug
 
 clean:
-	rm -f bootstrap-prefix-patched.sh
-	rm -f bootstrap-prefix-*.patch
+	rm -f bootstrap-prefix.sh
 	rm -f install/stage*
 
 uninstall: uninstall-ask uninstall-force

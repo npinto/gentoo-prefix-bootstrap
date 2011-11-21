@@ -8,9 +8,9 @@ EPREFIX?=${HOME}/gentoo
 unexport LDFLAGS
 unexport CPPFLAGS
 unexport CHOST
-unexport CC 
+unexport CC
 unexport CXX
-unexport HOSTCC 
+unexport HOSTCC
 unexport CFLAGS
 unexport CPLUS_INCLUDE_PATH
 unexport LIBRARY_PATH
