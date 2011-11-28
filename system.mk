@@ -127,6 +127,10 @@ install/stage3-workarounds: install/stage2
 	# -- groff: workaround
 	mkdir -p ${EPREFIX}/etc/portage/env/sys-apps
 	echo "export MAKEOPTS=-j1" > ${EPREFIX}/etc/portage/env/sys-apps/groff
+	# -- net-tools: workaround
+	${EMERGE} --oneshot --nodeps linux-headers
+	${EMERGE} --oneshot --nodeps net-tools
+	CLEAN_DELAY=0 ${EMERGE} -C linux-headers
 	touch $@
 
 # ----------------------------------------------------------------------------
