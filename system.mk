@@ -76,9 +76,8 @@ install/stage2-binutils: install/stage2-up-to-bison
 
 install/stage2-gcc: install/stage2-binutils
 	${EMERGE} --oneshot --nodeps gcc-config
-	# -- errno.h missing, test if in /usr/include/asm/errno.h
-	# if not, then try to emerge the right one by parsing kernel version
-	#${EMERGE} --oneshot --nodeps linux-headers
+	# XXX: get the right kernel version?
+	${EMERGE} --oneshot --nodeps linux-headers
 	${EMERGE} --oneshot --nodeps "=gcc-4.2.4-r01.4"
 	echo ">sys-devel/gcc-4.2.4-r01.4" > ${EPREFIX}/etc/portage/package.mask/gcc-4.2.4-r01.4+
 	touch $@
