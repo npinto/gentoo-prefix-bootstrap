@@ -127,10 +127,6 @@ install/stage3-workarounds: install/stage2
 	# -- groff: workaround
 	mkdir -p ${EPREFIX}/etc/portage/env/sys-apps
 	echo "export MAKEOPTS=-j1" > ${EPREFIX}/etc/portage/env/sys-apps/groff
-	# -- net-tools: workaround
-	${EMERGE} --oneshot --nodeps linux-headers
-	${EMERGE} --oneshot --nodeps net-tools
-	CLEAN_DELAY=0 ${EMERGE} -C linux-headers
 	touch $@
 
 # ----------------------------------------------------------------------------
@@ -139,6 +135,8 @@ install/stage3-workarounds: install/stage2
 install/stage4: install/stage3 install/stage4-config install/stage4-workarounds
 	# -- Recompile entire system
 	${EMERGE} -ve -j system
+	# -- cleaning up some workarounds
+	CLEAN_DELAY=0 ${EMERGE} -C linux-headers
 	touch $@
 
 install/stage4-config: install/stage3 files/make.conf
@@ -155,6 +153,8 @@ install/stage4-workarounds: install/stage3 install/stage4-config
 	# -- python: remove stage2 workaround
 	rm -f ${EPREFIX}/etc/portage/env/dev-lang/python
 	${EMERGE} python
+	# -- net-tools: workaround
+	${EMERGE} --oneshot --nodeps linux-headers
 	touch $@
 
 endif
