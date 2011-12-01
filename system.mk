@@ -44,7 +44,6 @@ install/stage1: bootstrap-prefix.sh
 	mkdir -p ${EPREFIX}/etc/portage/package.keywords
 	mkdir -p ${EPREFIX}/etc/portage/package.use
 	mkdir -p ${EPREFIX}/etc/portage/package.mask
-	./bootstrap-prefix.sh ${EPREFIX} startscript
 	touch $@
 
 # ----------------------------------------------------------------------------
@@ -138,6 +137,9 @@ install/stage4: install/stage3 install/stage4-config install/stage4-workarounds
 	${EMERGE} -ve -j system
 	# -- cleaning up some workarounds
 	CLEAN_DELAY=0 ${EMERGE} -C linux-headers
+	# -- startprefix
+	cd ${EPREFIX}/usr/portage/scripts && ./bootstrap-prefix.sh ${EPREFIX} startscript
+	sed -i ${EPREFIX}/startprefix -e 's/^EPREFIX=/export EPREFIX=/g'
 	touch $@
 
 install/stage4-config: install/stage3 files/make.conf
@@ -157,5 +159,4 @@ install/stage4-workarounds: install/stage3 install/stage4-config
 	# -- net-tools: workaround
 	${EMERGE} --oneshot --nodeps linux-headers
 	touch $@
-
 endif
