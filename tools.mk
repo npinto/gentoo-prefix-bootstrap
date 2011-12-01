@@ -50,7 +50,7 @@ console-tools:
 	${EMERGE} -uDN keychain
 	${EMERGE} -uDN htop
 	${EMERGE} -uDN ncdu
-	${EMERGE} -uDN zsh
+	${EMERGE} -uDN zsh app-shells/zsh-completion
 	# * If you want to enable Portage completions and Gentoo prompt,
 	# * ${EMERGE} app-shells/zsh-completion and add
 	# *      autoload -U compinit promptinit
