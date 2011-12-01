@@ -4,7 +4,7 @@ TOOLS_MK=tools.mk
 include init.mk
 
 tools: eix util-linux local-overlay layman portage-tools console-tools cmake \
-	ruby vim tmux tig
+	ruby vim tmux tig fabric
 
 # ----------------------------------------------------------------------------
 eix:
@@ -80,5 +80,8 @@ tmux:
 
 tig:
 	${EMERGE} -uDN tig
+
+fabric: pip
+	pip install -vUI fabric
 
 endif
