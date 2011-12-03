@@ -55,9 +55,11 @@ install/stage2: install/stage1 install/stage2-up-to-bison \
 	touch $@
 
 install/stage2-up-to-bison: install/stage1
-	${EMERGE} --oneshot sed
-	${EMERGE} --oneshot --nodeps bash
-	${EMERGE} --oneshot --nodeps xz-utils
+	${EMERGE} --oneshot sys-apps/sed
+	${EMERGE} --oneshot --nodeps app-shells/bash
+	${EMERGE} --oneshot --nodeps app-arch/xz-utils
+	${EMERGE} --oneshot --nodeps sys-apps/file
+	${EMERGE} --oneshot dev-util/pkgconfig
 	${EMERGE} --oneshot wget
 	${EMERGE} --oneshot --nodeps baselayout-prefix
 	${EMERGE} --oneshot --nodeps m4
