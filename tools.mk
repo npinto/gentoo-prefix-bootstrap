@@ -82,6 +82,6 @@ tig:
 	${EMERGE} -uDN tig
 
 fabric: pip
-	pip install -vUI fabric
+	pip install -vU fabric
 
 endif
