@@ -9,38 +9,38 @@ scientific: tools bc gparallel ipython atlas numpy scipy matplotlib joblib \
 
 # ----------------------------------------------------------------------------
 bc:
-	${EMERGE} -uDN bc
+	${EMERGE} -uN bc
 
 gparallel:
-	${EMERGE} -uDN sys-process/parallel
+	${EMERGE} -uN sys-process/parallel
 
 pip:
-	${EMERGE} -uDN setuptools
+	${EMERGE} -uN setuptools
 	easy_install -U pip
 
 ipython: pip
-	${PIP} install -UI ipython
+	${PIP} install -U ipython
 
 atlas:
-	${EMERGE} -uDN cblas blas
-	${EMERGE} -uDN blas-atlas
+	${EMERGE} -uN cblas blas
+	${EMERGE} -uN blas-atlas
 	eselect blas set atlas-threads || exit 0
 	eselect cblas set atlas-threads || exit 0
-	${EMERGE} -uDN lapack
-	${EMERGE} -uDN lapack-atlas
+	${EMERGE} -uN lapack
+	${EMERGE} -uN lapack-atlas
 	eselect lapack set atlas || exit 0
 
 numpy: atlas local-overlay
 	echo "dev-python/numpy doc lapack test" >> ${EPREFIX}/etc/portage/package.use/numpy
-	${EMERGE} -uDN --onlydeps numpy
+	${EMERGE} -uN --onlydeps numpy
 	FEATURES=test ${EMERGE} -uN numpy
 
 scipy: numpy util-linux
 	# -- arpack: workaround linking the wrong libgfortran
 	mkdir -p ${EPREFIX}/etc/portage/env/sci-libs/
 	echo "export LDFLAGS=\"-L$(shell echo $(shell dirname $(shell echo $(shell find ${EPREFIX}/usr/lib/ -name "libgfortran.so" | tail -n1))))\"" >> ${EPREFIX}/etc/portage/env/sci-libs/arpack
-	#$LDFLAGS=-L$(shell echo $(shell dirname $(shell echo $(shell find /usr/lib/ -name "libfortran.so" | tail -n1)))) emerge -uDN arpack
-	emerge -uDN arpack
+	#$LDFLAGS=-L$(shell echo $(shell dirname $(shell echo $(shell find /usr/lib/ -name "libfortran.so" | tail -n1)))) emerge -uN arpack
+	emerge -uN arpack
 	# -- superlu workaround
 	#echo '>sci-libs/superlu-4.2' > ${EPREFIX}/etc/portage/package.mask/superlu-4.2+
 	#echo '=sci-libs/superlu-4.3' >> ${EPREFIX}/etc/portage/package.unmask/scipy
@@ -48,24 +48,24 @@ scipy: numpy util-linux
 	# It might be related to gfortran/g77, see:
 	# http://comments.gmane.org/gmane.comp.python.scientific.devel/15541
 	# http://comments.gmane.org/gmane.comp.python.scientific.devel/4399
-	#${EMERGE} -uDN --onlydeps scipy
+	#${EMERGE} -uN --onlydeps scipy
 	#FEATURES=test ${EMERGE} -uN scipy
-	${EMERGE} -uDN scipy
+	${EMERGE} -uN scipy
 
 matplotlib: numpy
-	${EMERGE} -uDN matplotlib
+	${EMERGE} -uN matplotlib
 
 pycuda: pip
-	${PIP} install -UI pycuda
+	${PIP} install -U pycuda
 
 joblib: pip
-	${PIP} install -UI joblib
+	${PIP} install -U joblib
 
 scikits.learn: pip
-	${PIP} install -UI scikits.learn
+	${PIP} install -U scikits.learn
 
 mongodb: local-overlay pip
-	${EMERGE} -uDN portage-utils
+	${EMERGE} -uN portage-utils
 	cd ${EPREFIX}/usr/local/portage && ${EPREFIX}/usr/portage/scripts/ecopy dev-db/mongodb
 	echo "dev-db/mongodb v8" >> ${EPREFIX}/etc/portage/package.use/mongodb
 	echo "dev-lang/v8 **" >> ${EPREFIX}/etc/portage/package.keywords/mongodb
@@ -76,8 +76,8 @@ mongodb: local-overlay pip
 	echo "export LDFLAGS=\"-L/usr/lib -L${EPREFIX}/usr/lib\"" >> ${EPREFIX}/etc/portage/env/dev-db/mongodb
 	echo "export CXXFLAGS=\"-I/usr/include -I${EPREFIX}/usr/include \"" >> ${EPREFIX}/etc/portage/env/dev-db/mongodb
 	echo "export CXX=${EPREFIX}/usr/bin/g++" >> ${EPREFIX}/etc/portage/env/dev-db/mongodb
-	${EMERGE} -uDN mongodb
-	${PIP} install -UI pymongo
+	${EMERGE} -uN mongodb
+	${PIP} install -U pymongo
 	# Useful aliases from:
 	# http://www.bitcetera.com/en/techblog/2011/02/15/nosql-on-mac-os-x
 	# alias mongo-start="mongod --fork --dbpath \${EPREFIX}/var/lib/mongodb --logpath \${EPREFIX}/var/log/mongodb.log"
