@@ -42,7 +42,8 @@ scipy: numpy util-linux
 	#$LDFLAGS=-L$(shell echo $(shell dirname $(shell echo $(shell find /usr/lib/ -name "libfortran.so" | tail -n1)))) emerge -uDN arpack
 	emerge -uDN arpack
 	# -- superlu workaround
-	echo '>sci-libs/superlu-4.2' > ${EPREFIX}/etc/portage/package.mask/superlu-4.2+
+	#echo '>sci-libs/superlu-4.2' > ${EPREFIX}/etc/portage/package.mask/superlu-4.2+
+	#echo '=sci-libs/superlu-4.3' >> ${EPREFIX}/etc/portage/package.unmask/scipy
 	# XXX: scipy.test() still segfaults, due to superlu or atlas.
 	# It might be related to gfortran/g77, see:
 	# http://comments.gmane.org/gmane.comp.python.scientific.devel/15541

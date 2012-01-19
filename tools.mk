@@ -8,7 +8,7 @@ tools: eix util-linux local-overlay layman portage-tools console-tools cmake \
 
 # ----------------------------------------------------------------------------
 eix:
-	${EMERGE} -uDN eix
+	${EMERGE} -uN eix
 	eix-update
 ifeq ($(shell test -f ${EPREFIX}/etc/eix-sync.conf && grep "^-e" ${EPREFIX}/etc/eix-sync.conf), )
 	echo -e '\055e' >> ${EPREFIX}/etc/eix-sync.conf
@@ -17,8 +17,9 @@ endif
 
 util-linux:
 	# util-linux workaround
-	echo "=sys-apps/util-linux-2.18-r1 **" >> ${EPREFIX}/etc/portage/package.keywords/util-linux
-	${EMERGE} -uDN util-linux
+	#echo "=sys-apps/util-linux-2.18-r1 **" >> ${EPREFIX}/etc/portage/package.keywords/util-linux
+	#${EMERGE} -uN util-linux
+	${EMERGE} -uN util-linux
 
 local-overlay: eix
 	mkdir -p ${EPREFIX}/usr/local/portage
@@ -28,7 +29,7 @@ local-overlay: eix
 	${EIXSYNC}
 
 layman: eix
-	${EMERGE} -uDN layman
+	${EMERGE} -uN layman
 	layman -S
 	-layman -a sekyfsr
 	# XXX: One could use a ifeq here
@@ -36,21 +37,21 @@ layman: eix
 	${EIXSYNC}
 
 portage-tools: local-overlay autounmask
-	${EMERGE} -uDN app-portage/portage-utils
-	${EMERGE} -uDN app-portage/gentoolkit
-	${EMERGE} -uDN app-portage/gentoolkit-dev
+	${EMERGE} -uN app-portage/portage-utils
+	${EMERGE} -uN app-portage/gentoolkit
+	${EMERGE} -uN app-portage/gentoolkit-dev
 
 autounmask:
 	echo "=dev-perl/PortageXS-0.02.09 **" >> ${EPREFIX}/etc/portage/package.keywords/PortageXS-0.02.09
 	echo ">dev-perl/PortageXS-0.02.09" >> ${EPREFIX}/etc/portage/package.mask/PortageXS-0.02.09+
 	# XXX: ebuild needs to be patched (and pushed upstream) to prepend $EPREFIX
-	${EMERGE} -uDN autounmask
+	${EMERGE} -uN autounmask
 
 console-tools:
-	${EMERGE} -uDN keychain
-	${EMERGE} -uDN htop
-	${EMERGE} -uDN ncdu
-	${EMERGE} -uDN zsh app-shells/zsh-completion
+	${EMERGE} -uN keychain
+	${EMERGE} -uN htop
+	${EMERGE} -uN ncdu
+	${EMERGE} -uN zsh app-shells/zsh-completion
 	# * If you want to enable Portage completions and Gentoo prompt,
 	# * ${EMERGE} app-shells/zsh-completion and add
 	# *      autoload -U compinit promptinit
@@ -63,23 +64,24 @@ console-tools:
 	# * to your ~/.zshrc
 
 cmake:
-	${EMERGE} -uDN libarchive
-	${EMERGE} -uDN cmake
+	${EMERGE} -uN libarchive
+	${EMERGE} -uN cmake
 
 vim:
 	echo "app-editors/vim bash-completion vim-pager python ruby perl" >> ${EPREFIX}/etc/portage/package.use/vim
-	${EMERGE} -uDN vim vim-core
+	${EMERGE} -uN vim vim-core
 	eselect bashcomp enable --global vim &> /dev/null | exit 0
 
 ruby:
 	echo 'dev-lang/ruby -ssl' >> ${EPREFIX}/etc/portage/package.use/ruby
-	${EMERGE} -uDN ruby
+	echo 'RUBY_TARGETS=ruby19' >> ${EPREFIX}/etc/make.conf
+	${EMERGE} -uN ruby
 
 tmux:
-	${EMERGE} -uDN tmux
+	${EMERGE} -uN tmux
 
 tig:
-	${EMERGE} -uDN tig
+	${EMERGE} -uN tig
 
 fabric: pip
 	pip install -vU fabric
