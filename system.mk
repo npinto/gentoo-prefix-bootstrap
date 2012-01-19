@@ -31,7 +31,8 @@ install/stage1: bootstrap-prefix.sh
 	./bootstrap-prefix.sh ${EPREFIX}/tmp sed
 	./bootstrap-prefix.sh ${EPREFIX}/tmp coreutils6
 	./bootstrap-prefix.sh ${EPREFIX}/tmp findutils5
-	./bootstrap-prefix.sh ${EPREFIX}/tmp tar15
+	#./bootstrap-prefix.sh ${EPREFIX}/tmp tar15
+	./bootstrap-prefix.sh ${EPREFIX}/tmp tar22
 	./bootstrap-prefix.sh ${EPREFIX}/tmp patch
 	./bootstrap-prefix.sh ${EPREFIX}/tmp grep
 	./bootstrap-prefix.sh ${EPREFIX}/tmp gawk
