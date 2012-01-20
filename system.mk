@@ -28,7 +28,7 @@ bootstrap-prefix-patched.sh:
 # -- install/stage 1
 # ----------------------------------------------------------------------------
 install/stage1: bootstrap-prefix-patched.sh
-	./bootstrap-prefix-patched.sh ${EPREFIX} tree
+	./bootstrap-prefix-patched.sh ${EPREFIX} latest_tree
 	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp make
 	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp wget
 	./bootstrap-prefix-patched.sh ${EPREFIX}/tmp sed

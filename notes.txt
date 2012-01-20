@@ -7,6 +7,12 @@ emerge --oneshot --nodeps rsync
 emerge --sync
 emerge --nodeps --oneshot ">=sys-apps/sandbox-2.5*"
 
-LDFLAGS='-lm -lrt' emerge --nodeps --oneshot perl
+#emerge --oneshot --nodeps m4 autoconf
+#emerge --oneshot --nodeps gdbm
+USE='-gdbm -berkdb' LDFLAGS='-lm -lrt' emerge --nodeps --oneshot perl
+
+
+emerge --nodeps --oneshot libperl
+emerge --nodeps --oneshot perl-cleaner
 
 
