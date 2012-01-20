@@ -59,6 +59,7 @@ install/stage2-up-to-bison: install/stage1
 	${EMERGE} --oneshot sys-apps/sed
 	${EMERGE} --oneshot --nodeps app-shells/bash
 	${EMERGE} --oneshot --nodeps app-arch/xz-utils
+	${EMERGE} --oneshot --nodeps app-arch/tar
 	${EMERGE} --oneshot --nodeps sys-apps/file
 	${EMERGE} --oneshot dev-util/pkgconfig
 	${EMERGE} --oneshot wget
