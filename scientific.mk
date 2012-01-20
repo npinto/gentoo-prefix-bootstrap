@@ -53,6 +53,7 @@ scipy: numpy util-linux
 	${EMERGE} -uN scipy
 
 matplotlib: numpy
+	${EMERGE} '=dev-python/python-dateutil-1.5'
 	${EMERGE} -uN matplotlib
 
 pycuda: pip
