@@ -67,7 +67,9 @@ install/stage2-up-to-bison: install/stage1
 	${EMERGE} --oneshot sed
 	${EMERGE} --oneshot --nodeps bash
 	${EMERGE} --oneshot --nodeps xz-utils
-	${EMERGE} --oneshot wget
+	${EMERGE} --oneshot --nodeps sys-libs/zlib
+	${EMERGE} --oneshot --nodeps sys-apps/file
+	${EMERGE} --oneshot net-misc/wget
 	${EMERGE} --oneshot --nodeps baselayout-prefix
 	${EMERGE} --oneshot --nodeps m4
 	${EMERGE} --oneshot --nodeps flex
@@ -102,7 +104,7 @@ install/stage2-up-to-pax-utils: install/stage2-gcc
 	${EMERGE} --oneshot patch
 	${EMERGE} --oneshot gawk
 	${EMERGE} --oneshot make
-	${EMERGE} --oneshot --nodeps file
+	#${EMERGE} --oneshot --nodeps file
 	${EMERGE} --oneshot --nodeps eselect
 	${EMERGE} --oneshot pax-utils
 	touch $@
