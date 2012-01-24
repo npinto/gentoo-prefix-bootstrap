@@ -66,7 +66,6 @@ cython:
 	emerge -uN dev-python/cython
 
 scikits.learn: cython
-	cd ${EPREFIX}/usr/local/portage && ${EPREFIX}/usr/portage/scripts/ecopy sci-libs/scikits_learn
 	echo '=sci-libs/scikits-0.1 **' > ${EPREFIX}/etc/portage/package.keywords/scikits_learn
 	echo '=sci-libs/libsvm-3.11 **' >> ${EPREFIX}/etc/portage/package.keywords/scikits_learn
 	emerge -uN sci-libs/scikits_learn
