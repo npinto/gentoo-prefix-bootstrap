@@ -4,14 +4,15 @@ SCIENTIFIC_MK=scientific.mk
 include init.mk
 include tools.mk
 
-scientific: tools bc gparallel ipython atlas numpy scipy matplotlib joblib \
+scientific: tools bc parallel ipython atlas numpy scipy matplotlib joblib \
 	scikits.learn
 
 # ----------------------------------------------------------------------------
 bc:
 	${EMERGE} -uN bc
 
-gparallel:
+parallel:
+	cp -vf {files,${EPREFIX}}/etc/portage/package.keywords/parallel
 	${EMERGE} -uN sys-process/parallel
 
 pip:

@@ -1,0 +1,3 @@
+virtual/perl-Data-Dumper ~amd64
+perl-core/Data-Dumper ~amd64
+dev-perl/Devel-Size ~amd64
