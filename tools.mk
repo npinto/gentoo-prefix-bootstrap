@@ -36,16 +36,17 @@ layman: eix
 	echo "source ${EPREFIX}/var/lib/layman/make.conf" >> ${EPREFIX}/etc/make.conf
 	${EIXSYNC}
 
-portage-tools: local-overlay autounmask
+#portage-tools: local-overlay autounmask
+portage-tools: local-overlay
 	${EMERGE} -uN app-portage/portage-utils
 	${EMERGE} -uN app-portage/gentoolkit
 	${EMERGE} -uN app-portage/gentoolkit-dev
 
-autounmask:
-	echo "=dev-perl/PortageXS-0.02.09 **" >> ${EPREFIX}/etc/portage/package.keywords/PortageXS-0.02.09
-	echo ">dev-perl/PortageXS-0.02.09" >> ${EPREFIX}/etc/portage/package.mask/PortageXS-0.02.09+
-	# XXX: ebuild needs to be patched (and pushed upstream) to prepend $EPREFIX
-	${EMERGE} -uN autounmask
+#autounmask:
+	#echo "=dev-perl/PortageXS-0.02.09 **" >> ${EPREFIX}/etc/portage/package.keywords/PortageXS-0.02.09
+	#echo ">dev-perl/PortageXS-0.02.09" >> ${EPREFIX}/etc/portage/package.mask/PortageXS-0.02.09+
+	## XXX: ebuild needs to be patched (and pushed upstream) to prepend $EPREFIX
+	#${EMERGE} -uN autounmask
 
 console-tools:
 	${EMERGE} -uN keychain
