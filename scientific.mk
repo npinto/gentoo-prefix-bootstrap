@@ -31,6 +31,9 @@ atlas:
 	${EMERGE} -uN lapack-atlas
 	eselect lapack set atlas || exit 0
 
+fftw:
+	${EMERGE} sci-libs/fftw
+
 numpy: atlas local-overlay
 	echo "dev-python/numpy doc lapack test" >> ${EPREFIX}/etc/portage/package.use/numpy
 	${EMERGE} -uN --onlydeps numpy
