@@ -24,7 +24,7 @@ bootstrap-prefix.sh:
 # ----------------------------------------------------------------------------
 # -- install/stage 1
 # ----------------------------------------------------------------------------
-install/stage1: bootstrap-prefix.sh
+install/stage1: install/stage0
 	./bootstrap-prefix.sh ${EPREFIX} tree
 	./bootstrap-prefix.sh ${EPREFIX}/tmp make
 	./bootstrap-prefix.sh ${EPREFIX}/tmp wget
@@ -81,10 +81,10 @@ install/stage2-binutils: install/stage2-up-to-bison
 	touch $@
 
 install/stage2-gcc: install/stage2-binutils
-	${EMERGE} --oneshot --nodeps gcc-config
+	${EMERGE} --oneshot --nodeps sys-devel/gcc-config
 	# XXX: get the right kernel version?
-	${EMERGE} --oneshot --nodeps linux-headers
-	${EMERGE} --oneshot --nodeps "=gcc-4.2.4-r01.4"
+	${EMERGE} --oneshot --nodeps sys-kernel/linux-headers
+	${EMERGE} --oneshot --nodeps "=sys-devel/gcc-4.2.4-r01.4"
 	echo ">sys-devel/gcc-4.2.4-r01.4" > ${EPREFIX}/etc/portage/package.mask/gcc-4.2.4-r01.4+
 	touch $@
 
