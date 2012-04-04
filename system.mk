@@ -160,13 +160,13 @@ install/stage4-config: install/stage3 files/make.conf
 	# -- python: update USE and mask >python-2.7.1-r1 to avoid this bug:
 	# http://bugs.python.org/issue9762
 	echo 'dev-lang/python sqlite wide-unicode berkdb' > ${EPREFIX}/etc/portage/package.use/python
-	echo '>dev-lang/python-2.7.1-r1' > ${EPREFIX}/etc/portage/package.mask/python-2.7.1-r1+
+	#echo '>dev-lang/python-2.7.1-r1' > ${EPREFIX}/etc/portage/package.mask/python-2.7.1-r1+
 	touch $@
 
 install/stage4-workarounds: install/stage3 install/stage4-config
 	# -- python: remove stage2 workaround
 	rm -f ${EPREFIX}/etc/portage/env/dev-lang/python
-	${EMERGE} python
+	${EMERGE} -j dev-lang/python
 	# -- net-tools: workaround
 	${EMERGE} --oneshot --nodeps linux-headers
 	touch $@
