@@ -30,7 +30,7 @@ install/stage1: bootstrap-prefix.sh
 	./bootstrap-prefix.sh ${EPREFIX}/tmp wget
 	./bootstrap-prefix.sh ${EPREFIX}/tmp sed
 	./bootstrap-prefix.sh ${EPREFIX}/tmp coreutils
-	./bootstrap-prefix.sh ${EPREFIX}/tmp findutils5
+	./bootstrap-prefix.sh ${EPREFIX}/tmp findutils
 	./bootstrap-prefix.sh ${EPREFIX}/tmp tar15
 	./bootstrap-prefix.sh ${EPREFIX}/tmp patch
 	./bootstrap-prefix.sh ${EPREFIX}/tmp grep
@@ -62,16 +62,16 @@ install/stage2-up-to-bison: install/stage1
 	${EMERGE} --oneshot --nodeps app-arch/tar
 	${EMERGE} --oneshot --nodeps sys-apps/file
 	${EMERGE} --oneshot dev-util/pkgconfig
-	${EMERGE} --oneshot wget
-	${EMERGE} --oneshot --nodeps baselayout-prefix
-	${EMERGE} --oneshot --nodeps m4
-	${EMERGE} --oneshot --nodeps flex
-	${EMERGE} --oneshot --nodeps bison
+	${EMERGE} --oneshot net-misc/wget
+	${EMERGE} --oneshot --nodeps sys-apps/baselayout-prefix
+	${EMERGE} --oneshot --nodeps sys-devel/m4
+	${EMERGE} --oneshot --nodeps sys-devel/flex
+	${EMERGE} --oneshot --nodeps sys-devel/bison
 	touch $@
 
 install/stage2-binutils: install/stage2-up-to-bison
-	${EMERGE} --oneshot --nodeps binutils-config
-	MAKEOPTS=-j1 ${EMERGE} --oneshot --nodeps binutils \
+	${EMERGE} --oneshot --nodeps sys-devel/binutils-config
+	MAKEOPTS=-j1 ${EMERGE} --oneshot --nodeps sys-devel/binutils \
 		|| \
 		MAKEOPTS=-j1 ebuild --skip-manifest \
 		${EPREFIX}/usr/portage/sys-devel/binutils/binutils-2.20.1-r1.ebuild \
