@@ -58,13 +58,14 @@ install/stage2: install/stage1 install/stage2-up-to-bison \
 	touch $@
 
 install/stage2-up-to-bison: install/stage1
-	${EMERGE} --oneshot sys-apps/sed
+	${EMERGE} --oneshot -j sys-apps/sed
 	${EMERGE} --oneshot --nodeps app-shells/bash
 	${EMERGE} --oneshot --nodeps app-arch/xz-utils
+	${EMERGE} --oneshot -j sys-devel/automake
 	${EMERGE} --oneshot --nodeps app-arch/tar
 	${EMERGE} --oneshot --nodeps sys-apps/file
-	${EMERGE} --oneshot dev-util/pkgconfig
-	${EMERGE} --oneshot net-misc/wget
+	${EMERGE} --oneshot -j dev-util/pkgconfig
+	${EMERGE} --oneshot -j net-misc/wget
 	${EMERGE} --oneshot --nodeps sys-apps/baselayout-prefix
 	${EMERGE} --oneshot --nodeps sys-devel/m4
 	${EMERGE} --oneshot --nodeps sys-devel/flex
@@ -92,8 +93,9 @@ install/stage2-up-to-pax-utils: install/stage2-gcc
 	${EMERGE} --oneshot coreutils
 	# -- perl: workaround to avoid user confirmation
 	${EMERGE} --oneshot perl < /dev/null
-	${EMERGE} --oneshot findutils
-	${EMERGE} --oneshot app-arch/tar
+	${EMERGE} --oneshot -j findutils
+	${EMERGE} --oneshot -j sys-devel/automake
+	${EMERGE} --oneshot -j app-arch/tar
 	${EMERGE} --oneshot grep
 	${EMERGE} --oneshot patch
 	${EMERGE} --oneshot gawk
