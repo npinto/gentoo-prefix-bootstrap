@@ -45,6 +45,8 @@ install/stage1: bootstrap-prefix.sh
 	mkdir -p ${EPREFIX}/etc/portage/package.use
 	mkdir -p ${EPREFIX}/etc/portage/package.mask
 	mkdir -p ${EPREFIX}/etc/portage/package.unmask
+	mkdir -p ${EPREFIX}/etc/portage/package.env
+	mkdir -p ${EPREFIX}/etc/portage/env
 	touch $@
 
 # ----------------------------------------------------------------------------
