@@ -2,6 +2,8 @@
 Bootstrap a Scientific Gentoo Prefix
 ============================================================================
 
+Highly experimental, use at your own risk and expect stuff to be broken.
+
 License:
 --------
 Do What The Fuck You Want To Public License (WTFPL)
