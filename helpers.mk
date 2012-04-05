@@ -6,7 +6,7 @@ debug:
 
 clean:
 	rm -f bootstrap-prefix.sh
-	rm -f install/stage*
+	rm -rvf install/
 
 uninstall: uninstall-ask uninstall-force
 
