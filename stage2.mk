@@ -85,6 +85,7 @@ install/stage2-gcc: install/stage2-binutils
 	${EMERGE} --oneshot --nodeps sys-devel/gcc-config
 	# XXX: get the right kernel version?
 	${EMERGE} --oneshot --nodeps sys-kernel/linux-headers
+	${EMERGE} --oneshot -j sys-devel/bison
 	${EMERGE} --oneshot --nodeps "=sys-devel/gcc-4.2*"
 	echo ">sys-devel/gcc-4.2" > ${EPREFIX}/etc/portage/package.mask/gcc
 	touch $@
