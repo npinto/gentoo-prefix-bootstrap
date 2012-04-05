@@ -112,8 +112,8 @@ install/stage2-portage-workarounds: install/stage2-up-to-pax-utils
 	echo "export LDFLAGS='-L/usr/lib64'" > ${EPREFIX}/etc/portage/env/dev-lang/python
 	# --
 	${EMERGE} --oneshot -j sys-libs/readline
-	#${EMERGE} --nodeps dev-lang/python
-	${EMERGE} -j dev-lang/python
+	${EMERGE} --oneshot --nodeps dev-lang/python-updater
+	${EMERGE} --nodeps dev-lang/python
 	touch $@
 
 install/stage2-portage: install/stage2-up-to-pax-utils install/stage2-portage-workarounds
