@@ -72,6 +72,7 @@ install/stage2-up-to-bison: install/stage1 \
 	touch $@
 
 install/stage2-binutils: install/stage2-up-to-bison
+	# emerge --oneshot --nodeps "<sys-devel/binutils-2.22"
 	${EMERGE} --oneshot --nodeps sys-devel/binutils-config
 	MAKEOPTS=-j1 ${EMERGE} --oneshot --nodeps sys-devel/binutils \
 		|| \
@@ -84,8 +85,8 @@ install/stage2-gcc: install/stage2-binutils
 	${EMERGE} --oneshot --nodeps sys-devel/gcc-config
 	# XXX: get the right kernel version?
 	${EMERGE} --oneshot --nodeps sys-kernel/linux-headers
-	${EMERGE} --oneshot --nodeps "=sys-devel/gcc-4.2.4-r01.4"
-	echo ">sys-devel/gcc-4.2.4-r01.4" > ${EPREFIX}/etc/portage/package.mask/gcc-4.2.4-r01.4+
+	${EMERGE} --oneshot --nodeps "=sys-devel/gcc-4.2*"
+	echo ">sys-devel/gcc-4.2" > ${EPREFIX}/etc/portage/package.mask/gcc
 	touch $@
 
 install/stage2-up-to-pax-utils: install/stage2-gcc
@@ -109,8 +110,9 @@ install/stage2-portage-workarounds: install/stage2-up-to-pax-utils
 	mkdir -p ${EPREFIX}/etc/portage/env/dev-lang/
 	echo "export LDFLAGS='-L/usr/lib64'" > ${EPREFIX}/etc/portage/env/dev-lang/python
 	# --
-	${EMERGE} --oneshot sys-libs/readline
-	${EMERGE} --nodeps dev-lang/python
+	${EMERGE} --oneshot -j sys-libs/readline
+	#${EMERGE} --nodeps dev-lang/python
+	${EMERGE} -j dev-lang/python
 	touch $@
 
 install/stage2-portage: install/stage2-up-to-pax-utils install/stage2-portage-workarounds
