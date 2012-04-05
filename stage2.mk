@@ -120,7 +120,7 @@ install/stage2-portage: install/stage2-up-to-pax-utils install/stage2-portage-wo
 	# -- Update portage
 	env FEATURES="-collision-protect" ${EMERGE} --oneshot sys-apps/portage
 	# -- Move tmp directory
-	#-mv -f ${EPREFIX}/tmp ${EPREFIX}/tmp.old
+	mv -f ${EPREFIX}/tmp ${EPREFIX}/tmp.old
 	# -- Synchronize repo
 	${EMERGE} --sync
 	touch $@
