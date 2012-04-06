@@ -3,18 +3,31 @@ STAGE3_MK=stage3.mk
 
 include init.mk
 
-install/stage3: install/stage2 install/stage3-workarounds
-	# -- Update system
-	${EMERGE} -u -j system
+install/stage3: install/stage2 \
+	install/_stage3-gettext \
+	install/_stage3-git \
+	install/_stage3-groff \
+	install/_stage3-system
+
+install/_stage3-gettext:
+	# -- git: dependencies
+	USE="-git" ${EMERGE} --oneshot --nodeps gettext
 	touch $@
 
-install/stage3-workarounds: install/stage2
+install/_stage3-git:
 	# -- git: workaround
-	USE="-git" ${EMERGE} --oneshot --nodeps gettext
-	${EMERGE} --oneshot git
+	${EMERGE} --oneshot -j git
+	touch $@
+
+install/_stage3-groff:
 	# -- groff: workaround
 	mkdir -p ${EPREFIX}/etc/portage/env/sys-apps
 	echo "export MAKEOPTS=-j1" > ${EPREFIX}/etc/portage/env/sys-apps/groff
+	touch $@
+
+install/_stage3-system:
+	# -- Update system
+	${EMERGE} -u -j system
 	touch $@
 
 endif

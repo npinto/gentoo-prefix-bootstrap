@@ -3,9 +3,24 @@ STAGE2_MK=stage2.mk
 
 include init.mk
 
-install/stage2: install/stage1 install/stage2-up-to-bison \
-	install/stage2-binutils install/stage2-gcc \
-	install/stage2-up-to-pax-utils install/stage2-portage
+install/stage2: install/stage1 \
+	install/_stage2-sed \
+	install/_stage2-bash \
+	install/_stage2-xz-utils \
+	install/_stage2-automake \
+	install/_stage2-tar \
+	install/_stage2-file \
+	install/_stage2-pkgconfig \
+	install/_stage2-wget \
+	install/_stage2-baselayout-prefix \
+	#install/_stage2-m4 \
+	install/_stage2-flex \
+	install/_stage2-bison \
+	install/_stage2-binutils-config \
+	install/_stage2-binutils \
+	install/stage2-gcc \
+	install/stage2-up-to-pax-utils \
+	install/stage2-portage
 	touch $@
 
 install/_stage2-sed:
@@ -57,23 +72,14 @@ install/_stage2-bison:
 	touch $@
 
 install/stage2-up-to-bison: install/stage1 \
-	install/_stage2-sed \
-	install/_stage2-bash \
-	install/_stage2-xz-utils \
-	install/_stage2-automake \
-	install/_stage2-tar \
-	install/_stage2-file \
-	install/_stage2-pkgconfig \
-	install/_stage2-wget \
-	install/_stage2-baselayout-prefix \
-	#install/_stage2-m4 \
-	install/_stage2-flex \
-	install/_stage2-bison
 	touch $@
 
-install/stage2-binutils: install/stage2-up-to-bison
+install/_stage2-binutils-config:
 	# emerge --oneshot --nodeps "<sys-devel/binutils-2.22"
 	${EMERGE} --oneshot --nodeps sys-devel/binutils-config
+	touch $@
+
+install/_stage2-binutils: install/_stage2-binutils-config
 	MAKEOPTS=-j1 ${EMERGE} --oneshot --nodeps sys-devel/binutils \
 		|| \
 		MAKEOPTS=-j1 ebuild --skip-manifest \
@@ -81,13 +87,13 @@ install/stage2-binutils: install/stage2-up-to-bison
 		clean merge
 	touch $@
 
-install/stage2-gcc: install/stage2-binutils
+install/stage2-gcc: install/_stage2-binutils
 	${EMERGE} --oneshot --nodeps sys-devel/gcc-config
 	# XXX: get the right kernel version?
 	${EMERGE} --oneshot --nodeps sys-kernel/linux-headers
 	${EMERGE} --oneshot -j sys-devel/bison
 	${EMERGE} --oneshot --nodeps "=sys-devel/gcc-4.2*"
-	echo ">sys-devel/gcc-4.2" > ${EPREFIX}/etc/portage/package.mask/gcc
+	echo ">=sys-devel/gcc-4.3" > ${EPREFIX}/etc/portage/package.mask/gcc
 	touch $@
 
 install/stage2-up-to-pax-utils: install/stage2-gcc
@@ -112,8 +118,10 @@ install/stage2-portage-workarounds: install/stage2-up-to-pax-utils
 	echo "export LDFLAGS='-L/usr/lib64'" > ${EPREFIX}/etc/portage/env/dev-lang/python
 	# --
 	${EMERGE} --oneshot -j sys-libs/readline
-	${EMERGE} --oneshot --nodeps dev-lang/python-updater
+	${EMERGE} --oneshot --nodeps app-admin/python-updater
+	FEATURES=-collision-protect ${EMERGE} --oneshot --nodeps app-admin/eselect-python
 	${EMERGE} --nodeps dev-lang/python
+	eselect python set python2.7
 	touch $@
 
 install/stage2-portage: install/stage2-up-to-pax-utils install/stage2-portage-workarounds
