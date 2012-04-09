@@ -10,9 +10,9 @@ tools: eix util-linux local-overlay layman portage-tools console-tools cmake \
 eix:
 	${EMERGE} -uN eix
 	eix-update
-ifeq ($(shell test -f ${EPREFIX}/etc/eix-sync.conf && grep "^-e" ${EPREFIX}/etc/eix-sync.conf), )
-	echo -e '\055e' >> ${EPREFIX}/etc/eix-sync.conf
-endif
+#ifeq ($(shell test -f ${EPREFIX}/etc/eix-sync.conf && grep "^-e" ${EPREFIX}/etc/eix-sync.conf), )
+	#echo -e '\055e' >> ${EPREFIX}/etc/eix-sync.conf
+#endif
 	${EIXSYNC}
 
 util-linux:
@@ -66,6 +66,9 @@ console-tools:
 
 cmake:
 	${EMERGE} -uN libarchive
+	#cp -vf files/etc/portage/package.use/cmake \
+		#${EPREFIX}/etc/portage/package.use/cmake
+	cp -vf {files,${EPREFIX}}/etc/portage/package.use/cmake
 	${EMERGE} -uN cmake
 
 vim:

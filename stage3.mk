@@ -27,7 +27,7 @@ install/_stage3-groff:
 
 install/_stage3-system:
 	# -- Update system
-	${EMERGE} -u -j system
+	FEATURES=-collision-protect ${EMERGE} -u -j system
 	touch $@
 
 endif

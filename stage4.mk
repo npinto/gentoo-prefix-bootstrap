@@ -15,7 +15,7 @@ install/stage4: install/stage3 install/stage4-config install/stage4-workarounds
 	eselect news purge
 	touch $@
 
-install/stage4-config: install/stage3 files/make.conf
+install/stage4-config: install/stage3
 	# -- Update make.conf
 	cp -vf files/make.conf ${EPREFIX}/etc/
 	echo "MAKEOPTS=\"${MAKEOPTS}\"" >> ${EPREFIX}/etc/make.conf
@@ -28,9 +28,9 @@ install/stage4-config: install/stage3 files/make.conf
 install/stage4-workarounds: install/stage3 install/stage4-config
 	# -- python: remove stage2 workaround
 	rm -f ${EPREFIX}/etc/portage/env/dev-lang/python
-	${EMERGE} -j dev-lang/python
+	${EMERGE} -uN -j dev-lang/python
 	# -- net-tools: workaround
-	${EMERGE} --oneshot --nodeps linux-headers
+	${EMERGE} --oneshot --nodeps -uN linux-headers
 	touch $@
 
 endif
