@@ -59,9 +59,9 @@ install/_stage2-baselayout-prefix:
 	${EMERGE} --oneshot --nodeps sys-apps/baselayout-prefix
 	touch $@
 
-#install/_stage2-m4:
-	#${EMERGE} --oneshot --nodeps sys-devel/m4
-	#touch $@
+install/_stage2-m4:
+	${EMERGE} --oneshot --nodeps sys-devel/m4
+	touch $@
 
 install/_stage2-flex:
 	${EMERGE} --oneshot --nodeps sys-devel/flex
