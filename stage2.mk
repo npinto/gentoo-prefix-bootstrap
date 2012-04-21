@@ -13,7 +13,7 @@ install/stage2: install/stage1 \
 	install/_stage2-pkgconfig \
 	install/_stage2-wget \
 	install/_stage2-baselayout-prefix \
-	#install/_stage2-m4 \
+	install/_stage2-m4 \
 	install/_stage2-flex \
 	install/_stage2-bison \
 	install/_stage2-binutils-config \
