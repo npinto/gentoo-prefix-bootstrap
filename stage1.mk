@@ -27,7 +27,7 @@ install/_stage1-tree:
 	touch $@
 
 install/_stage1-make:
-	./bootstrap-prefix.sh ${EPREFIX}/tmp make
+	LD_LIBRARY_PATH=${LD_LIBRARY_PATH} ./bootstrap-prefix.sh ${EPREFIX}/tmp make
 	touch $@
 
 install/_stage1-wget:
