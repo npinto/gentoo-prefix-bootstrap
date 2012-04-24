@@ -77,9 +77,10 @@ vim:
 	eselect bashcomp enable --global vim &> /dev/null | exit 0
 
 ruby:
-	echo 'dev-lang/ruby -ssl' >> ${EPREFIX}/etc/portage/package.use/ruby
-	echo 'RUBY_TARGETS=ruby19' >> ${EPREFIX}/etc/make.conf
-	${EMERGE} -uN ruby
+	cp -f {files,${EPREFIX}}/etc/portage/package.use/ruby
+	cp -f {files,${EPREFIX}}/etc/portage/package.mask/ruby
+	${EMERGE} -uN -j dev-lang/ruby dev-ruby/rubygems
+	eselect ruby set ruby18
 
 tmux:
 	${EMERGE} -uN tmux
