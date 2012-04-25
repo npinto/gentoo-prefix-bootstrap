@@ -22,13 +22,17 @@ install/stage4-config: install/stage3
 	# -- python: update USE and mask >python-2.7.1-r1 to avoid this bug:
 	# http://bugs.python.org/issue9762
 	echo 'dev-lang/python sqlite wide-unicode berkdb' > ${EPREFIX}/etc/portage/package.use/python
-	#echo '>dev-lang/python-2.7.1-r1' > ${EPREFIX}/etc/portage/package.mask/python-2.7.1-r1+
+	#echo '>dev-lang/python-2.7.1-r1' > ${EPREFIX}/etc/portage/package.mask/python
 	touch $@
 
 install/stage4-workarounds: install/stage3 install/stage4-config
 	# -- python: remove stage2 workaround
 	rm -f ${EPREFIX}/etc/portage/env/dev-lang/python
 	${EMERGE} -uN -j dev-lang/python
+	# -- gcc-4.4
+	echo '>sys-devel/gcc-4.4.6-r1' > ${EPREFIX}/etc/portage/package.mask/gcc
+	emerge -uN -j "=sys-devel/gcc-4.4.6-r1'
+	gcc-config x86_64-pc-linux-gnu-4.4.6
 	# -- net-tools: workaround
 	${EMERGE} --oneshot --nodeps -uN linux-headers
 	touch $@
