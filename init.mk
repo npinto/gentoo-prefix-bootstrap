@@ -15,7 +15,7 @@ unexport CFLAGS
 unexport CPLUS_INCLUDE_PATH
 unexport LIBRARY_PATH
 unexport INCLUDE_PATH
-unexport LD_LIBRARY_PATH
+#unexport LD_LIBRARY_PATH
 unexport CPATH
 unexport C_INCLUDE_PATH
 unexport DYLD_LIBRARY_PATH
