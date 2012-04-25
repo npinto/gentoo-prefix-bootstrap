@@ -42,6 +42,8 @@ Successfully tested on:
  * Ubuntu 10.10 (Maverick Meerkat)
  * Ubuntu 9.10 (Karmic Koala)
  * Mandriva Linux release 2011.0 (Official) for x86_64
+ * Red Had 5.4
+ * Red Hat Enterprise Linux ES release 5
 
 More information about Gentoo Prefix:
 -------------------------------------
@@ -54,4 +56,3 @@ Contributors:
 -------------
  * Nicolas Pinto <pinto@alum.mit.edu>
  * Nicolas Poilvert <poilvert@alum.mit.edu>
-
