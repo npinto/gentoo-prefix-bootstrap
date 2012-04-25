@@ -1,8 +1,8 @@
 ============================================================================
-Bootstrap a Scientific Gentoo Prefix
+Gentoo Prefix Boostrap
 ============================================================================
 
-Highly experimental, use at your own risk and expect stuff to be broken.
+Highly experimental, use at your own risk and expect stuff to break.
 
 License:
 --------
@@ -26,7 +26,7 @@ $ make system
 To just install general tools (eix, layman, vim, zsh, etc.):
 $ make tools
 
-To just install the scientfic/development environment
+To just install the scientific/development environment (experimental)
 (atlas, python, numpy, scipy, mongo, etc.):
 $ make scientific
 
@@ -42,6 +42,8 @@ Successfully tested on:
  * Ubuntu 10.10 (Maverick Meerkat)
  * Ubuntu 9.10 (Karmic Koala)
  * Mandriva Linux release 2011.0 (Official) for x86_64
+ * Red Had 5.4
+ * Red Hat Enterprise Linux ES release 5
 
 More information about Gentoo Prefix:
 -------------------------------------
@@ -54,4 +56,3 @@ Contributors:
 -------------
  * Nicolas Pinto <pinto@alum.mit.edu>
  * Nicolas Poilvert <poilvert@alum.mit.edu>
-
