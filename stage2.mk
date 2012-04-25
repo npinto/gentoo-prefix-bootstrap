@@ -92,8 +92,8 @@ install/stage2-gcc: install/_stage2-binutils
 	# XXX: get the right kernel version?
 	${EMERGE} --oneshot --nodeps sys-kernel/linux-headers
 	${EMERGE} --oneshot -j sys-devel/bison
-	${EMERGE} --oneshot --nodeps "=sys-devel/gcc-4.2*"
-	echo ">=sys-devel/gcc-4.3" > ${EPREFIX}/etc/portage/package.mask/gcc
+	${EMERGE} --oneshot --nodeps "=sys-devel/gcc-4.3*"
+	echo ">=sys-devel/gcc-4.4" > ${EPREFIX}/etc/portage/package.mask/gcc
 	touch $@
 
 install/stage2-up-to-pax-utils: install/stage2-gcc
