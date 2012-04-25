@@ -1,8 +1,8 @@
 ============================================================================
-Bootstrap a Scientific Gentoo Prefix
+Gentoo Prefix Boostrap
 ============================================================================
 
-Highly experimental, use at your own risk and expect stuff to be broken.
+Highly experimental, use at your own risk and expect stuff to break.
 
 License:
 --------
@@ -26,7 +26,7 @@ $ make system
 To just install general tools (eix, layman, vim, zsh, etc.):
 $ make tools
 
-To just install the scientfic/development environment
+To just install the scientific/development environment (experimental)
 (atlas, python, numpy, scipy, mongo, etc.):
 $ make scientific
 
