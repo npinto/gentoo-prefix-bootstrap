@@ -36,6 +36,7 @@ install/_stage2-xz-utils:
 	touch $@
 
 install/_stage2-automake:
+	${EMERGE} --oneshot -j sys-apps/help2man
 	${EMERGE} --oneshot -j sys-devel/automake
 	touch $@
 
