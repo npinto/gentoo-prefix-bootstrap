@@ -23,6 +23,7 @@ install/stage1: install/stage0 \
 	touch $@
 
 install/_stage1-tree:
+	#./bootstrap-prefix.sh ${EPREFIX} tree
 	./bootstrap-prefix.sh ${EPREFIX} latest_tree
 	touch $@
 
