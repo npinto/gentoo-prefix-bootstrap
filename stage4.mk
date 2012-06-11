@@ -35,6 +35,8 @@ install/stage4-workarounds: install/stage3 install/stage4-config
 	gcc-config x86_64-pc-linux-gnu-4.4.6
 	# -- net-tools: workaround
 	${EMERGE} --oneshot --nodeps -uN linux-headers
+	# -- openssh: workaround
+	echo '>net-misc/openssh-6.0' > ${EPREFIX}/etc/portage/package.mask/openssh
 	touch $@
 
 endif

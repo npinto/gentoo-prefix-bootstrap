@@ -28,7 +28,7 @@ install/_stage2-sed:
 	touch $@
 
 install/_stage2-bash:
-	MAKEOPTS=-j1 ${EMERGE} --oneshot --nodeps app-shells/bash
+	MAKEOPTS=-j1 ${EMERGE} --oneshot --nodeps '=app-shells/bash-4.1*'
 	touch $@
 
 install/_stage2-xz-utils:
@@ -41,7 +41,7 @@ install/_stage2-automake:
 	touch $@
 
 install/_stage2-tar:
-	${EMERGE} --oneshot --nodeps app-arch/tar
+	${EMERGE} --oneshot --nodeps '=app-arch/tar-1.26'
 	touch $@
 
 install/_stage2-file:
@@ -95,6 +95,7 @@ install/stage2-gcc: install/_stage2-binutils
 	${EMERGE} --oneshot -j sys-devel/bison
 	${EMERGE} --oneshot --nodeps "=sys-devel/gcc-4.2*"
 	echo ">=sys-devel/gcc-4.2" > ${EPREFIX}/etc/portage/package.mask/gcc
+	echo "<sys-devel/gcc-4.2" > ${EPREFIX}/etc/portage/package.mask/gcc
 	touch $@
 
 install/stage2-up-to-pax-utils: install/stage2-gcc
@@ -114,13 +115,13 @@ install/stage2-up-to-pax-utils: install/stage2-gcc
 	touch $@
 
 install/stage2-portage-workarounds: install/stage2-up-to-pax-utils
-	# -- python: workarounds (only for stage2)
-	mkdir -p ${EPREFIX}/etc/portage/env/dev-lang/
-	echo "export LDFLAGS='-L/usr/lib64'" > ${EPREFIX}/etc/portage/env/dev-lang/python
 	# --
 	${EMERGE} --oneshot -j sys-libs/readline
 	${EMERGE} --oneshot --nodeps app-admin/python-updater
 	FEATURES=-collision-protect ${EMERGE} --oneshot --nodeps app-admin/eselect-python
+	# -- python: workarounds (only for stage2)
+	#mkdir -p ${EPREFIX}/etc/portage/env/dev-lang/
+	#echo "export LDFLAGS='-L/usr/lib64'" > ${EPREFIX}/etc/portage/env/dev-lang/python
 	${EMERGE} --nodeps dev-lang/python
 	eselect python set python2.7
 	touch $@

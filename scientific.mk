@@ -1,6 +1,8 @@
 ifndef SCIENTIFIC_MK
 SCIENTIFIC_MK=scientific.mk
 
+# TODO: replace all this with mygentoo recipes
+
 include init.mk
 include tools.mk
 
