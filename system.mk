@@ -10,10 +10,10 @@ include stage3.mk
 include stage4.mk
 
 system: \
-	install/stage0 \
-	install/stage1 \
-	install/stage2 \
-	install/stage3 \
-	install/stage4
+	stage0 \
+	stage1 \
+	stage2 \
+	stage3 \
+	stage4
 
 endif

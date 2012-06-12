@@ -3,6 +3,7 @@ STAGE4_MK=stage4.mk
 
 include init.mk
 
+stage4: install/stage4
 install/stage4: install/stage3 install/stage4-config install/stage4-workarounds
 	# -- Recompile entire system
 	${EMERGE} -ve -j system

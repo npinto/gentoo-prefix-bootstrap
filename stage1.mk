@@ -3,6 +3,7 @@ STAGE1_MK=stage1.mk
 
 include init.mk
 
+stage1: install/stage1
 install/stage1: install/stage0 \
 	install/_stage1-tree \
 	install/_stage1-make \

@@ -3,6 +3,7 @@ STAGE3_MK=stage3.mk
 
 include init.mk
 
+stage3: install/stage3
 install/stage3: install/stage2 \
 	install/_stage3-gettext \
 	install/_stage3-git \

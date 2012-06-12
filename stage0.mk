@@ -3,6 +3,7 @@ STAGE0_MK=stage0.mk
 
 include init.mk
 
+stage0: install/stage0
 install/stage0: bootstrap-prefix.sh
 	mkdir -p install
 	touch $@

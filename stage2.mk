@@ -3,6 +3,7 @@ STAGE2_MK=stage2.mk
 
 include init.mk
 
+stage2: install/stage2
 install/stage2: install/stage1 \
 	install/_stage2-sed \
 	install/_stage2-bash \
