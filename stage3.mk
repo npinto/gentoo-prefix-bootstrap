@@ -17,6 +17,7 @@ install/_stage3-gettext:
 
 install/_stage3-git:
 	# -- git: workaround
+	${EMERGE} --oneshot -j '=dev-perl/Digest-HMAC-1.30.0'
 	${EMERGE} --oneshot -j git
 	touch $@
 
