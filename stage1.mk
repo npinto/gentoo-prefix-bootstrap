@@ -26,7 +26,7 @@ install/stage1: install/stage0 \
 install/_stage1-tree:
 	#./bootstrap-prefix.sh ${EPREFIX} latest_tree
 	./bootstrap-prefix.sh ${EPREFIX} tree
-	cp -vf {${EPREFIX},files}/usr/portage/app-admin/python-updater/*
+	cp -vf files/usr/portage/app-admin/python-updater/* ${EPREFIX}/usr/portage/app-admin/python-updater/
 	touch $@
 
 install/_stage1-make:
