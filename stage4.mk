@@ -12,6 +12,8 @@ install/stage4: install/stage3 install/stage4-config install/stage4-workarounds
 	# -- startprefix
 	cd ${EPREFIX}/usr/portage/scripts && ./bootstrap-prefix.sh ${EPREFIX} startscript
 	sed -i ${EPREFIX}/startprefix -e 's/^EPREFIX=/export EPREFIX=/g'
+	# -- ecopy
+	cp -vf ${EPREFIX}/usr/portage/scripts/ecopy ${EPREFIX}/usr/bin/
 	# -- purge news
 	eselect news purge
 	touch $@
