@@ -63,7 +63,7 @@ install/_stage2-file:
 	touch $@
 
 install/_stage2-pkgconfig:
-	ACCEPT_KEYWORDS='**' ${EMERGE} --oneshot --nodeps '=dev-libs/libelf-0.8.13*'
+	ACCEPT_KEYWORDS='**' ${EMERGE} --oneshot -j '=dev-libs/libelf-0.8.13*'
 	${EMERGE} --oneshot -j dev-util/pkgconfig
 	touch $@
 
