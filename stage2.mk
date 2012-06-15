@@ -3,11 +3,12 @@ STAGE2_MK=stage2.mk
 
 include init.mk
 
-stage2: install/stage2
 install/stage2: install/stage1 \
+	install/_stage2-workarounds \
 	install/_stage2-sed \
 	install/_stage2-bash \
 	install/_stage2-xz-utils \
+	install/_stage2-perl \
 	install/_stage2-automake \
 	install/_stage2-tar \
 	install/_stage2-file \
@@ -23,6 +24,12 @@ install/stage2: install/stage1 \
 	install/stage2-up-to-pax-utils \
 	install/stage2-portage
 	touch $@
+stage2: install/stage2
+
+install/_stage2-workarounds:
+	# -- python-updater
+	cp -vf {files,${EPREFIX}}/etc/portage/package.keywords/python-updater.prefix
+	touch $@
 
 install/_stage2-sed:
 	${EMERGE} --oneshot -j sys-apps/sed
@@ -34,6 +41,12 @@ install/_stage2-bash:
 
 install/_stage2-xz-utils:
 	${EMERGE} --oneshot --nodeps app-arch/xz-utils
+	touch $@
+
+install/_stage2-perl:
+	cp -vf {files,${EPREFIX}}/etc/portage/package.keywords/perl.prefix
+	cp -vf {files,${EPREFIX}}/etc/portage/package.mask/perl.prefix
+	${EMERGE} --oneshot -j dev-lang/perl
 	touch $@
 
 install/_stage2-automake:
