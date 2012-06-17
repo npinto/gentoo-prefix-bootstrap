@@ -33,9 +33,9 @@ install/stage4-workarounds: install/stage3 install/stage4-config
 	rm -f ${EPREFIX}/etc/portage/env/dev-lang/python
 	${EMERGE} -uN -j dev-lang/python
 	# -- gcc-4.4
-	echo '>sys-devel/gcc-4.4.6-r1' > ${EPREFIX}/etc/portage/package.mask/gcc
-	emerge -uN -j "=sys-devel/gcc-4.4.6-r1"
-	gcc-config x86_64-pc-linux-gnu-4.4.6
+	#echo '>sys-devel/gcc-4.4.6-r1' > ${EPREFIX}/etc/portage/package.mask/gcc
+	#emerge -uN -j "=sys-devel/gcc-4.4.6-r1"
+	#gcc-config x86_64-pc-linux-gnu-4.4.6
 	# -- net-tools: workaround
 	${EMERGE} --oneshot --nodeps -uN linux-headers
 	# -- openssh: workaround
