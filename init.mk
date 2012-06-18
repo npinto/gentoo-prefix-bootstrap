@@ -28,12 +28,12 @@ MAKEOPTS:=-j${N_PROCESSORS}
 PATH:=${EPREFIX}/usr/bin:${EPREFIX}/bin:${EPREFIX}/tmp/usr/bin:${EPREFIX}/tmp/bin:${EPREFIX}/usr/portage/scripts:${PATH}
 #CHOST:="x86_64-pc-linux-gnu"
 
-#REAL_HOME:=$(shell readlink -f ~/)
-#ifeq (${HOME}, ${REAL_HOME})
-EMERGE:=emerge --quiet
-#else
-  #EMERGE:="cd ${REAL_HOME} && emerge --quiet"
-#endif
+REAL_HOME:=$(shell readlink -f ~/)
+ifeq (${HOME}, ${REAL_HOME})
+	EMERGE:=emerge --quiet
+else
+	EMERGE:="cd ${REAL_HOME} && emerge --quiet"
+endif
 
 PIP:=pip
 EIXSYNC:=eix-sync -q
