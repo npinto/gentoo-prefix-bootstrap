@@ -28,7 +28,8 @@ stage2: install/stage2
 
 install/_stage2-workarounds:
 	# -- python-updater
-	cp -vf {files,${EPREFIX}}/etc/portage/package.keywords/python-updater.prefix
+	cp -vf files/etc/portage/package.keywords/python-updater.prefix \
+		${EPREFIX}/etc/portage/package.keywords/python-updater.prefix
 	touch $@
 
 install/_stage2-sed:
