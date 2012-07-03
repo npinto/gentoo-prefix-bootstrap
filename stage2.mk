@@ -45,8 +45,10 @@ install/_stage2-xz-utils:
 	touch $@
 
 install/_stage2-perl:
-	cp -vf {files,${EPREFIX}}/etc/portage/package.keywords/perl.prefix
-	cp -vf {files,${EPREFIX}}/etc/portage/package.mask/perl.prefix
+	cp -vf files/etc/portage/package.keywords/perl.prefix \
+		${EPREFIX}/etc/portage/package.keywords/perl.prefix
+	cp -vf files/etc/portage/package.mask/perl.prefix \
+		${EPREFIX}/etc/portage/package.mask/perl.prefix
 	${EMERGE} --oneshot -j dev-lang/perl
 	touch $@
 
