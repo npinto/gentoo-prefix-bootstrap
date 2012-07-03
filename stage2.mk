@@ -49,7 +49,12 @@ install/_stage2-perl:
 		${EPREFIX}/etc/portage/package.keywords/perl.prefix
 	cp -vf files/etc/portage/package.mask/perl.prefix \
 		${EPREFIX}/etc/portage/package.mask/perl.prefix
+ifeq ($(shell grep -e "Ubuntu 11\|12" /etc/issue; then echo true; fi), true)
+	${EMERGE} --oneshot --onlydeps dev-lang/perl
+	ebuild files/usr/portage/dev-lang/perl/perl-5.12.3-r2.ebuild merge
+else
 	${EMERGE} --oneshot -j dev-lang/perl
+endif
 	touch $@
 
 install/_stage2-automake:
