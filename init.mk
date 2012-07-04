@@ -38,5 +38,6 @@ endif
 PIP:=pip
 EIXSYNC:=eix-sync -q
 
+UBUNTU_11_12=$(shell grep -q "Ubuntu 11\|12" /etc/issue && echo true)
 
 endif

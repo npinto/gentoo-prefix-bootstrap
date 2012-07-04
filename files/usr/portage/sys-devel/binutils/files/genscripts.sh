@@ -241,7 +241,7 @@ if [ "x${use_sysroot}" != "xyes" ] ; then
   fi
 fi
 
-LIB_SEARCH_DIRS=`echo ${LIB_PATH} | sed -e 's/:/ /g' -e 's/\([^ ][^ ]*\)/SEARCH_DIR(\\"\1\\");SEARCH_DIR(\\"\1\\/'${TOOL_LIB}'");SEARCH_DIR("\/usr\/lib\/x86_64-linux-gnu");/g'`
+LIB_SEARCH_DIRS=`echo ${LIB_PATH} | sed -e 's/:/ /g' -e 's/\([^ ][^ ]*\)/SEARCH_DIR(\\"\1\\");SEARCH_DIR(\\"\1\\/'${TOOL_LIB}'");SEARCH_DIR("\/usr\/lib\/x86_64-linux-gnu");SEARCH_DIR("\/lib\/x86_64-linux-gnu");/g'`
 
 # We need it for testsuite.
 set $EMULATION_LIBPATH

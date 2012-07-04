@@ -49,9 +49,9 @@ install/_stage2-perl:
 		${EPREFIX}/etc/portage/package.keywords/perl.prefix
 	cp -vf files/etc/portage/package.mask/perl.prefix \
 		${EPREFIX}/etc/portage/package.mask/perl.prefix
-ifeq ($(shell grep -e "Ubuntu 11\|12" /etc/issue; then echo true; fi), true)
-	${EMERGE} --oneshot --onlydeps dev-lang/perl
-	ebuild files/usr/portage/dev-lang/perl/perl-5.12.3-r2.ebuild merge
+ifeq ($(strip ${UBUNTU_11_12}),true)
+	${EMERGE} --oneshot --nodeps app-admin/perl-cleaner
+	ebuild files/usr/portage/dev-lang/perl/perl-5.12.3-r99.ebuild clean merge
 else
 	${EMERGE} --oneshot -j dev-lang/perl
 endif
