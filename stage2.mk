@@ -71,9 +71,8 @@ install/_stage2-file:
 	touch $@
 
 install/_stage2-pkgconfig:
-	#(ACCEPT_KEYWORDS='**' ${EMERGE} --oneshot -j '=dev-libs/libelf-0.8.13*')
-	ACCEPT_KEYWORDS='**' emerge -q --oneshot -j '=dev-libs/libelf-0.8.13*'
-	${EMERGE} --oneshot -j dev-util/pkgconfig
+	ACCEPT_KEYWORDS='**' emerge -q --oneshot -u -j '=dev-libs/libelf-0.8.13*'
+	PKG_CONFIG_PATH=${EPREIFX}/usr/lib/pkgconfig ${EMERGE} --oneshot -u -j dev-util/pkgconfig
 	touch $@
 
 install/_stage2-wget:
@@ -140,7 +139,8 @@ install/stage2-up-to-pax-utils: install/stage2-gcc
 
 install/stage2-portage-workarounds: install/stage2-up-to-pax-utils
 	# --
-	${EMERGE} --oneshot -j sys-libs/readline
+	${EMERGE} --oneshot -u -j sys-libs/readline
+	ebuild ${EPREFIX}/usr/portage/app-admin/python-updater/python-updater-0.10-r2.ebuild digest
 	${EMERGE} --oneshot --nodeps app-admin/python-updater
 	FEATURES=-collision-protect ${EMERGE} --oneshot --nodeps app-admin/eselect-python
 	# -- python: workarounds (only for stage2)
