@@ -3,7 +3,9 @@ INIT_MK=init.mk
 
 include helpers.mk
 
-EPREFIX?=${HOME}/gentoo
+REAL_HOME:=$(shell readlink -f ~/)
+
+EPREFIX?=${REAL_HOME}/gentoo
 
 unexport LDFLAGS
 unexport CPPFLAGS
@@ -28,11 +30,10 @@ MAKEOPTS:=-j${N_PROCESSORS}
 PATH:=${EPREFIX}/usr/bin:${EPREFIX}/bin:${EPREFIX}/tmp/usr/bin:${EPREFIX}/tmp/bin:${EPREFIX}/usr/portage/scripts:${PATH}
 #CHOST:="x86_64-pc-linux-gnu"
 
-REAL_HOME:=$(shell readlink -f ~/)
 ifeq (${HOME}, ${REAL_HOME})
 	EMERGE:=emerge --quiet
 else
-	EMERGE:=cd ${REAL_HOME} && emerge --quiet
+	EMERGE:=REAL_HOME=${REAL_HOME} ./emerge-wrapper.sh --quiet
 endif
 
 PIP:=pip

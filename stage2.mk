@@ -49,7 +49,7 @@ install/_stage2-perl:
 		${EPREFIX}/etc/portage/package.keywords/perl.prefix
 	cp -vf files/etc/portage/package.mask/perl.prefix \
 		${EPREFIX}/etc/portage/package.mask/perl.prefix
-ifeq ($(strip ${UBUNTU_11_12}),true)
+ifeq (${UBUNTU_11_12},true)
 	${EMERGE} --oneshot --nodeps app-admin/perl-cleaner
 	ebuild files/usr/portage/dev-lang/perl/perl-5.12.3-r99.ebuild clean merge
 else
@@ -104,11 +104,17 @@ install/_stage2-binutils-config:
 	touch $@
 
 install/_stage2-binutils: install/_stage2-binutils-config
+ifeq (${UBUNTU_11_12},true)
+	#ebuild files/usr/portage/sys-devel/binutils/binutils-2.22-r99.ebuild digest
+	rsync -avuz files/usr/portage/sys-devel/binutils/* ${EPREFIX}/usr/portage/sys-devel/binutils/
+	MAKEOPTS=-j1 ${EMERGE} --oneshot --nodeps sys-devel/binutils
+else
 	MAKEOPTS=-j1 ${EMERGE} --oneshot --nodeps sys-devel/binutils \
 		|| \
 		MAKEOPTS=-j1 ebuild --skip-manifest \
 		${EPREFIX}/usr/portage/sys-devel/binutils/binutils-2.20.1-r1.ebuild \
 		clean merge
+endif
 	touch $@
 
 install/stage2-gcc: install/_stage2-binutils
@@ -122,12 +128,15 @@ install/stage2-gcc: install/_stage2-binutils
 	touch $@
 
 install/stage2-up-to-pax-utils: install/stage2-gcc
-	${EMERGE} --oneshot coreutils
-	# -- perl: workaround to avoid user confirmation
-	${EMERGE} --oneshot perl < /dev/null
-	${EMERGE} --oneshot -j findutils
-	${EMERGE} --oneshot -j sys-devel/automake
-	${EMERGE} --oneshot -j app-arch/tar
+	${EMERGE} --oneshot -u coreutils
+ifeq (${UBUNTU_11_12},true)
+	ebuild files/usr/portage/dev-lang/perl/perl-5.12.3-r99.ebuild clean merge
+else
+	${EMERGE} --oneshot dev-lang/perl < /dev/null
+endif
+	${EMERGE} --oneshot -u -j findutils
+	${EMERGE} --oneshot -u -j sys-devel/automake
+	${EMERGE} --oneshot -u -j app-arch/tar
 	${EMERGE} --oneshot grep
 	${EMERGE} --oneshot patch
 	${EMERGE} --oneshot gawk

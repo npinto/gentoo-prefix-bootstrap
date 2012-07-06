@@ -12,14 +12,14 @@ install/stage3: install/stage2 \
 
 install/_stage3-gettext:
 	# -- git: dependencies
-	USE="-git" ${EMERGE} --oneshot --nodeps gettext
+	USE="-git" ${EMERGE} --oneshot --nodeps -u sys-devel/gettext
 	touch $@
 
 install/_stage3-git:
 	# -- git: workaround
-	${EMERGE} --oneshot -j '=dev-perl/Digest-HMAC-1.30.0'
-	${EMERGE} --oneshot -j '=dev-perl/Net-SSLeay-1.360.0'
-	${EMERGE} --oneshot -j git
+	${EMERGE} --oneshot -u -j '=dev-perl/Digest-HMAC-1.30.0'
+	${EMERGE} --oneshot -u -j '=dev-perl/Net-SSLeay-1.360.0'
+	${EMERGE} --oneshot -u -j dev-vcs/git
 	touch $@
 
 install/_stage3-groff:
