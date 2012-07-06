@@ -112,7 +112,7 @@ else
 	MAKEOPTS=-j1 ${EMERGE} --oneshot --nodeps sys-devel/binutils \
 		|| \
 		MAKEOPTS=-j1 ebuild --skip-manifest \
-		${EPREFIX}/usr/portage/sys-devel/binutils/binutils-2.20.1-r1.ebuild \
+		${EPREFIX}/usr/local/portage/sys-devel/binutils/binutils-2.20.1-r1.ebuild \
 		clean merge
 endif
 	touch $@
@@ -131,7 +131,7 @@ install/stage2-up-to-pax-utils: install/stage2-gcc
 	${EMERGE} --oneshot -u coreutils
 ifeq (${UBUNTU_11_12},true)
 	rsync -avuz files/usr/portage/dev-lang/perl/* ${EPREFIX}/usr/portage/dev-lang/perl/
-	ebuild ${EPREFIX}/usr/portage/dev-lang/perl/perl-5.12.3-r99.ebuild digest
+	ebuild ${EPREFIX}/usr/portage/dev-lang/perl/perl-5.12.4-r99.ebuild digest
 endif
 	# perl workaround to avoid user confirmation
 	${EMERGE} --oneshot dev-lang/perl < /dev/null
@@ -165,6 +165,10 @@ install/stage2-portage: install/stage2-up-to-pax-utils install/stage2-portage-wo
 	env FEATURES="-collision-protect" ${EMERGE} --oneshot sys-apps/portage
 	# -- Move tmp directory
 	mv -f ${EPREFIX}/tmp ${EPREFIX}/tmp.old
+	# -- Add local overlay
+	mkdir -p ${EPREFIX}/usr/local/portage/
+	rsync -avuz files/usr/local/portage/* ${EPREFIX}/usr/local/portage/
+	echo "PORTDIR_OVERLAY=\"\${PORTDIR_OVERLAY} ${EPREFIX}/usr/local/portage/\"" >> ${EPREFIX}/etc/make.conf
 	# -- Synchronize repo
 	${EMERGE} --sync
 	touch $@

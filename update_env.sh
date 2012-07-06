@@ -5,5 +5,9 @@ export MAKEOPTS="-j $(($N_PROCESSORS+1))"
 
 REAL_HOME=$(readlink -f ${HOME})
 
-export EPREFIX=${REAL_HOME}/gentoo
+test -z ${EPREFIX} && EPREFIX=${REAL_HOME}/gentoo
+set -x
+export EPREFIX
+echo ${EPREFIX}
 export PATH=${EPREFIX}/usr/bin:${EPREFIX}/bin:${EPREFIX}/tmp/usr/bin:${EPREFIX}/tmp/bin:${PATH}
+set +x
