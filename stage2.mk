@@ -53,13 +53,13 @@ ifeq (${UBUNTU_11_12},true)
 	${EMERGE} --oneshot --nodeps app-admin/perl-cleaner
 	ebuild files/usr/local/portage/dev-lang/perl/perl-5.12.4-r99.ebuild clean merge
 else
-	${EMERGE} --oneshot -j dev-lang/perl
+	${EMERGE} --oneshot -u -j dev-lang/perl
 endif
 	touch $@
 
 install/_stage2-automake:
-	${EMERGE} --oneshot -j sys-apps/help2man
-	${EMERGE} --oneshot -j sys-devel/automake
+	${EMERGE} --oneshot -u -j sys-apps/help2man
+	${EMERGE} --oneshot -u -j sys-devel/automake
 	touch $@
 
 install/_stage2-tar:
@@ -76,7 +76,7 @@ install/_stage2-pkgconfig:
 	touch $@
 
 install/_stage2-wget:
-	${EMERGE} --oneshot -j net-misc/wget
+	${EMERGE} --oneshot -u -j net-misc/wget
 	touch $@
 
 install/_stage2-baselayout-prefix:
@@ -134,17 +134,17 @@ ifeq (${UBUNTU_11_12},true)
 	ebuild ${EPREFIX}/usr/local/portage/dev-lang/perl/perl-5.12.4-r99.ebuild digest
 endif
 	# perl workaround to avoid user confirmation
-	${EMERGE} --oneshot dev-lang/perl < /dev/null
+	${EMERGE} --oneshot -u -j dev-lang/perl < /dev/null
 	${EMERGE} --oneshot -u -j findutils
 	${EMERGE} --oneshot -u -j sys-devel/automake
 	${EMERGE} --oneshot -u -j app-arch/tar
-	${EMERGE} --oneshot grep
-	${EMERGE} --oneshot patch
-	${EMERGE} --oneshot gawk
-	${EMERGE} --oneshot make
-	${EMERGE} --oneshot --nodeps file
-	${EMERGE} --oneshot --nodeps eselect
-	${EMERGE} --oneshot pax-utils
+	${EMERGE} --oneshot -u -j sys-apps/grep
+	${EMERGE} --oneshot -u -j sys-devel/patch
+	${EMERGE} --oneshot -u -j sys-apps/gawk
+	${EMERGE} --oneshot -u -j sys-devel/make
+	${EMERGE} --oneshot --nodeps -u sys-apps/file
+	${EMERGE} --oneshot --nodeps -u app-admin/eselect
+	${EMERGE} --oneshot -u -j app-misc/pax-utils
 	touch $@
 
 install/stage2-portage-workarounds: install/stage2-up-to-pax-utils
