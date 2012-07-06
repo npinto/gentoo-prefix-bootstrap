@@ -51,7 +51,7 @@ install/_stage2-perl:
 		${EPREFIX}/etc/portage/package.mask/perl.prefix
 ifeq (${UBUNTU_11_12},true)
 	${EMERGE} --oneshot --nodeps app-admin/perl-cleaner
-	ebuild files/usr/portage/dev-lang/perl/perl-5.12.3-r99.ebuild clean merge
+	ebuild files/usr/portage/dev-lang/perl/perl-5.12.4-r99.ebuild clean merge
 else
 	${EMERGE} --oneshot -j dev-lang/perl
 endif
