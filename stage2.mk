@@ -105,8 +105,8 @@ install/_stage2-binutils-config:
 
 install/_stage2-binutils: install/_stage2-binutils-config
 ifeq (${UBUNTU_11_12},true)
-	#ebuild files/usr/portage/sys-devel/binutils/binutils-2.22-r99.ebuild digest
 	rsync -avuz files/usr/portage/sys-devel/binutils/* ${EPREFIX}/usr/portage/sys-devel/binutils/
+	ebuild ${EPREFIX}/usr/portage/sys-devel/binutils/binutils-2.22-r99.ebuild digest
 	MAKEOPTS=-j1 ${EMERGE} --oneshot --nodeps sys-devel/binutils
 else
 	MAKEOPTS=-j1 ${EMERGE} --oneshot --nodeps sys-devel/binutils \
@@ -118,10 +118,10 @@ endif
 	touch $@
 
 install/stage2-gcc: install/_stage2-binutils
-	${EMERGE} --oneshot --nodeps sys-devel/gcc-config
+	${EMERGE} --oneshot --nodeps -u sys-devel/gcc-config
 	# XXX: get the right kernel version?
-	${EMERGE} --oneshot --nodeps sys-kernel/linux-headers
-	${EMERGE} --oneshot -j sys-devel/bison
+	${EMERGE} --oneshot --nodeps -u sys-kernel/linux-headers
+	${EMERGE} --oneshot -u -j sys-devel/bison
 	${EMERGE} --oneshot --nodeps "=sys-devel/gcc-4.2*"
 	echo ">=sys-devel/gcc-4.2" > ${EPREFIX}/etc/portage/package.mask/gcc
 	echo "<sys-devel/gcc-4.2" > ${EPREFIX}/etc/portage/package.mask/gcc
@@ -130,10 +130,11 @@ install/stage2-gcc: install/_stage2-binutils
 install/stage2-up-to-pax-utils: install/stage2-gcc
 	${EMERGE} --oneshot -u coreutils
 ifeq (${UBUNTU_11_12},true)
-	ebuild files/usr/portage/dev-lang/perl/perl-5.12.3-r99.ebuild clean merge
-else
-	${EMERGE} --oneshot dev-lang/perl < /dev/null
+	rsync -avuz files/usr/portage/dev-lang/perl/* ${EPREFIX}/usr/portage/dev-lang/perl/
+	ebuild ${EPREFIX}/usr/portage/dev-lang/perl/perl-5.12.3-r99.ebuild digest
 endif
+	# perl workaround to avoid user confirmation
+	${EMERGE} --oneshot dev-lang/perl < /dev/null
 	${EMERGE} --oneshot -u -j findutils
 	${EMERGE} --oneshot -u -j sys-devel/automake
 	${EMERGE} --oneshot -u -j app-arch/tar
