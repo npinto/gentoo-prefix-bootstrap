@@ -51,7 +51,7 @@ install/_stage2-perl:
 		${EPREFIX}/etc/portage/package.mask/perl.prefix
 ifeq (${UBUNTU_11_12},true)
 	${EMERGE} --oneshot --nodeps app-admin/perl-cleaner
-	ebuild files/usr/portage/dev-lang/perl/perl-5.12.4-r99.ebuild clean merge
+	ebuild files/usr/local/portage/dev-lang/perl/perl-5.12.4-r99.ebuild clean merge
 else
 	${EMERGE} --oneshot -j dev-lang/perl
 endif
@@ -105,8 +105,8 @@ install/_stage2-binutils-config:
 
 install/_stage2-binutils: install/_stage2-binutils-config
 ifeq (${UBUNTU_11_12},true)
-	rsync -avuz files/usr/portage/sys-devel/binutils/* ${EPREFIX}/usr/portage/sys-devel/binutils/
-	ebuild ${EPREFIX}/usr/portage/sys-devel/binutils/binutils-2.22-r99.ebuild digest
+	rsync -avuz files/usr/local/portage/sys-devel/binutils/* ${EPREFIX}/usr/portage/sys-devel/binutils/
+	ebuild ${EPREFIX}/usr/local/portage/sys-devel/binutils/binutils-2.22-r99.ebuild digest
 	MAKEOPTS=-j1 ${EMERGE} --oneshot --nodeps sys-devel/binutils
 else
 	MAKEOPTS=-j1 ${EMERGE} --oneshot --nodeps sys-devel/binutils \
@@ -130,8 +130,8 @@ install/stage2-gcc: install/_stage2-binutils
 install/stage2-up-to-pax-utils: install/stage2-gcc
 	${EMERGE} --oneshot -u coreutils
 ifeq (${UBUNTU_11_12},true)
-	rsync -avuz files/usr/portage/dev-lang/perl/* ${EPREFIX}/usr/portage/dev-lang/perl/
-	ebuild ${EPREFIX}/usr/portage/dev-lang/perl/perl-5.12.4-r99.ebuild digest
+	rsync -avuz files/usr/local/portage/dev-lang/perl/* ${EPREFIX}/usr/portage/dev-lang/perl/
+	ebuild ${EPREFIX}/usr/local/portage/dev-lang/perl/perl-5.12.4-r99.ebuild digest
 endif
 	# perl workaround to avoid user confirmation
 	${EMERGE} --oneshot dev-lang/perl < /dev/null
@@ -150,7 +150,7 @@ endif
 install/stage2-portage-workarounds: install/stage2-up-to-pax-utils
 	# --
 	${EMERGE} --oneshot -u -j sys-libs/readline
-	ebuild ${EPREFIX}/usr/portage/app-admin/python-updater/python-updater-0.10-r2.ebuild digest
+	ebuild ${EPREFIX}/usr/portage/local/app-admin/python-updater/python-updater-0.10-r2.ebuild digest
 	${EMERGE} --oneshot --nodeps app-admin/python-updater
 	FEATURES=-collision-protect ${EMERGE} --oneshot --nodeps app-admin/eselect-python
 	# -- python: workarounds (only for stage2)
