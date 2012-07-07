@@ -20,7 +20,7 @@ install/stage4: install/stage3 install/stage4-config install/stage4-workarounds
 
 install/stage4-config: install/stage3
 	# -- Update make.conf
-	cp -vf files/make.conf ${EPREFIX}/etc/
+	cp -vf files/etc/make.conf ${EPREFIX}/etc/
 	echo "MAKEOPTS=\"${MAKEOPTS}\"" >> ${EPREFIX}/etc/make.conf
 	# -- python: update USE and mask >python-2.7.1-r1 to avoid this bug:
 	# http://bugs.python.org/issue9762

@@ -4,6 +4,7 @@ STAGE2_MK=stage2.mk
 include init.mk
 
 install/stage2: install/stage1 \
+	install/_stage2-local_overlay \
 	install/_stage2-workarounds \
 	install/_stage2-sed \
 	install/_stage2-bash \
@@ -25,6 +26,13 @@ install/stage2: install/stage1 \
 	install/stage2-portage
 	touch $@
 stage2: install/stage2
+
+install/_stage2-local_overlay:
+	# -- Add local overlay
+	mkdir -p ${EPREFIX}/usr/local/portage/
+	rsync -avuz files/usr/local/portage/* ${EPREFIX}/usr/local/portage/
+	echo "PORTDIR_OVERLAY=\"\${PORTDIR_OVERLAY} ${EPREFIX}/usr/local/portage/\"" >> ${EPREFIX}/etc/make.conf
+	touch $@
 
 install/_stage2-workarounds:
 	# -- python-updater
@@ -105,7 +113,9 @@ install/_stage2-binutils-config:
 
 install/_stage2-binutils: install/_stage2-binutils-config
 ifeq (${UBUNTU_11_12},true)
-	rsync -avuz files/usr/local/portage/sys-devel/binutils/* ${EPREFIX}/usr/portage/sys-devel/binutils/
+	mkdir -p ${EPREFIX}/usr/local/portage/sys-devel/binutils
+	rsync -avuz files/usr/local/portage/sys-devel/binutils/* ${EPREFIX}/usr/local/portage/sys-devel/binutils/
+	rm -vf ${EPREFIX}/usr/local/portage/sys-devel/binutils/binutils-2.1*
 	ebuild ${EPREFIX}/usr/local/portage/sys-devel/binutils/binutils-2.22-r99.ebuild digest
 	MAKEOPTS=-j1 ${EMERGE} --oneshot --nodeps sys-devel/binutils
 else
@@ -130,7 +140,8 @@ install/stage2-gcc: install/_stage2-binutils
 install/stage2-up-to-pax-utils: install/stage2-gcc
 	${EMERGE} --oneshot -u coreutils
 ifeq (${UBUNTU_11_12},true)
-	rsync -avuz files/usr/local/portage/dev-lang/perl/* ${EPREFIX}/usr/portage/dev-lang/perl/
+	mkdir -p ${EPREFIX}/usr/local/portage/dev-lang/perl
+	rsync -avuz files/usr/local/portage/dev-lang/perl/* ${EPREFIX}/usr/local/portage/dev-lang/perl/
 	ebuild ${EPREFIX}/usr/local/portage/dev-lang/perl/perl-5.12.4-r99.ebuild digest
 endif
 	# perl workaround to avoid user confirmation
@@ -165,10 +176,10 @@ install/stage2-portage: install/stage2-up-to-pax-utils install/stage2-portage-wo
 	env FEATURES="-collision-protect" ${EMERGE} --oneshot sys-apps/portage
 	# -- Move tmp directory
 	mv -f ${EPREFIX}/tmp ${EPREFIX}/tmp.old
-	# -- Add local overlay
-	mkdir -p ${EPREFIX}/usr/local/portage/
-	rsync -avuz files/usr/local/portage/* ${EPREFIX}/usr/local/portage/
-	echo "PORTDIR_OVERLAY=\"\${PORTDIR_OVERLAY} ${EPREFIX}/usr/local/portage/\"" >> ${EPREFIX}/etc/make.conf
+	## -- Add local overlay
+	#mkdir -p ${EPREFIX}/usr/local/portage/
+	#rsync -avuz files/usr/local/portage/* ${EPREFIX}/usr/local/portage/
+	#echo "PORTDIR_OVERLAY=\"\${PORTDIR_OVERLAY} ${EPREFIX}/usr/local/portage/\"" >> ${EPREFIX}/etc/make.conf
 	# -- Synchronize repo
 	${EMERGE} --sync
 	touch $@
