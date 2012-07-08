@@ -80,7 +80,7 @@ install/_stage2-file:
 
 install/_stage2-pkgconfig:
 	ACCEPT_KEYWORDS='**' emerge -q --oneshot -u -j '=dev-libs/libelf-0.8.13*'
-	PKG_CONFIG_PATH=${EPREIFX}/usr/lib/pkgconfig ${EMERGE} --oneshot -u -j dev-util/pkgconfig
+	PKG_CONFIG_PATH=${EPREFIX}/usr/lib/pkgconfig ${EMERGE} --oneshot -u -j dev-util/pkgconfig
 	touch $@
 
 install/_stage2-wget:
