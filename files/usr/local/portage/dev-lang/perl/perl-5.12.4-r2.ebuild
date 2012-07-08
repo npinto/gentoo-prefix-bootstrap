@@ -251,7 +251,7 @@ src_configure() {
 		local paths=""
 		echo "int main() {}" > "${T}"/t.c
 		# need to ensure dirs contain compatible libs, bug #358875
-		for ldir in /lib64 /lib/64 /usr/lib64 /usr/lib/64 /lib32 /usr/lib32 /lib /usr/lib ; do
+		for ldir in /lib/*-linux-gnu /usr/lib/*-linux-gnu /lib64 /lib/64 /usr/lib64 /usr/lib/64 /lib32 /usr/lib32 /lib /usr/lib ; do
 			[[ -d ${ldir} ]] || continue
 			# look for libc, which should be somewhere
 			llib=${ldir}/libc$(get_libname)
