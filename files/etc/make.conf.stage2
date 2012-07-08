@@ -1,0 +1,1 @@
+PORTDIR_OVERLAY="${PORTDIR_OVERLAY} ${EPREFIX}/usr/local/portage/"
