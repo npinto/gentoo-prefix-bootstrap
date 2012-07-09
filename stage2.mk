@@ -29,9 +29,9 @@ stage2: install/stage2
 
 install/_stage2-local_overlay:
 	# -- Add local overlay
-	mkdir -p ${EPREFIX}/usr/local/portage/
+	mkdir -p ${EPREFIX}/usr/local/portage
 	rsync -avuz files/usr/local/portage/* ${EPREFIX}/usr/local/portage/
-	echo "PORTDIR_OVERLAY=\"\${PORTDIR_OVERLAY} ${EPREFIX}/usr/local/portage/\"" >> ${EPREFIX}/etc/make.conf
+	cp -vf files/etc/make.conf.stage2 ${EPREFIX}/etc/make.conf
 	touch $@
 
 install/_stage2-workarounds:
@@ -132,7 +132,7 @@ install/stage2-gcc: install/_stage2-binutils
 	# XXX: get the right kernel version?
 	${EMERGE} --oneshot --nodeps -u sys-kernel/linux-headers
 	${EMERGE} --oneshot -u -j sys-devel/bison
-	${EMERGE} --oneshot --nodeps "=sys-devel/gcc-4.2*"
+	${EMERGE} --nodeps "=sys-devel/gcc-4.2*"
 	echo ">=sys-devel/gcc-4.2" > ${EPREFIX}/etc/portage/package.mask/gcc
 	echo "<sys-devel/gcc-4.2" > ${EPREFIX}/etc/portage/package.mask/gcc
 	touch $@
@@ -161,7 +161,7 @@ endif
 install/stage2-portage-workarounds: install/stage2-up-to-pax-utils
 	# --
 	${EMERGE} --oneshot -u -j sys-libs/readline
-	ebuild ${EPREFIX}/usr/portage/local/app-admin/python-updater/python-updater-0.10-r2.ebuild digest
+	ebuild ${EPREFIX}/usr/local/portage/app-admin/python-updater/python-updater-0.10-r2.ebuild digest
 	${EMERGE} --oneshot --nodeps app-admin/python-updater
 	FEATURES=-collision-protect ${EMERGE} --oneshot --nodeps app-admin/eselect-python
 	# -- python: workarounds (only for stage2)
