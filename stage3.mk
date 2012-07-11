@@ -18,6 +18,7 @@ install/_stage3-gettext:
 install/_stage3-git:
 	# -- git: workaround
 	${EMERGE} --oneshot -u -j '=dev-perl/Digest-HMAC-1.30.0'
+	MAKEOPTS=-j1 ${EMERGE} --oneshot -u sys-apps/debianutils
 	${EMERGE} --oneshot -u -j '=dev-perl/Net-SSLeay-1.360.0'
 	ebuild ${EPREFIX}/usr/local/portage/dev-lang/perl/perl-5.12.4-r99.ebuild digest
 	${EMERGE} -u -j dev-vcs/git
