@@ -71,6 +71,8 @@ install/_stage1-zlib:
 	touch $@
 
 install/_stage1-python:
+	# -- python workaround: disable crypt and nis
+	sed -i -e 's;export PYTHON_DISABLE_MODULES.*;export PYTHON_DISABLE_MODULES="_ctypes_test readline pyexpat dbm gdbm bsddb _curses _curses_panel _tkinter _elementtree _locale _sqlite3 bsddb185 bz2 crypt nis";g' ./bootstrap-prefix.sh
 	./bootstrap-prefix.sh ${EPREFIX}/tmp python
 	touch $@
 
