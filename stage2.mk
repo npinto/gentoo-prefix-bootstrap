@@ -31,8 +31,8 @@ install/_stage2-local_overlay:
 	# -- Add local overlay
 	mkdir -p ${EPREFIX}/usr/local/portage
 	rsync -avuz files/usr/local/portage/* ${EPREFIX}/usr/local/portage/
-	#cp -vf files/etc/make.conf.stage2 ${EPREFIX}/etc/make.conf
-	sed "s;\${EPREFIX};${EPREFIX};g" files/etc/make.conf.stage2 > ${EPREFIX}/etc/make.conf
+	cp -vf files/etc/make.conf.stage2 ${EPREFIX}/etc/make.conf
+	echo "PORTDIR_OVERLAY='\$${PORTDIR_OVERLAY} ${EPREFIX}/usr/local/portage/'" >> ${EPREFIX}/etc/make.conf
 	touch $@
 
 install/_stage2-workarounds:
