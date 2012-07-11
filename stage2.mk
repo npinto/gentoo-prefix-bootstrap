@@ -31,8 +31,8 @@ install/_stage2-local_overlay:
 	# -- Add local overlay
 	mkdir -p ${EPREFIX}/usr/local/portage
 	rsync -avuz files/usr/local/portage/* ${EPREFIX}/usr/local/portage/
-	#cp -vf files/etc/make.conf.stage2 ${EPREFIX}/etc/make.conf
-	sed "s;\${EPREFIX};${EPREFIX};g" files/etc/make.conf.stage2 > ${EPREFIX}/etc/make.conf
+	cp -vf files/etc/make.conf.stage2 ${EPREFIX}/etc/make.conf
+	echo "PORTDIR_OVERLAY='\$${PORTDIR_OVERLAY} ${EPREFIX}/usr/local/portage/'" >> ${EPREFIX}/etc/make.conf
 	touch $@
 
 install/_stage2-workarounds:
@@ -160,15 +160,12 @@ endif
 	touch $@
 
 install/stage2-portage-workarounds: install/stage2-up-to-pax-utils
-	# --
+	# -- python: workarounds (only for stage2)
 	${EMERGE} --oneshot -u -j sys-libs/readline
 	ebuild ${EPREFIX}/usr/local/portage/app-admin/python-updater/python-updater-0.10-r2.ebuild digest
-	${EMERGE} --oneshot --nodeps app-admin/python-updater
-	FEATURES=-collision-protect ${EMERGE} --oneshot --nodeps app-admin/eselect-python
-	# -- python: workarounds (only for stage2)
-	#mkdir -p ${EPREFIX}/etc/portage/env/dev-lang/
-	#echo "export LDFLAGS='-L/usr/lib64'" > ${EPREFIX}/etc/portage/env/dev-lang/python
-	${EMERGE} --nodeps dev-lang/python
+	${EMERGE} --oneshot --nodeps -u app-admin/python-updater
+	FEATURES=-collision-protect ${EMERGE} --oneshot --nodeps -u app-admin/eselect-python
+	USE=-xml ${EMERGE} --nodeps -u -j dev-lang/python
 	eselect python set python2.7
 	touch $@
 
