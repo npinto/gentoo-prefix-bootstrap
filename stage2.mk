@@ -31,8 +31,8 @@ install/_stage2-local_overlay:
 	# -- Add local overlay
 	mkdir -p ${EPREFIX}/usr/local/portage
 	rsync -avuz files/usr/local/portage/* ${EPREFIX}/usr/local/portage/
-	#cp -vf files/etc/make.conf.stage2 ${EPREFIX}/etc/make.conf
-	sed "s;\${EPREFIX};${EPREFIX};g" files/etc/make.conf.stage2 > ${EPREFIX}/etc/make.conf
+	cp -vf files/etc/make.conf.stage2 ${EPREFIX}/etc/make.conf
+	echo "PORTDIR_OVERLAY='\$${PORTDIR_OVERLAY} ${EPREFIX}/usr/local/portage/'" >> ${EPREFIX}/etc/make.conf
 	touch $@
 
 install/_stage2-workarounds:
@@ -60,9 +60,9 @@ install/_stage2-perl:
 		${EPREFIX}/etc/portage/package.mask/perl.prefix
 ifeq (${UBUNTU_11_12},true)
 	${EMERGE} --oneshot --nodeps app-admin/perl-cleaner
-	ebuild files/usr/local/portage/dev-lang/perl/perl-5.12.4-r99.ebuild clean merge
+	ebuild files/usr/local/portage/dev-lang/perl/perl-5.12.4-r99.ebuild clean merge < /dev/null
 else
-	${EMERGE} --oneshot -u -j dev-lang/perl
+	${EMERGE} --oneshot -u -j dev-lang/perl < /dev/null
 endif
 	touch $@
 
