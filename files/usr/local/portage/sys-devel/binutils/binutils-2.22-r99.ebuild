@@ -30,6 +30,8 @@ src_compile() {
 	*-interix*) EXTRA_ECONF="${EXTRA_ECONF} --without-gnu-ld --without-gnu-as" ;;
 	esac
 
+	EXTRA_CONF="${EXTRA_CONF} --with-sysroot=/."
+
 	toolchain-binutils_src_compile
 }
 
