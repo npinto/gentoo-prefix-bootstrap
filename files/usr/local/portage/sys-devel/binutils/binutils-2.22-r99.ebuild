@@ -30,7 +30,7 @@ src_compile() {
 	*-interix*) EXTRA_ECONF="${EXTRA_ECONF} --without-gnu-ld --without-gnu-as" ;;
 	esac
 
-	EXTRA_CONF="${EXTRA_CONF} --with-sysroot=/."
+	EXTRA_ECONF="${EXTRA_ECONF} --with-sysroot=/."
 
 	toolchain-binutils_src_compile
 }
@@ -60,7 +60,4 @@ src_install() {
 		done
 		;;
 	esac
-    #for f in "${ED}${LIBPATH}/ldscripts"/*; do
-        #sed -i -e 's,\(SEARCH_DIR("/usr/lib");\),\1 SEARCH_DIR("/usr/lib/x86_64-linux-gnu");,g' $f;
-    #done;
 }
