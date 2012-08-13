@@ -22,6 +22,7 @@ unexport CPATH
 unexport C_INCLUDE_PATH
 unexport DYLD_LIBRARY_PATH
 unexport PYTHONPATH
+unexport PKG_CONFIG_PATH
 
 N_PROCESSORS:=$(shell grep '^processor' /proc/cpuinfo | wc -l)
 MAKEOPTS:=-j${N_PROCESSORS}
