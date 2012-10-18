@@ -10,6 +10,7 @@ install/stage2: install/stage1 \
 	install/_stage2-bash \
 	install/_stage2-xz-utils \
 	install/_stage2-bzip2 \
+	install/_stage2-gzip \
 	install/_stage2-perl \
 	install/_stage2-automake \
 	install/_stage2-tar \
@@ -52,6 +53,10 @@ install/_stage2-bash:
 
 install/_stage2-xz-utils:
 	${EMERGE} --oneshot --nodeps app-arch/xz-utils
+	touch $@
+
+install/_stage2-gzip:
+	${EMERGE} --oneshot --nodeps sys-libs/gzip
 	touch $@
 
 install/_stage2-bzip2:
